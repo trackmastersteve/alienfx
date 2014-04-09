@@ -1,0 +1,14 @@
+[synopsis]
+.B alienfx
+[\fIOPTION\fP]...
+
+[files]
+.fi
+.TP
+\fI$XDG_CONFIG_HOME/alienfx/\fP
+Storage for theme files
+.br
+If \fB$XDG_CONFIG_HOME\fP is not set, it will use \fI$HOME/.config/alienfx/\fP.
+
+[availability]
+The latest version of this distribution is available from \fIhttps://github.com/ashwinm76/alienfx\fP

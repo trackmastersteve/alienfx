@@ -1,0 +1,65 @@
+
+AlienFX is a utility to control the lighting effects of your Alienware computer.
+At present there is a cli version (alienfx) and a gtk gui version (alienfx-gtk).
+
+Dependencies
+============
+
+AlienFX is written in python and has been tested on python 2.7. It requires
+the following python packages to run:
+
+1. pyusb >= 1.0.0b1
+   Note that your distribution may only provide the pre-1.0 version of pyusb. If
+   this is the case, you can install the 1.0 version of pyusb using the following
+   command:
+     pip install --pre pyusb
+
+2. pkg_resources
+
+3. cairo
+
+4. gi
+
+Installation
+============
+
+Install AlienFX using these commands:
+  
+  sudo python setup.py install
+  sudo python setup.py install_data
+
+Note that the second invocation is required to ensure that icon files etc. are
+properly installed.
+
+The installation includes a udev rules file that allows AlienFX to access the 
+AlienFX USB controller on your computer without needing root permissions. If 
+you run the install commands without sudo, then the udev rules file will not 
+be installed.
+
+Usage
+=====
+
+Lighting configurations are stored in "theme files", which are simple json
+files stored in ~/.config/alienfx. Both the cli and gui programs use these theme
+files, and the gui program allows you to create new themes as well.
+
+See the man page of alienfx for the cli options supported.
+
+Supported models and adding support for new models
+==================================================
+
+At present, AlienFX supports and has been tested on the Alienware M14xR1 laptop.
+
+To add support for a different model of Alienware computer, do the following:
+
+1. Copy alienfx/core/controller_m14xr1.py to controller_<your computer name>.py
+   in the same directory, and modify it using the original file as a reference.
+
+2. At the top of alienfx/core/prober.py, add an import statement to import your
+   new controller module created in step 1. This should be done at the docstring
+   """ Import all subclasses of AlienFXController here. """. 
+
+3. Modify data/etc/udev/rules.d/10-alienfx.rules to add a line for the VID and PID
+   corresponding to the AlienFX USB controller on your computer.
+
+4. Test your modifications, and please submit a patch!

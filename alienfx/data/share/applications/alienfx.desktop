@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=AlienFX
+Comment=AlienFX
+Type=Application
+Exec=alienfx-gtk
+Icon=alienfx
+Categories=Utility;
+GenericName[en_IN]=AlienFX
+Name[en_IN]=AlienFX
