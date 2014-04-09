@@ -65,6 +65,9 @@ class AlienFXThemeFile:
     KW_ACTION_TYPE = "type"
     KW_ACTION_COLOURS = "colours"
     
+    # The name of the last applied theme file
+    LAST_THEME_FILE = ".last_theme.json"
+    
     def __init__(self, controller):
         try:
             if not "XDG_CONFIG_HOME" in os.environ:
@@ -88,16 +91,10 @@ class AlienFXThemeFile:
         theme_names = []
         for file_ext in files_and_exts:
             if file_ext[1] == ".json":
-                theme_names.append(file_ext[0])
+                if file_ext[0] != os.path.splitext(self.LAST_THEME_FILE)[0]:
+                    theme_names.append(file_ext[0])
         theme_names = sorted(theme_names)
         return theme_names
-        
-    def set_default_theme(self):
-        """ Sets the theme contents to a default value."""
-        default_themefile = pkg_resources.resource_filename(
-            "alienfx", "data/themes/default.json")
-        self._load_from_file(default_themefile)
-        self.theme_name = ""
 
     def set_speed(self, speed):
         """ Set the speed. """
@@ -162,17 +159,57 @@ class AlienFXThemeFile:
         zone_action[cls.KW_ACTION_COLOURS] = colours
         return zone_action
         
+    def applied(self):
+        """ Notify the theme file that it has been applied on the computer.
+        This will make it save itself to self.LAST_THEME_FILE"""
+        last_theme_file = os.path.join(self._theme_dir, self.LAST_THEME_FILE)
+        self._save_to_file(last_theme_file)
+        
+    def load_last_theme(self):
+        """ Loads the last theme applied and return True. If no theme was 
+        applied previously, then load the default theme and return False."""
+        last_theme_file = os.path.join(self._theme_dir, self.LAST_THEME_FILE)
+        if os.path.exists(last_theme_file):
+            self._load_from_file(last_theme_file)
+            return True
+        else:
+            self.set_default_theme()
+            return False
+            
+    def set_default_theme(self):
+        """ Sets the theme contents to a default value."""
+        default_themefile = pkg_resources.resource_filename(
+            "alienfx", "data/themes/default.json")
+        self._load_from_file(default_themefile)
+        self.theme_name = ""
+        
     def _load_from_file(self, theme_file_path):
         """ Load a theme from a file."""
         try:
             with open(theme_file_path) as tfile:
                 self.theme = json.load(tfile)
-            self.theme_name = os.path.splitext(
-                os.path.basename(theme_file_path))
+            theme_name = os.path.splitext(
+                os.path.basename(theme_file_path))[0]
+            if theme_name != os.path.splitext(self.LAST_THEME_FILE)[0]:
+                self.theme_name = theme_name
+            else:
+                self.theme_name = ""
         except Exception as exc:
             logging.error(exc)
             self.theme = {}
             self.theme_name = ""
+        
+    def _save_to_file(self, theme_file_path):
+        """ Save theme contents to a file."""
+        try:
+            with open(theme_file_path, "w") as tfile:
+                json.dump(self.theme, tfile, indent=4, separators=(',', ': '))
+            theme_name = os.path.splitext(
+                os.path.basename(theme_file_path))[0]
+            if theme_name != os.path.splitext(self.LAST_THEME_FILE)[0]:
+                self.theme_name = theme_name
+        except Exception as exc:
+            logging.error(exc)
             
     def load(self, theme_name):
         """ Load a theme given its name. """
@@ -190,12 +227,8 @@ class AlienFXThemeFile:
                 return
         else:
             theme_file = theme_name + ".json"
-        try:
-            with open(os.path.join(self._theme_dir, theme_file), "w") as tfile:
-                json.dump(self.theme, tfile, indent=4, separators=(',', ': '))
-            self.theme_name = theme_name
-        except Exception as exc:
-            logging.error(exc)
+        theme_file_path = os.path.join(self._theme_dir, theme_file)
+        self._save_to_file(theme_file_path)
     
     @classmethod
     def get_action_type(cls, action):

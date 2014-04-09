@@ -98,7 +98,7 @@ class AlienFXApp(Gtk.Application):
                 
         self.themefile = AlienFXThemeFile(self.controller)
         self.themefile.set_default_theme()
-        self.load_theme()
+        self.load_theme("New Theme")
         self.set_theme_dirty(False)
         
     def on_action_open_theme_activate(self, widget):
@@ -182,6 +182,7 @@ class AlienFXApp(Gtk.Application):
     def set_theme(self):
         """ Set the current theme on the computer."""
         self.controller.set_theme(self.themefile)
+        self.themefile.applied()
         
     def wait_set_theme(self):
         """ Wait for set_theme to complete, and then stop the spinner."""
@@ -210,8 +211,10 @@ class AlienFXApp(Gtk.Application):
         """ Set the window title from the current theme name."""
         self.builder.get_object("main_window").set_title(theme_name + " - Alien FX")
         
-    def load_theme(self):
-        """ Load a theme and display it in the GUI."""
+    def load_theme(self, theme_name=None):
+        """ Load a theme and display it in the GUI. If a theme name is supplied
+        then show it in the window title; otherwise get the theme name from the
+        theme file currently loaded."""
         normal_zone_list_store = self.builder.get_object("normal_zone_list_store")
         power_zone_list_store = self.builder.get_object("power_zone_list_store")
         normal_zone_list_store.clear()
@@ -237,7 +240,9 @@ class AlienFXApp(Gtk.Application):
                 normal_zone_list_store.append([zone, a])
         self.zone_list_view.set_model(normal_zone_list_store)
         self.builder.get_object("radiobutton_normal_zones").set_active(True)
-        if self.themefile.theme_name == "":
+        if theme_name is not None:
+            self.set_window_title(theme_name)
+        elif self.themefile.theme_name == "":
             self.set_window_title("New theme")
         else:
             self.set_window_title(self.themefile.theme_name)
@@ -354,8 +359,11 @@ class AlienFXApp(Gtk.Application):
             quit()
             
         self.themefile = AlienFXThemeFile(self.controller)
-        self.themefile.set_default_theme()
-        self.load_theme()
+        last_theme_loaded = self.themefile.load_last_theme()
+        if last_theme_loaded:
+            self.load_theme("Current Theme")
+        else:
+            self.load_theme("New Theme")
         
     def on_main_window_delete_event(self, widget, event):
         if self.theme_edited:

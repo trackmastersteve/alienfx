@@ -74,7 +74,8 @@ def start():
                 print "\t{}".format(t)
         elif args.theme is not None:
             themefile.load(args.theme)
-
-        controller.set_theme(themefile)
+            controller.set_theme(themefile)
+            themefile.applied()
+            
     except Exception as e:
         logging.error(e)
