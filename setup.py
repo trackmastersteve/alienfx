@@ -70,6 +70,7 @@ setup(
     package_data = {"alienfx": [
         "ui/gtkui/glade/*.glade", 
         "data/icons/hicolor/scalable/apps/*.svg",
+        "data/themes/default.json",
         "data/etc/udev/rules.d/10-alienfx.rules"
     ]}
 )

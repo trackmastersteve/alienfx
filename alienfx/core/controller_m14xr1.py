@@ -35,7 +35,11 @@ class AlienFXControllerM14XR1(alienfx_controller.AlienFXController):
     """ Specialization of the AlienFxController class for the M14XR1 controller.
     """
     
-    DEFAULT_SPEED = 0xc8
+    # Speed capabilities. The higher the number, the slower the speed of 
+    # blink/morph actions. The min speed is selected by trial and error as 
+    # the lowest value that will not result in strange blink/morph behaviour.
+    DEFAULT_SPEED = 200
+    MIN_SPEED = 50
     
     # Zone codes
     LEFT_KEYBOARD = 0x0001
@@ -65,9 +69,11 @@ class AlienFXControllerM14XR1(alienfx_controller.AlienFXController):
     
     def __init__(self):
         alienfx_controller.AlienFXController.__init__(self)
+        self.name = "Alienware M14XR1"
+        
+        # USB VID and PID
         self.vendor_id = 0x187c
         self.product_id = 0x0521
-        self.name = "Alienware M14XR1"
         
         # map the zone names to their codes
         self.zone_map = {
@@ -107,6 +113,5 @@ class AlienFXControllerM14XR1(alienfx_controller.AlienFXController):
             self.STATE_BATTERY_CRITICAL: self.BATTERY_CRITICAL
         }
 
-if __name__ != "__main__":
-    alienfx_controller.AlienFXController.supported_controllers.append(
-        AlienFXControllerM14XR1())
+alienfx_controller.AlienFXController.supported_controllers.append(
+    AlienFXControllerM14XR1())

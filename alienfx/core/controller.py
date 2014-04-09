@@ -45,10 +45,8 @@ class AlienFXController:
     """
     
     # List of all subclasses of this class. Subclasses must add instances of
-    # themselves to this list.
+    # themselves to this list. See README for details.
     supported_controllers = []
-    
-    DEFAULT_SPEED = 0xc8
     
     # Zone names
     ZONE_LEFT_KEYBOARD = "Left Keyboard"

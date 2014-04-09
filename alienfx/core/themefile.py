@@ -36,6 +36,8 @@ import logging
 import os
 import os.path
 
+import pkg_resources
+
 class AlienFXThemeFile:
     
     """ Provides facilities to read and write AlienFX theme files. The theme
@@ -81,9 +83,6 @@ class AlienFXThemeFile:
     def get_themes(self):
         """ Return a list of all theme file names (minus the filename extension)
         in the themes directory. """
-        if not os.path.exists(self._theme_dir):
-            os.mkdir(self._theme_dir)
-            return []
         theme_dir_files = os.listdir(self._theme_dir)
         files_and_exts = [os.path.splitext(x) for x in theme_dir_files]
         theme_names = []
@@ -95,71 +94,11 @@ class AlienFXThemeFile:
         
     def set_default_theme(self):
         """ Sets the theme contents to a default value."""
-        theme = {}
+        default_themefile = pkg_resources.resource_filename(
+            "alienfx", "data/themes/default.json")
+        self._load_from_file(default_themefile)
         self.theme_name = ""
-        controller = self.controller
-        self.set_speed(controller.DEFAULT_SPEED)
-        # Non-power actions
-        for zone in controller.zone_map:
-            if not zone in controller.power_zones:
-                default_action = self.make_zone_action(
-                    self.KW_ACTION_TYPE_FIXED, [[0, 0, 15]])
-                self.set_zone_actions(
-                    controller.STATE_BOOT, [zone], [default_action])
-        non_power_zones = [x for x in controller.zone_map if not x in controller.power_zones]
-        # AC Charged actions
-        actions = []
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_FIXED, [[0, 0, 15]]))
-        self.set_zone_actions(
-            controller.STATE_AC_CHARGED, controller.power_zones, actions)
-        # AC Sleep actions
-        actions = []
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_MORPH, [[0, 0, 15], [0, 0, 0]]))
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_MORPH, [[0, 0, 0], [0, 0, 15]]))
-        self.set_zone_actions(
-            controller.STATE_AC_SLEEP, controller.power_zones, actions)
-        actions = []
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_FIXED, [[0, 0, 0]]))
-        self.set_zone_actions(
-            controller.STATE_AC_SLEEP, non_power_zones, actions)
-        # AC Charging actions
-        actions = []
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_MORPH, [[0, 0, 15], [15, 9, 0]]))
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_MORPH, [[15, 9, 0], [0, 0, 15]]))
-        self.set_zone_actions(
-            controller.STATE_AC_CHARGING, controller.power_zones, actions)
-        # Battery Sleep actions
-        actions = []
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_MORPH, [[15, 9, 0], [0, 0, 0]]))
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_MORPH, [[0, 0, 0], [15, 9, 0]]))
-        self.set_zone_actions(
-            controller.STATE_BATTERY_SLEEP, controller.power_zones, actions)
-        actions = []
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_FIXED, [[0, 0, 0]]))
-        self.set_zone_actions(
-            controller.STATE_BATTERY_SLEEP, non_power_zones, actions)
-        # Battery On actions
-        actions = []
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_FIXED, [[15, 9, 0]]))
-        self.set_zone_actions(
-            controller.STATE_BATTERY_ON, controller.power_zones, actions)
-        # Battery Critical actions
-        actions = []
-        actions.append(self.make_zone_action(
-            self.KW_ACTION_TYPE_BLINK, [[15, 9, 0]]))
-        self.set_zone_actions(
-            controller.STATE_BATTERY_CRITICAL, controller.power_zones, actions)
-        
+
     def set_speed(self, speed):
         """ Set the speed. """
         self.theme[self.KW_SPEED] = speed
@@ -223,26 +162,29 @@ class AlienFXThemeFile:
         zone_action[cls.KW_ACTION_COLOURS] = colours
         return zone_action
         
-    def load(self, theme_name):
-        """ Load a theme from the given file. """
-        if self._theme_dir is None:
-            return
-        theme_file = theme_name + ".json"
+    def _load_from_file(self, theme_file_path):
+        """ Load a theme from a file."""
         try:
-            with open(os.path.join(self._theme_dir, theme_file)) as tfile:
+            with open(theme_file_path) as tfile:
                 self.theme = json.load(tfile)
-            self.theme_name = theme_name
+            self.theme_name = os.path.splitext(
+                os.path.basename(theme_file_path))
         except Exception as exc:
             logging.error(exc)
             self.theme = {}
+            self.theme_name = ""
+            
+    def load(self, theme_name):
+        """ Load a theme given its name. """
+        theme_file = theme_name + ".json"
+        theme_file_path = os.path.join(self._theme_dir, theme_file)
+        self._load_from_file(theme_file_path)
         
     def save(self, theme_name=None):
-        """ Save the current theme to the given file.
-        If the file name is not given, then save it to the previously loaded
+        """ Save the current theme with the given name.
+        If the name is not given, then save it to the previously loaded
         theme file. If no such file was loaded previously, then do nothing.
         """
-        if self._theme_dir is None:
-            return
         if theme_name is None:
             if self.theme_name == "":
                 return
@@ -292,4 +234,3 @@ class AlienFXThemeFile:
             if len(action_colours) != 2:
                 return
             action[cls.KW_ACTION_COLOURS] = action_colours
-            
