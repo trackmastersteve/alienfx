@@ -10,8 +10,8 @@ the following python packages to run:
 
 1. pyusb >= 1.0.0b1
    Note that your distribution may only provide the pre-1.0 version of pyusb. If
-   this is the case, you can install the 1.0 version of pyusb using the following
-   command:
+   this is the case, you can install the 1.0 version of pyusb using the 
+   following command:
      pip install --pre pyusb
 
 2. pkg_resources
