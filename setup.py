@@ -69,7 +69,7 @@ setup(
     packages = find_packages(),
     package_data = {"alienfx": [
         "ui/gtkui/glade/*.glade", 
-        "data/icons/scalable/apps/*.svg",
+        "data/icons/hicolor/scalable/apps/*.svg",
         "data/etc/udev/rules.d/10-alienfx.rules"
     ]}
 )
