@@ -23,6 +23,13 @@
     <property name="stock_id">gtk-delete</property>
     <signal name="activate" handler="on_action_delete_activate" swapped="no"/>
   </object>
+  <object class="GtkAction" id="action_delete_theme">
+    <property name="label" translatable="yes">Delete Theme</property>
+    <property name="short_label" translatable="yes">Delete</property>
+    <property name="tooltip" translatable="yes">Delete the current theme from the disk</property>
+    <property name="stock_id">gtk-clear</property>
+    <signal name="activate" handler="on_action_delete_theme_activate" swapped="no"/>
+  </object>
   <object class="GtkAction" id="action_new_theme">
     <property name="label" translatable="yes">New Theme</property>
     <property name="short_label" translatable="yes">New</property>
@@ -122,6 +129,19 @@
             <child>
               <object class="GtkToolButton" id="toolbutton_save_theme_as">
                 <property name="related_action">action_save_theme_as</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_delete_theme">
+                <property name="related_action">action_delete_theme</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">toolbutton1</property>

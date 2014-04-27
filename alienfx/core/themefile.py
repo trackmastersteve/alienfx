@@ -83,6 +83,25 @@ class AlienFXThemeFile:
         self.theme_name = ""
         self.controller = controller
         
+    def delete_theme_from_disk(self):
+        """ Delete the currently loaded theme file from disk, and set contents
+        of this instance to the default theme. Return True on success, False
+        otherwise."""
+        if ((self.theme_name == "") or
+                (self.theme_name == os.path.splitext(self.LAST_THEME_FILE)[0])):
+            return
+                
+        theme_file_path = os.path.join(self._theme_dir, 
+            self.theme_name +  ".json")
+        try:
+            if os.path.exists(theme_file_path):
+                os.remove(theme_file_path)
+                self.set_default_theme()
+                return True
+        except IOError as exc:
+            logging.error(exc)
+        return False
+        
     def get_themes(self):
         """ Return a list of all theme file names (minus the filename extension)
         in the themes directory. """

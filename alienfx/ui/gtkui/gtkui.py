@@ -78,6 +78,10 @@ class AlienFXApp(Gtk.Application):
         self.action_type = self.themefile.KW_ACTION_TYPE_FIXED
         self.theme_edited = False
         self.set_theme_done = True
+
+    def enable_delete_theme_button(self, enable):
+        """ Enable or disable the "Delete Theme" button."""
+        self.builder.get_object("toolbutton_delete_theme").set_sensitive(enable)
         
     def ask_discard_changes(self):
         """ Ask the user if he wants to discard theme edits."""
@@ -101,6 +105,8 @@ class AlienFXApp(Gtk.Application):
         self.themefile.set_default_theme()
         self.load_theme("New Theme")
         self.set_theme_dirty(False)
+        self.theme_loaded_from_file = False
+        self.enable_delete_theme_button(False)
         
     def on_action_open_theme_activate(self, widget):
         """ Handler for when the "Open Theme" action is triggered."""
@@ -122,6 +128,8 @@ class AlienFXApp(Gtk.Application):
         else:
             self.themefile.save(self.themefile.theme_name)
             self.set_theme_dirty(False)
+            self.theme_loaded_from_file = True
+            self.enable_delete_theme_button(True)
         
     def on_action_save_theme_as_activate(self, widget):
         """ Handler for when the "Save Theme As" action is triggered."""
@@ -132,7 +140,25 @@ class AlienFXApp(Gtk.Application):
             saveas_theme_list_store.append([theme])
         self.builder.get_object("saveas_theme_name").set_text("")
         self.builder.get_object("saveas_theme_dialog").show()
-        
+    
+    def on_action_delete_theme_activate(self, widget):
+        """ Handler for when the "Delete Theme" action is triggered."""
+        main_window = self.builder.get_object("main_window")
+        dialog = Gtk.MessageDialog(main_window, 
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.WARNING,
+            Gtk.ButtonsType.YES_NO,
+            ("Are you sure you want to delete this theme from disk? " +  
+            "This cannot be undone!"""))
+        response = dialog.run()
+        dialog.destroy()
+        if response == Gtk.ResponseType.NO:
+            return
+        if self.themefile.delete_theme_from_disk():
+            self.theme_loaded_from_file = False
+            self.enable_delete_theme_button(False)
+            self.load_theme("New Theme")
+            
     def on_action_delete_activate(self, widget):
         """ Handler for when the "Delete Action" action is triggered."""
         if self.selected_action is None:
@@ -187,6 +213,8 @@ class AlienFXApp(Gtk.Application):
         self.set_theme_done = True
         
     def set_theme_done_cb(self):
+        """ This idle task updates the GUI when the theme has been sent to the
+        AlienFX controller."""
         if self.set_theme_done:
             spinner = self.builder.get_object("spinner")
             spinner.stop()
@@ -267,8 +295,11 @@ class AlienFXApp(Gtk.Application):
         self.load_theme()
         self.builder.get_object("open_theme_dialog").hide()
         self.set_theme_dirty(False)
+        self.theme_loaded_from_file = True
+        self.enable_delete_theme_button(True)
         
     def on_open_theme_list_view_row_activated(self, treeview, path, column):
+        """ Handler for when a theme in the theme list is double-clicked."""
         model = treeview.get_model()
         treeiter = model.get_iter(path)
         self.do_load_theme(model[treeiter][0])
@@ -289,11 +320,15 @@ class AlienFXApp(Gtk.Application):
         self.set_window_title(self.themefile.theme_name)
         self.builder.get_object("saveas_theme_dialog").hide()
         self.set_theme_dirty(False)
+        self.theme_loaded_from_file = True
+        self.enable_delete_theme_button(True)
         
     def on_saveas_theme_name_activate(self, entry):
+        """ Handler for when <Enter> is pressed in the theme name entry box."""
         self.do_saveas_theme(entry.get_text())
         
     def on_saveas_theme_list_view_row_activated(self, treeview, path, column):
+        """ Handler for when a theme in the theme list is double-clicked."""
         model = treeview.get_model()
         treeiter = model.get_iter(path)
         self.do_saveas_theme(model[treeiter][0])
@@ -387,6 +422,8 @@ class AlienFXApp(Gtk.Application):
             self.load_theme("Current Theme")
         else:
             self.load_theme("New Theme")
+        self.theme_loaded_from_file = False
+        self.enable_delete_theme_button(False)
         
     def on_main_window_delete_event(self, widget, event):
         if self.theme_edited:
