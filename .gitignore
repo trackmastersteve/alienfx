@@ -2,5 +2,6 @@ build
 dist
 *egg-info
 *.pyc
+*~
 TODO.txt
 alienfx/data/icons/src

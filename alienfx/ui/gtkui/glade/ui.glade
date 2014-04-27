@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.1 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.6"/>
   <object class="GtkAction" id="action_add">
     <property name="label" translatable="yes">Add Action</property>
     <property name="short_label" translatable="yes">Add</property>
@@ -138,6 +139,7 @@
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="homogeneous">False</property>
               </packing>
             </child>
             <child>
@@ -173,6 +175,7 @@
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="homogeneous">False</property>
               </packing>
             </child>
             <child>
@@ -200,9 +203,6 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="layout_style">center</property>
-            <style>
-              <class name="linked"/>
-            </style>
             <child>
               <object class="GtkRadioButton" id="radiobutton_normal_zones">
                 <property name="label" translatable="yes">Normal Zones</property>
@@ -237,6 +237,9 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <style>
+              <class name="linked"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -501,6 +504,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="model">open_theme_list_store</property>
+                <signal name="row-activated" handler="on_open_theme_list_view_row_activated" swapped="no"/>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection" id="treeview-selection2"/>
                 </child>
@@ -609,6 +613,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="model">saveas_theme_list store</property>
+                <signal name="row-activated" handler="on_saveas_theme_list_view_row_activated" swapped="no"/>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection" id="treeview-selection4"/>
                 </child>
@@ -654,6 +659,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
+                <signal name="activate" handler="on_saveas_theme_name_activate" swapped="no"/>
                 <signal name="changed" handler="on_saveas_theme_name_changed" swapped="no"/>
               </object>
               <packing>

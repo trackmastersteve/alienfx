@@ -17,9 +17,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with alienfx.    If not, write to:
-# 	The Free Software Foundation, Inc.,
-# 	51 Franklin Street, Fifth Floor
-# 	Boston, MA  02110-1301, USA.
+#   The Free Software Foundation, Inc.,
+#   51 Franklin Street, Fifth Floor
+#   Boston, MA  02110-1301, USA.
 #
 
 """ GTK GUI interface to alienfx. 
@@ -187,16 +187,16 @@ class AlienFXApp(Gtk.Application):
         self.set_theme_done = True
         
     def set_theme_done_cb(self):
-		if self.set_theme_done:
-			spinner = self.builder.get_object("spinner")
-			spinner.stop()
-			spinner.hide()
-			self.builder.get_object("statusbar").pop(self.context_id)
-			self.builder.get_object("toolbar").set_sensitive(True)
-			return False
-		else:
-			return True
-		
+        if self.set_theme_done:
+            spinner = self.builder.get_object("spinner")
+            spinner.stop()
+            spinner.hide()
+            self.builder.get_object("statusbar").pop(self.context_id)
+            self.builder.get_object("toolbar").set_sensitive(True)
+            return False
+        else:
+            return True
+        
     def on_action_apply_activate(self, widget):
         """ Handler for when the "Apply Theme" action is triggered."""
         self.builder.get_object("toolbar").set_sensitive(False)
@@ -262,27 +262,46 @@ class AlienFXApp(Gtk.Application):
     def on_open_theme_cancel_clicked(self, button):
         self.builder.get_object("open_theme_dialog").hide()
         
+    def do_load_theme(self, theme_name):
+        self.themefile.load(theme_name)
+        self.load_theme()
+        self.builder.get_object("open_theme_dialog").hide()
+        self.set_theme_dirty(False)
+        
+    def on_open_theme_list_view_row_activated(self, treeview, path, column):
+        model = treeview.get_model()
+        treeiter = model.get_iter(path)
+        self.do_load_theme(model[treeiter][0])
+        
     def on_open_theme_ok_clicked(self, button):
         """ Handler for when the OK button is clicked in the Open Theme dialog."""
         model, treeiter = self.open_theme_list_view.get_selection().get_selected()
         if treeiter is not None:
-            self.themefile.load(model[treeiter][0])
-            self.load_theme()
-        self.builder.get_object("open_theme_dialog").hide()
-        self.set_theme_dirty(False)
+            self.do_load_theme(model[treeiter][0])
         
     def on_open_theme_list_selection_changed(self, selection):
         """ Handler for when a theme name is selected in the Open Theme dialog."""
         self.builder.get_object("open_theme_ok").set_sensitive(selection.count_selected_rows() > 0)
         
     # Save-as dialog box handlers
-    def on_saveas_theme_ok_clicked(self, button):
-        """ Handler for when the OK button is clicked in the Save Theme As dialog."""
-        name = self.builder.get_object("saveas_theme_name").get_text()
-        self.themefile.save(name)
+    def do_saveas_theme(self, theme_name):
+        self.themefile.save(theme_name)
         self.set_window_title(self.themefile.theme_name)
         self.builder.get_object("saveas_theme_dialog").hide()
         self.set_theme_dirty(False)
+        
+    def on_saveas_theme_name_activate(self, entry):
+        self.do_saveas_theme(entry.get_text())
+        
+    def on_saveas_theme_list_view_row_activated(self, treeview, path, column):
+        model = treeview.get_model()
+        treeiter = model.get_iter(path)
+        self.do_saveas_theme(model[treeiter][0])
+        
+    def on_saveas_theme_ok_clicked(self, button):
+        """ Handler for when the OK button is clicked in the Save Theme As dialog."""
+        name = self.builder.get_object("saveas_theme_name").get_text()
+        self.do_saveas_theme(name)
         
     def on_saveas_theme_cancel_clicked(self, button):
         self.builder.get_object("saveas_theme_dialog").hide()
