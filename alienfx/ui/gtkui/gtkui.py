@@ -77,6 +77,7 @@ class AlienFXApp(Gtk.Application):
         self.selected_action = None
         self.action_type = self.themefile.KW_ACTION_TYPE_FIXED
         self.theme_edited = False
+        self.set_theme_done = True
         
     def ask_discard_changes(self):
         """ Ask the user if he wants to discard theme edits."""
@@ -183,16 +184,19 @@ class AlienFXApp(Gtk.Application):
         """ Set the current theme on the computer."""
         self.controller.set_theme(self.themefile)
         self.themefile.applied()
+        self.set_theme_done = True
         
-    def wait_set_theme(self):
-        """ Wait for set_theme to complete, and then stop the spinner."""
-        self.set_theme_thread.join()
-        spinner = self.builder.get_object("spinner")
-        spinner.stop()
-        spinner.hide()
-        self.builder.get_object("statusbar").pop(self.context_id)
-        self.builder.get_object("toolbar").set_sensitive(True)
-        
+    def set_theme_done_cb(self):
+		if self.set_theme_done:
+			spinner = self.builder.get_object("spinner")
+			spinner.stop()
+			spinner.hide()
+			self.builder.get_object("statusbar").pop(self.context_id)
+			self.builder.get_object("toolbar").set_sensitive(True)
+			return False
+		else:
+			return True
+		
     def on_action_apply_activate(self, widget):
         """ Handler for when the "Apply Theme" action is triggered."""
         self.builder.get_object("toolbar").set_sensitive(False)
@@ -202,10 +206,10 @@ class AlienFXApp(Gtk.Application):
         spinner = self.builder.get_object("spinner")
         spinner.show()
         spinner.start()
+        self.set_theme_done = False
+        GObject.idle_add(self.set_theme_done_cb)
         self.set_theme_thread = threading.Thread(target=self.set_theme)
         self.set_theme_thread.start()
-        thread = threading.Thread(target=self.wait_set_theme)
-        thread.start()
 
     def set_window_title(self, theme_name):
         """ Set the window title from the current theme name."""
@@ -440,7 +444,5 @@ class AlienFXApp(Gtk.Application):
         
 def start():
     """ Entry point for the GTK GUI interface to alienfx. """
-    GObject.threads_init()
-    Gdk.threads_init()
     app = AlienFXApp()
     app.run(None)
