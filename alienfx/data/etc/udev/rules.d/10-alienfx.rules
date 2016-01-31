@@ -4,3 +4,6 @@
 
 # USB device 0x187c:0x0521 (AlienFX controller for M14xR1 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0521", MODE:="666", GROUP="users"
+
+# USB device 0x187c:0x0512 (AlienFX controller for M17x laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0512", MODE:="666", GROUP="users"
