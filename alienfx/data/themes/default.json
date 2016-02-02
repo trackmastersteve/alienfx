@@ -47,6 +47,15 @@
             ]
         },
         {
+            "zones": ["Alien Head"],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [ [0,0,15] ]
+                }
+            ]
+        },
+        {
             "zones": ["Logo"],
             "loop": [
                 {
