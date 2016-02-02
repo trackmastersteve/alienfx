@@ -34,6 +34,7 @@ from alienfx.core.controller import AlienFXController as AlienFXController
 
 """ Import all subclasses of AlienFXController here. """
 import alienfx.core.controller_m14xr1
+import alienfx.core.controller_m17x
 
 class AlienFXProber:
     
