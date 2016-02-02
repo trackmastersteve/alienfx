@@ -49,7 +49,10 @@ See the man page of alienfx for the cli options supported.
 Supported models and adding support for new models
 ==================================================
 
-At present, AlienFX supports and has been tested on the Alienware M14xR1 laptop.
+At present, AlienFX supports and has been tested on the following Alienware models:
+
+1. M14xR1 laptop - support by Ashwin Menon (https://github.com/ashwinm76)
+2. M17x Laptop - support by trackmastersteve (https://github.com/trackmastersteve)
 
 To add support for a different model of Alienware computer, do the following:
 
