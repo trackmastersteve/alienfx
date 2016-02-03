@@ -49,6 +49,7 @@ class AlienFXControllerM17x(alienfx_controller.AlienFXController):
     # Both speakers change together
     RIGHT_SPEAKER = 0x0020
     LEFT_SPEAKER = 0x0040
+    ALIEN_HEAD = 0x0080
     LOGO = 0x0100
     TOUCH_PAD = 0x0200
     STATUS_LEDS = 0x0800
@@ -84,6 +85,7 @@ class AlienFXControllerM17x(alienfx_controller.AlienFXController):
             self.ZONE_RIGHT_KEYBOARD: self.RIGHT_KEYBOARD,
             self.ZONE_RIGHT_SPEAKER: self.RIGHT_SPEAKER,
             self.ZONE_LEFT_SPEAKER: self.LEFT_SPEAKER,
+            self.ZONE_ALIEN_HEAD: self.ALIEN_HEAD,
             self.ZONE_LOGO: self.LOGO,
             self.ZONE_TOUCH_PAD: self.TOUCH_PAD,
             self.ZONE_STATUS_LEDS: self.STATUS_LEDS,
