@@ -52,7 +52,7 @@ class AlienFXControllerM17x(alienfx_controller.AlienFXController):
     ALIEN_HEAD = 0x0080
     LOGO = 0x0100
     TOUCH_PAD = 0x0200
-    STATUS_LEDS = 0x0800
+    MEDIA_BAR = 0x0800
     POWER_BUTTON = 0x2000
     HDD_LEDS = 0x4000
 
@@ -88,7 +88,7 @@ class AlienFXControllerM17x(alienfx_controller.AlienFXController):
             self.ZONE_ALIEN_HEAD: self.ALIEN_HEAD,
             self.ZONE_LOGO: self.LOGO,
             self.ZONE_TOUCH_PAD: self.TOUCH_PAD,
-            self.ZONE_STATUS_LEDS: self.STATUS_LEDS,
+            self.ZONE_MEDIA_BAR: self.MEDIA_BAR,
             self.ZONE_POWER_BUTTON: self.POWER_BUTTON,
             self.ZONE_HDD_LEDS: self.HDD_LEDS,
         }
