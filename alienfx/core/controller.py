@@ -59,6 +59,7 @@ class AlienFXController:
     ZONE_LOGO = "Logo"
     ZONE_TOUCH_PAD = "Touchpad"
     ZONE_MEDIA_BAR = "Media Bar"
+    ZONE_STATUS_LEDS = "Status LEDs"
     ZONE_POWER_BUTTON = "Power Button"
     ZONE_HDD_LEDS = "HDD LEDs"
         
