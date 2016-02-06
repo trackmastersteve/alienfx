@@ -55,6 +55,7 @@ class AlienFXController:
     ZONE_RIGHT_KEYBOARD = "Right Keyboard"
     ZONE_RIGHT_SPEAKER = "Right Speaker"
     ZONE_LEFT_SPEAKER = "Left Speaker"
+    ZONE_ALIEN_HEAD = "Alien Head"
     ZONE_LOGO = "Logo"
     ZONE_TOUCH_PAD = "Touchpad"
     ZONE_STATUS_LEDS = "Status LEDs"
