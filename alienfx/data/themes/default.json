@@ -74,7 +74,7 @@
             ]
         },
         {
-            "zones": ["Status LEDs"],
+            "zones": ["Media Bar"],
             "loop": [
                 {
                     "type": "fixed",
@@ -98,7 +98,7 @@
             ]
         },
         {
-            "zones": ["Left Keyboard", "Middle-left Keyboard", "Middle-right Keyboard", "Right Keyboard", "Right Speaker", "Left Speaker", "Logo", "Touchpad", "Status LEDs"],
+            "zones": ["Left Keyboard", "Middle-left Keyboard", "Middle-right Keyboard", "Right Keyboard", "Right Speaker", "Left Speaker", "Logo", "Touchpad", "Media Bar"],
             "loop": [
                 {
                     "type": "fixed",
@@ -148,7 +148,7 @@
             ]
         },
         {
-            "zones": ["Left Keyboard", "Middle-left Keyboard", "Middle-right Keyboard", "Right Keyboard", "Right Speaker", "Left Speaker", "Logo", "Touchpad", "Status LEDs"],
+            "zones": ["Left Keyboard", "Middle-left Keyboard", "Middle-right Keyboard", "Right Keyboard", "Right Speaker", "Left Speaker", "Logo", "Touchpad", "Media Bar"],
             "loop": [
                 {
                     "type": "fixed",

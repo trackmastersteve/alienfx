@@ -16,7 +16,7 @@ the following python packages to run:
 
 2. pkg_resources
 You can install using the following command:
-pip install pkg_resources
+pip install setuptools
 
 3. cairo
 On Debian/Ubuntu you can install using the following command:
