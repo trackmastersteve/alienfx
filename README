@@ -15,10 +15,16 @@ the following python packages to run:
      pip install --pre pyusb
 
 2. pkg_resources
+You can install using the following command:
+pip install pkg_resources
 
 3. cairo
+On Debian/Ubuntu you can install using the following command:
+sudo apt install libcairo2-dev
 
 4. gi
+On Debian/Ubuntu you can install using the following command:
+sudo apt install python-gi python-gi-cairo
 
 Installation
 ============
