@@ -157,7 +157,8 @@ class AlienFXController:
         """
         zones = 0
         for zone in zone_names:
-            zones |= self.zone_map[zone]
+            if zone in self.zone_map:
+                zones |= self.zone_map[zone]
         return zones
         
     def _get_reset_code(self, reset_name):

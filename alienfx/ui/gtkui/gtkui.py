@@ -266,7 +266,7 @@ class AlienFXApp(Gtk.Application):
                     a = AlienFXActions()
                     a.actions = self.themefile.get_zone_actions(state, zone)
                     power_zone_list_store.append([state, a])
-            else:
+            elif zone in self.controller.zone_map:
                 a = AlienFXActions()
                 a.actions = self.themefile.get_zone_actions(self.controller.STATE_BOOT, zone)
                 normal_zone_list_store.append([zone, a])
