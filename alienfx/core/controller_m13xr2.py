@@ -1,7 +1,8 @@
 #
-# controller_13r2.py
+# controller_m13xr2.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
+# Copyright (C) 2015-2017 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #
@@ -22,17 +23,17 @@
 # 	Boston, MA  02110-1301, USA.
 #
 
-""" Specialization of the AlienFxController class for the M17x controller.
+""" Specialization of the AlienFxController class for the M13xR2 controller.
 
 This module provides the following classes:
-AlienFXControllerM17x : M17x controller
+AlienFXControllerM13xR2 : M13xR2 controller
 """
 
 import alienfx.core.controller as alienfx_controller
 
-class AlienFXController13r2(alienfx_controller.AlienFXController):
+class AlienFXControllerM13xr2(alienfx_controller.AlienFXController):
     
-    """ Specialization of the AlienFxController class for the M17x controller.
+    """ Specialization of the AlienFxController class for the m13xR2 controller.
     """
     
     # Speed capabilities. The higher the number, the slower the speed of 
@@ -72,7 +73,7 @@ class AlienFXController13r2(alienfx_controller.AlienFXController):
     
     def __init__(self):
         alienfx_controller.AlienFXController.__init__(self)
-        self.name = "Alienware 13R2"
+        self.name = "Alienware m13xR2"
         
         # USB VID and PID
         self.vendor_id = 0x187c
@@ -113,4 +114,4 @@ class AlienFXController13r2(alienfx_controller.AlienFXController):
         }
 
 alienfx_controller.AlienFXController.supported_controllers.append(
-    AlienFXController13r2())
+    AlienFXControllerM13xr2())
