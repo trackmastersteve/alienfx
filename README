@@ -67,6 +67,7 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 1. M14xR1   Laptop - support by Ashwin Menon       (https://github.com/ashwinm76)
 2. M17x     Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
 3. M13xR2   Laptop - support by Simon Wood         (https://github.com/mungewell)
+4. M11xR1   Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
 
 To add support for a different model of Alienware computer, do the following:
 
