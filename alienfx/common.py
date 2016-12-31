@@ -34,4 +34,4 @@ def get_version():
     for r in requirements:
         if r.key == "alienfx":
             return r.version
-    return "2.0.1"
+    return "2.0.5"
