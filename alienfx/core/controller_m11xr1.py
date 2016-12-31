@@ -1,5 +1,5 @@
 #
-# controller_m17x.py
+# controller_m11xr1.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
 # Copyright (C) 2015-2017 Track Master Steve <trackmastersteve@gmail.com>
@@ -23,17 +23,17 @@
 # 	Boston, MA  02110-1301, USA.
 #
 
-""" Specialization of the AlienFxController class for the M17x controller.
+""" Specialization of the AlienFxController class for the M11xr1 controller.
 
 This module provides the following classes:
-AlienFXControllerM17x : M17x controller
+AlienFXControllerM11xr1 : M11xr1 controller
 """
 
 import alienfx.core.controller as alienfx_controller
 
-class AlienFXControllerM17x(alienfx_controller.AlienFXController):
+class AlienFXControllerM11xr1(alienfx_controller.AlienFXController):
     
-    """ Specialization of the AlienFxController class for the M17x controller.
+    """ Specialization of the AlienFxController class for the M11xr1 controller.
     """
     
     # Speed capabilities. The higher the number, the slower the speed of 
@@ -72,11 +72,11 @@ class AlienFXControllerM17x(alienfx_controller.AlienFXController):
     
     def __init__(self):
         alienfx_controller.AlienFXController.__init__(self)
-        self.name = "Alienware M17x"
+        self.name = "Alienware M11xr1"
         
         # USB VID and PID
         self.vendor_id = 0x187c
-        self.product_id = 0x0512
+        self.product_id = 0x0514
         
         # map the zone names to their codes
         self.zone_map = {
@@ -118,4 +118,4 @@ class AlienFXControllerM17x(alienfx_controller.AlienFXController):
         }
 
 alienfx_controller.AlienFXController.supported_controllers.append(
-    AlienFXControllerM17x())
+    AlienFXControllerM11xr1())

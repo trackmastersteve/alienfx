@@ -1,7 +1,8 @@
 #
-# controller_13r2.py
+# controller_m11xr3.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
+# Copyright (C) 2015-2017 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #
@@ -22,17 +23,17 @@
 # 	Boston, MA  02110-1301, USA.
 #
 
-""" Specialization of the AlienFxController class for the M17x controller.
+""" Specialization of the AlienFxController class for the M11xr3 controller.
 
 This module provides the following classes:
-AlienFXControllerM17x : M17x controller
+AlienFXControllerM11xr3 : M11xr3 controller
 """
 
 import alienfx.core.controller as alienfx_controller
 
-class AlienFXController13r2(alienfx_controller.AlienFXController):
+class AlienFXControllerM11xr3(alienfx_controller.AlienFXController):
     
-    """ Specialization of the AlienFxController class for the M17x controller.
+    """ Specialization of the AlienFxController class for the M11xr3 controller.
     """
     
     # Speed capabilities. The higher the number, the slower the speed of 
@@ -46,16 +47,15 @@ class AlienFXController13r2(alienfx_controller.AlienFXController):
     MIDDLE_LEFT_KEYBOARD = 0x0004
     MIDDLE_RIGHT_KEYBOARD = 0x0002
     RIGHT_KEYBOARD = 0x0001
-    # External 'Alien Head' and 'Slashes' change together
-    ALIEN_HEAD = 0x0020
-    # 'Alienware' below screen
-    LOGO = 0x0040
-    # Windows the next 3 as a single 'Zone 8'
-    HDD_LED = 0x0200
-    WIFI_LED = 0x0400
-    CAPS_LED = 0x0080
-    TOUCH_PAD = HDD_LED | WIFI_LED | CAPS_LED
-    POWER_BUTTON = 0x0100
+    # Both speakers change together
+    RIGHT_SPEAKER = 0x0020
+    LEFT_SPEAKER = 0x0040
+    ALIEN_HEAD = 0x0080
+    LOGO = 0x0100
+    TOUCH_PAD = 0x0200
+    MEDIA_BAR = 0x0800
+    POWER_BUTTON = 0x2000
+    HDD_LEDS = 0x4000
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
@@ -72,11 +72,11 @@ class AlienFXController13r2(alienfx_controller.AlienFXController):
     
     def __init__(self):
         alienfx_controller.AlienFXController.__init__(self)
-        self.name = "Alienware 13R2"
+        self.name = "Alienware M11xr3"
         
         # USB VID and PID
         self.vendor_id = 0x187c
-        self.product_id = 0x0527
+        self.product_id = 0x0522
         
         # map the zone names to their codes
         self.zone_map = {
@@ -84,15 +84,20 @@ class AlienFXController13r2(alienfx_controller.AlienFXController):
             self.ZONE_MIDDLE_LEFT_KEYBOARD: self.MIDDLE_LEFT_KEYBOARD,
             self.ZONE_MIDDLE_RIGHT_KEYBOARD: self.MIDDLE_RIGHT_KEYBOARD,
             self.ZONE_RIGHT_KEYBOARD: self.RIGHT_KEYBOARD,
+            self.ZONE_RIGHT_SPEAKER: self.RIGHT_SPEAKER,
+            self.ZONE_LEFT_SPEAKER: self.LEFT_SPEAKER,
             self.ZONE_ALIEN_HEAD: self.ALIEN_HEAD,
             self.ZONE_LOGO: self.LOGO,
             self.ZONE_TOUCH_PAD: self.TOUCH_PAD,
+            self.ZONE_MEDIA_BAR: self.MEDIA_BAR,
             self.ZONE_POWER_BUTTON: self.POWER_BUTTON,
+            self.ZONE_HDD_LEDS: self.HDD_LEDS,
         }
         
         # zones that have special behaviour in the different power states
         self.power_zones = [
             self.ZONE_POWER_BUTTON,
+            self.ZONE_HDD_LEDS
         ]
         
         # map the reset names to their codes
@@ -113,4 +118,4 @@ class AlienFXController13r2(alienfx_controller.AlienFXController):
         }
 
 alienfx_controller.AlienFXController.supported_controllers.append(
-    AlienFXController13r2())
+    AlienFXControllerM11xr3())

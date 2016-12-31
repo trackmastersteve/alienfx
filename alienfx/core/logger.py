@@ -2,6 +2,7 @@
 # logger.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
+# Copyright (C) 2015-2017 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #

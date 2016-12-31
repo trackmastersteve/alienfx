@@ -11,4 +11,4 @@ Storage for theme files
 If \fB$XDG_CONFIG_HOME\fP is not set, it will use \fI$HOME/.config/alienfx/\fP.
 
 [availability]
-The latest version of this distribution is available from \fIhttps://github.com/ashwinm76/alienfx\fP
+The latest version of this distribution is available from \fIhttps://github.com/trackmastersteve/alienfx\fP
