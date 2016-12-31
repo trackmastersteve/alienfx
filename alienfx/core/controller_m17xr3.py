@@ -1,5 +1,5 @@
 #
-# controller_m17x.py
+# controller_m17xr3.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
 # Copyright (C) 2015-2017 Track Master Steve <trackmastersteve@gmail.com>
@@ -26,7 +26,7 @@
 """ Specialization of the AlienFxController class for the M17xR3 controller.
 
 This module provides the following classes:
-AlienFXControllerM17x : M17xR3 controller
+AlienFXControllerM17xR3 : M17xR3 controller
 """
 
 import alienfx.core.controller as alienfx_controller
