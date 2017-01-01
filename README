@@ -1,8 +1,8 @@
 
-#AlienFX is a utility to control the lighting effects of your Alienware computer.
-#At present there is a cli version (alienfx) and a gtk gui version (alienfx-gtk).
+AlienFX is a utility to control the lighting effects of your Alienware computer.
+At present there is a cli version (alienfx) and a gtk gui version (alienfx-gtk).
 
-###Dependencies:
+Dependencies:
 ============
 
 AlienFX is written in python and has been tested on python 2.7. It requires
