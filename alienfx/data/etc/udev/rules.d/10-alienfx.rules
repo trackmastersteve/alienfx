@@ -2,11 +2,30 @@
 # allow user access of the AlienFX controllers for use by e.g. the alienfx 
 # program.
 
+# USB device 0x187c:0x0514 (AlienFX controller for M11xR1 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0514", MODE:="666", GROUP="users"
+
+# USB device 0x187c:0x0515 (AlienFX controller for M11xR2 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0515", MODE:="666", GROUP="users"
+
+# USB device 0x187c:0x0522 (AlienFX controller for M11xR3 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0522", MODE:="666", GROUP="users"
+
+# USB device 0x187c:0x0527 (AlienFX controller for M13xR2 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0527", MODE:="666", GROUP="users"
+
 # USB device 0x187c:0x0521 (AlienFX controller for M14xR1 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0521", MODE:="666", GROUP="users"
+
+# USB device 0x187c:0x0512 (AlienFX controller for M15x laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0512", MODE:="666", GROUP="users"
 
 # USB device 0x187c:0x0512 (AlienFX controller for M17x laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0512", MODE:="666", GROUP="users"
 
-# USB device 0x187c:0x0527 (AlienFX controller for 13r2 laptop)
-SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0527", MODE:="666", GROUP="users"
+# USB device 0x187c:0x0520 (AlienFX controller for M17xR3 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0520", MODE:="666", GROUP="users"
+
+# USB device 0x187c:0x0518 (AlienFX controller for M18xR2 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0518", MODE:="666", GROUP="users"
+

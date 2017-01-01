@@ -34,9 +34,15 @@ import usb
 from alienfx.core.controller import AlienFXController as AlienFXController
 
 """ Import all subclasses of AlienFXController here. """
+import alienfx.core.controller_m11xr1
+import alienfx.core.controller_m11xr2
+import alienfx.core.controller_m11xr3
+import alienfx.core.controller_m13xr2
 import alienfx.core.controller_m14xr1
+import alienfx.core.controller_m15x
 import alienfx.core.controller_m17x
-import alienfx.core.controller_13r2
+import alienfx.core.controller_m17xr3
+import alienfx.core.controller_m18xr2
 
 class AlienFXProber:
     
