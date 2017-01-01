@@ -12,25 +12,25 @@ the following python packages to run:
    Note that your distribution may only provide the pre-1.0 version of pyusb. If
    this is the case, you can install the 1.0 version of pyusb using the 
    following command:
-      pip install --pre pyusb
+      'pip install --pre pyusb'
 
 2. pkg_resources
    You can install using the following command:
-      pip install setuptools
+      'pip install setuptools'
 
 3. cairo
    On Debian/Ubuntu you can install using the following command:
-      sudo apt install libcairo2-dev
+      'sudo apt install libcairo2-dev'
 
    or Fedora:
-      sudo dnf install cairo-devel
+      'sudo dnf install cairo-devel'
 
 4. gi
    On Debian/Ubuntu you can install using the following command:
-      sudo apt install python-gi python-gi-cairo
+      'sudo apt install python-gi python-gi-cairo'
    
    or Fedora:
-      sudo dnf install pygobject3 cairo-gobject
+      'sudo dnf install pygobject3 cairo-gobject'
 
 Installation:
 ============
