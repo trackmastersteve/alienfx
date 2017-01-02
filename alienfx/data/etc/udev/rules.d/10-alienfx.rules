@@ -2,6 +2,9 @@
 # allow user access of the AlienFX controllers for use by e.g. the alienfx 
 # program.
 
+# USB device 0x187c:0x0511 (AlienFX controller for Area51 desktop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0511", MODE:="666", GROUP="users"
+
 # USB device 0x187c:0x0514 (AlienFX controller for M11xR1 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0514", MODE:="666", GROUP="users"
 
@@ -16,6 +19,12 @@ SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0527", MODE:="666", 
 
 # USB device 0x187c:0x0521 (AlienFX controller for M14xR1 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0521", MODE:="666", GROUP="users"
+
+# USB device 0x187c:0x0521 (AlienFX controller for M14xR2 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0521", MODE:="666", GROUP="users"
+
+# USB device 0x187c:0x0525 (AlienFX controller for M14xR3 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0525", MODE:="666", GROUP="users"
 
 # USB device 0x187c:0x0512 (AlienFX controller for M15x laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0512", MODE:="666", GROUP="users"
