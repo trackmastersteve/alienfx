@@ -1,7 +1,7 @@
 
 AlienFX is a utility to control the lighting effects of your Alienware computer.
 ============
-At present there is a cli version (alienfx) and a gtk gui version (alienfx-gtk).
+At present there is a CLI version (alienfx) and a gtk GUI version (alienfx-gtk).
 
 Dependencies:
 ------------
