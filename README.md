@@ -2,7 +2,6 @@
 AlienFX is a utility to control the lighting effects of your Alienware computer.
 ============
 At present there is a cli version (alienfx) and a gtk gui version (alienfx-gtk).
-============
 
 Dependencies:
 ------------
@@ -14,33 +13,33 @@ the following python packages to run:
    Note that your distribution may only provide the pre-1.0 version of pyusb. If
    this is the case, you can install the 1.0 version of pyusb using the 
    following command:
-      'pip install --pre pyusb'
+      - pip install --pre pyusb
 
 2. pkg_resources
    You can install using the following command:
-      'pip install setuptools'
+      - pip install setuptools
 
 3. cairo
    On Debian/Ubuntu you can install using the following command:
-      'sudo apt install libcairo2-dev'
+      - sudo apt install libcairo2-dev
 
    or Fedora:
-      'sudo dnf install cairo-devel'
+      - sudo dnf install cairo-devel
 
 4. gi
    On Debian/Ubuntu you can install using the following command:
-      'sudo apt install python-gi python-gi-cairo'
+      - sudo apt install python-gi python-gi-cairo
    
    or Fedora:
-      'sudo dnf install pygobject3 cairo-gobject'
+      - sudo dnf install pygobject3 cairo-gobject
 
 Installation:
 ------------
 
 Install AlienFX using these commands:
   
-  sudo python setup.py install
-  sudo python setup.py install_data
+  '''sudo python setup.py install'''
+  '''sudo python setup.py install_data'''
 
 Note that the second invocation is required to ensure that icon files etc. are
 properly installed.
@@ -66,15 +65,15 @@ Supported models and adding support for new models:
 
 At present, AlienFX supports and has been tested on the following Alienware models:
 
-1. M11xR1   Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
-2. M11xR2   Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
-3. M11xR3   Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
-4. M13xR2   Laptop - support by Simon Wood         (https://github.com/mungewell)
-5. M14xR1   Laptop - support by Ashwin Menon       (https://github.com/ashwinm76)
-6. M15x     Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
-7. M17x     Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
-8. M17xR3   Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
-9. M18xR2   Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
+1. M11xR1   Laptop - support by [trackmastersteve](https://github.com/trackmastersteve)
+2. M11xR2   Laptop - support by [trackmastersteve](https://github.com/trackmastersteve)
+3. M11xR3   Laptop - support by [trackmastersteve](https://github.com/trackmastersteve)
+4. M13xR2   Laptop - support by [Simon Wood](https://github.com/mungewell)
+5. M14xR1   Laptop - support by [Ashwin Menon](https://github.com/ashwinm76)
+6. M15x     Laptop - support by [trackmastersteve](https://github.com/trackmastersteve)
+7. M17x     Laptop - support by [trackmastersteve](https://github.com/trackmastersteve)
+8. M17xR3   Laptop - support by [trackmastersteve](https://github.com/trackmastersteve)
+9. M18xR2   Laptop - support by [trackmastersteve](https://github.com/trackmastersteve)
 
 To add support for a different model of Alienware computer, do the following:
 ----------------------------------------------------------------------------
