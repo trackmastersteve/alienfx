@@ -38,8 +38,8 @@ Installation:
 
 Install AlienFX using these commands:
   
-  '''sudo python setup.py install'''
-  '''sudo python setup.py install_data'''
+  - sudo python setup.py install
+  - sudo python setup.py install_data
 
 Note that the second invocation is required to ensure that icon files etc. are
 properly installed.
@@ -54,9 +54,9 @@ Usage:
 -----
 
 Lighting configurations are stored in "theme files", which are simple json
-files stored in $XDG_CONFIG_HOME/alienfx. If XDG_CONFIG_HOME is not set, then
-~/.config/alienfx is used. Both the cli and gui programs use these theme
-files, and the gui program allows you to create new themes as well.
+files stored in `$XDG_CONFIG_HOME/alienfx`. If `XDG_CONFIG_HOME` is not set, then
+`~/.config/alienfx` is used. Both the CLI and GUI programs use these theme
+files, and the GUI program allows you to create new themes as well.
 
 See the man page of alienfx for the cli options supported.
 
@@ -78,14 +78,14 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 To add support for a different model of Alienware computer, do the following:
 ----------------------------------------------------------------------------
 
-1. Copy alienfx/core/controller_m14xr1.py to controller_<your-computer-name>.py
+1. Copy `alienfx/core/controller_m14xr1.py` to `controller_<your-computer-name>.py`
    in the same directory, and modify it using the original file as a reference.
 
-2. At the top of alienfx/core/prober.py, add an import statement to import your
+2. At the top of `alienfx/core/prober.py`, add an import statement to import your
    new controller module created in step 1. This should be done at the docstring
    """ Import all subclasses of AlienFXController here. """. 
 
-3. Modify data/etc/udev/rules.d/10-alienfx.rules to add a line for the VID and 
+3. Modify `data/etc/udev/rules.d/10-alienfx.rules` to add a line for the VID and 
    PID corresponding to the AlienFX USB controller on your computer.
 
 4. Test your modifications, and please submit a patch!
