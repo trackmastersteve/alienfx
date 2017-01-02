@@ -1,7 +1,8 @@
 
-AlienFX is a utility to control the lighting effects of your Alienware computer.
+AlienFX is a Linux utility to control the lighting effects of your Alienware computer.
 ============
-At present there is a CLI version (alienfx) and a gtk GUI version (alienfx-gtk).
+At present there is a CLI version (alienfx) and a gtk GUI version (alienfx-gtk). And 
+has been tested on both Debian and Fedora.
 
 Dependencies:
 ------------
@@ -78,7 +79,7 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 To add support for a different model of Alienware computer, do the following:
 ----------------------------------------------------------------------------
 
-1. Copy `alienfx/core/controller_m14xr1.py` to `controller_<your-computer-name>.py`
+1. Copy `alienfx/core/controller_m17x.py` to `controller_<your-computer-name>.py`
    in the same directory, and modify it using the original file as a reference.
 
 2. At the top of `alienfx/core/prober.py`, add an import statement to import your
