@@ -1,9 +1,11 @@
 
 AlienFX is a utility to control the lighting effects of your Alienware computer.
+============
 At present there is a cli version (alienfx) and a gtk gui version (alienfx-gtk).
 ============
+
 Dependencies:
-============
+------------
 
 AlienFX is written in python and has been tested on python 2.7. It requires
 the following python packages to run:
@@ -33,7 +35,7 @@ the following python packages to run:
       'sudo dnf install pygobject3 cairo-gobject'
 
 Installation:
-============
+------------
 
 Install AlienFX using these commands:
   
@@ -50,7 +52,7 @@ be installed. Currently you have to run the command 'cp /etc/udev/rules.d/10-ali
 /usr/lib/udev/rules.d/' in order for this application to work on Fedora.
 
 Usage:
-=====
+-----
 
 Lighting configurations are stored in "theme files", which are simple json
 files stored in $XDG_CONFIG_HOME/alienfx. If XDG_CONFIG_HOME is not set, then
@@ -60,7 +62,7 @@ files, and the gui program allows you to create new themes as well.
 See the man page of alienfx for the cli options supported.
 
 Supported models and adding support for new models:
-==================================================
+--------------------------------------------------
 
 At present, AlienFX supports and has been tested on the following Alienware models:
 
@@ -75,9 +77,9 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 9. M18xR2   Laptop - support by trackmastersteve   (https://github.com/trackmastersteve)
 
 To add support for a different model of Alienware computer, do the following:
-============================================================================
+----------------------------------------------------------------------------
 
-1. Copy alienfx/core/controller_m14xr1.py to controller_<your computer name>.py
+1. Copy alienfx/core/controller_m14xr1.py to controller_<your-computer-name>.py
    in the same directory, and modify it using the original file as a reference.
 
 2. At the top of alienfx/core/prober.py, add an import statement to import your
@@ -90,7 +92,7 @@ To add support for a different model of Alienware computer, do the following:
 4. Test your modifications, and please submit a patch!
 
 Disclaimer:
-==========
+----------
 
 I DO NOT accept responsibility for frying your AlienFX controller chip with my code.
 Haven't fried any yet, but this is just so I can sleep at night. ;)
