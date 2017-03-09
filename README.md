@@ -26,6 +26,9 @@ the following python packages to run:
 
    or Fedora:
       - sudo dnf install cairo-devel
+      
+   or Arch:
+      - sudo pacman -S cairo
 
 4. gi
    On Debian/Ubuntu you can install using the following command:
@@ -33,6 +36,9 @@ the following python packages to run:
    
    or Fedora:
       - sudo dnf install pygobject3 cairo-gobject
+      
+   or Arch:
+      - sudo pacman -S python-gobject 
 
 Installation:
 ------------
