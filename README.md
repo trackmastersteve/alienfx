@@ -2,7 +2,7 @@
 AlienFX is a Linux utility to control the lighting effects of your Alienware computer.
 ============
 At present there is a CLI version (alienfx) and a gtk GUI version (alienfx-gtk). And 
-has been tested on both Debian and Fedora. Arch is are still a work in process.
+has been tested on both Debian and Fedora. Arch is still a work in process.
 
 Dependencies:
 ------------
