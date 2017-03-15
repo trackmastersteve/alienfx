@@ -2,7 +2,7 @@
 AlienFX is a Linux utility to control the lighting effects of your Alienware computer.
 ============
 At present there is a CLI version (alienfx) and a gtk GUI version (alienfx-gtk). And 
-has been tested on both Debian and Fedora. Arch is still a work in process.
+has been tested on Debian/Ubuntu/Kali, Fedora and Arch Linux.
 
 Dependencies:
 ------------
@@ -21,7 +21,7 @@ the following python packages to run:
       - pip install setuptools
 
 3. cairo
-   On Debian/Ubuntu you can install using the following command:
+   On Debian/Ubuntu/Kali you can install using the following command:
       - sudo apt install libcairo2-dev
 
    or Fedora:
@@ -31,7 +31,7 @@ the following python packages to run:
       - sudo pacman -S cairo
 
 4. gi
-   On Debian/Ubuntu you can install using the following command:
+   On Debian/Ubuntu/Kali you can install using the following command:
       - sudo apt install python-gi python-gi-cairo
    
    or Fedora:
@@ -55,7 +55,7 @@ The installation includes a udev rules file that allows AlienFX to access the
 AlienFX USB controller on your computer without needing root permissions. If 
 you run the install commands without sudo, then the udev rules file will not 
 be installed. Currently you have to run the command 'cp /etc/udev/rules.d/10-alienfx.rules 
-/usr/lib/udev/rules.d/' in order for this application to work on Fedora.
+/usr/lib/udev/rules.d/' in order for this application to work on Fedora and Arch.
 
 Usage:
 -----
