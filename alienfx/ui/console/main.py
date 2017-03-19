@@ -69,7 +69,7 @@ def start():
         if args.log is not None:
             alienfx_logger.set_logfile(args.log)
         if args.list is not None:
-            print "Available themes:"
+            print ("Available themes:")
             themes = themefile.get_themes()
             for t in themes:
                 print "\t{}".format(t)
