@@ -72,7 +72,7 @@ def start():
             print ("Available themes:")
             themes = themefile.get_themes()
             for t in themes:
-                print "\t{}".format(t)
+                print ("\t{}").format(t)
         elif args.theme is not None:
             themefile.load(args.theme)
             controller.set_theme(themefile)
