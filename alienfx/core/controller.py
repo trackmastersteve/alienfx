@@ -30,13 +30,16 @@ This module provides the following classes:
 AlienFXController: base class for AlienFX controller chips
 """
 
+from builtins import hex
+from builtins import object
 import logging
 
 import alienfx.core.usbdriver as alienfx_usbdriver
 import alienfx.core.cmdpacket as alienfx_cmdpacket
 from alienfx.core.themefile import AlienFXThemeFile
+from functools import reduce
 
-class AlienFXController:
+class AlienFXController(object):
     
     """ Provides facilities to communicate with an AlienFX controller.
     
@@ -111,7 +114,7 @@ class AlienFXController:
             
     def get_reset_type_name(self, num):
         """ Given a reset number, return a string reset name """
-        if num in self.reset_types.keys():
+        if num in list(self.reset_types.keys()):
             return self.reset_types[num]
         else:
             return "UNKNOWN"

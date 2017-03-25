@@ -30,7 +30,9 @@ This module provides the following classes:
 AlienFXCmdPacket: base class for AlienFX command packets
 """
 
-class AlienFXCmdPacket: 
+from builtins import hex
+from builtins import object
+class AlienFXCmdPacket(object): 
     
     """Provides facilities to parse and create packets
     
@@ -233,7 +235,7 @@ class AlienFXCmdPacket:
         else:
             cmd = pkt_bytes[1]
             args = {"pkt": pkt_bytes, "controller": controller}
-            if (cmd in self.command_parsers.keys()):
+            if (cmd in list(self.command_parsers.keys())):
                 return self.command_parsers[cmd](args)
             else:
                 return self._parse_cmd_unknown(args)

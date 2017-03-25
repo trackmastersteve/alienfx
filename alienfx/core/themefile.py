@@ -32,6 +32,7 @@ This module provides the following classes:
 AlienFXThemeFile: theme file abstraction
 """
 
+from builtins import object
 import json
 import logging
 import os
@@ -39,7 +40,7 @@ import os.path
 
 import pkg_resources
 
-class AlienFXThemeFile:
+class AlienFXThemeFile(object):
     
     """ Provides facilities to read and write AlienFX theme files. The theme
     files are stored in JSON format in $XDG_CONFIG_HOME/alienfx. 
