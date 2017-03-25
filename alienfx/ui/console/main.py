@@ -24,6 +24,7 @@
 #
 
 """ Command line interface to alienfx. """
+from __future__ import print_function
 
 import argparse
 import logging
@@ -72,7 +73,7 @@ def start():
             print ("Available themes:")
             themes = themefile.get_themes()
             for t in themes:
-                print ("\t{}").format(t)
+                print(("\t{}").format(t))
         elif args.theme is not None:
             themefile.load(args.theme)
             controller.set_theme(themefile)
