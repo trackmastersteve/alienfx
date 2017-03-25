@@ -22,6 +22,7 @@
 # 	Boston, MA  02110-1301, USA.
 #
 
+from __future__ import print_function
 try:
     from setuptools import setup, find_packages
 except ImportError:
@@ -81,10 +82,10 @@ udev_file = resource_filename("alienfx", "data/etc/udev/rules.d/10-alienfx.rules
 udev_rules_dir = "/etc/udev/rules.d/"
 try:
     if not os.path.exists(udev_rules_dir):
-        print ("Udev rules directory {} does not exist. Will not copy udev rules file.").format(udev_rules_dir)
+        print(("Udev rules directory {} does not exist. Will not copy udev rules file.").format(udev_rules_dir))
     elif not os.access(udev_rules_dir, os.W_OK):
-        print ("Udev rules directory {} is not writable. Will not copy udev rules file.").format(udev_rules_dir)
+        print(("Udev rules directory {} is not writable. Will not copy udev rules file.").format(udev_rules_dir))
     else:
         shutil.copy(udev_file, udev_rules_dir)
 except IOError:
-    print ("Unable to copy udev rules file {} to {}").format(udev_file, udev_rules_dir)
+    print(("Unable to copy udev rules file {} to {}").format(udev_file, udev_rules_dir))
