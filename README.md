@@ -54,8 +54,7 @@ properly installed.
 The installation includes a udev rules file that allows AlienFX to access the 
 AlienFX USB controller on your computer without needing root permissions. If 
 you run the install commands without sudo, then the udev rules file will not 
-be installed. Currently you have to run the command 'cp /etc/udev/rules.d/10-alienfx.rules 
-/usr/lib/udev/rules.d/' in order for this application to work on Fedora and Arch.
+be installed. 
 
 Usage:
 -----
