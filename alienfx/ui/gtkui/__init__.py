@@ -1,1 +1,2 @@
-from gtkui import start
+from __future__ import absolute_import
+from .gtkui import start

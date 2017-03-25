@@ -30,7 +30,9 @@ AlienFXActions: encapsulates the theme actions for a lighting zone.
 AlienFxActionCellRenderer: Gtk.CellRenderer subclass to render actions in a
 Gtk.TreeView.
 """
+from __future__ import division
 
+from past.utils import old_div
 import cairo
 from gi.repository import GObject
 from gi.repository import Gtk
@@ -68,7 +70,7 @@ class AlienFXActionCellRenderer(Gtk.CellRenderer):
         prop = GObject.Value()
         prop.init(GObject.TYPE_INT)
         treeview.style_get_property("horizontal-separator", prop)
-        self.cell_padding = prop.get_int()/2
+        self.cell_padding = old_div(prop.get_int(),2)
         treeview.style_get_property("grid-line-width", prop)
         self.cell_padding += prop.get_int()
         self.selected_action = None
@@ -76,8 +78,8 @@ class AlienFXActionCellRenderer(Gtk.CellRenderer):
         
     def _convert_x_to_action_index(self, x):
         """ Convert the given x coordinate to an action index. """
-        return int((x - self.cell_padding - 1)/
-            (self.item_width + self.item_spacing + self.line_width))
+        return int(old_div((x - self.cell_padding - 1),
+            (self.item_width + self.item_spacing + self.line_width)))
         
     def select_action_at_index(self, index):
         """ Select the action at the given index. """
@@ -115,7 +117,7 @@ class AlienFXActionCellRenderer(Gtk.CellRenderer):
         # Draw the actions.
         actions = self.get_property("actions").actions
         start_x = cell_area.x + self.item_spacing
-        start_y = cell_area.y + (cell_area.height - self.item_height)/2
+        start_y = cell_area.y + old_div((cell_area.height - self.item_height),2)
         action_num = 0
         for action in actions:
             action_type = AlienFXThemeFile.get_action_type(action)
@@ -123,7 +125,7 @@ class AlienFXActionCellRenderer(Gtk.CellRenderer):
                 colours = AlienFXThemeFile.get_action_colours(action)
                 if len(colours) == 1:
                     colours_normalized = [
-                        float(x)/self.max_colour_val for x in colours[0]]
+                        old_div(float(x),self.max_colour_val) for x in colours[0]]
                     if self._get_intensity(colours_normalized) > 0.5:
                         border_colour = self.border_selected_dark
                     else:
@@ -137,25 +139,25 @@ class AlienFXActionCellRenderer(Gtk.CellRenderer):
                 colours = AlienFXThemeFile.get_action_colours(action)
                 if len(colours) == 1:
                     colours_normalized = [
-                        float(x)/self.max_colour_val for x in colours[0]]
+                        old_div(float(x),self.max_colour_val) for x in colours[0]]
                     border_colour = self.border_selected_light
                     (red, green, blue) = colours_normalized
                     cr.rectangle(
-                        start_x, start_y, self.item_width/2, self.item_height)
+                        start_x, start_y, old_div(self.item_width,2), self.item_height)
                     cr.set_source_rgb(red, green, blue)
                     cr.fill()
                     cr.rectangle(
-                        start_x+ self.item_width/2, start_y, 
-                        self.item_width/2, self.item_height)
+                        start_x+ old_div(self.item_width,2), start_y, 
+                        old_div(self.item_width,2), self.item_height)
                     cr.set_source_rgb(0, 0, 0)
                     cr.fill()
             elif action_type == AlienFXThemeFile.KW_ACTION_TYPE_MORPH:
                 colours = AlienFXThemeFile.get_action_colours(action)
                 if len(colours) == 2:
                     colours_normalized1 = [
-                        float(x)/self.max_colour_val for x in colours[0]]
+                        old_div(float(x),self.max_colour_val) for x in colours[0]]
                     colours_normalized2 = [
-                        float(x)/self.max_colour_val for x in colours[1]]
+                        old_div(float(x),self.max_colour_val) for x in colours[1]]
                     border_colours = [
                         self.border_selected_light, self.border_selected_dark]
                     if (self._get_intensity(colours_normalized1) + 
