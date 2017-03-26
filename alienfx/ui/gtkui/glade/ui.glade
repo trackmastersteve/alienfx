@@ -1,63 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.20.0 -->
 <interface>
-  <requires lib="gtk+" version="3.6"/>
-  <object class="GtkAction" id="action_add">
-    <property name="label" translatable="yes">Add Action</property>
-    <property name="short_label" translatable="yes">Add</property>
-    <property name="tooltip" translatable="yes">Add an action after the current action</property>
-    <property name="stock_id">gtk-add</property>
-    <signal name="activate" handler="on_action_add_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="action_apply">
-    <property name="label" translatable="yes">Apply Theme</property>
-    <property name="short_label" translatable="yes">Apply</property>
-    <property name="tooltip" translatable="yes">Apply the current theme</property>
-    <property name="stock_id">gtk-apply</property>
-    <signal name="activate" handler="on_action_apply_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="action_delete">
-    <property name="label" translatable="yes">Delete Action</property>
-    <property name="short_label" translatable="yes">Delete</property>
-    <property name="tooltip" translatable="yes">Delete the action</property>
-    <property name="stock_id">gtk-delete</property>
-    <signal name="activate" handler="on_action_delete_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="action_delete_theme">
-    <property name="label" translatable="yes">Delete Theme</property>
-    <property name="short_label" translatable="yes">Delete</property>
-    <property name="tooltip" translatable="yes">Delete the current theme from the disk</property>
-    <property name="stock_id">gtk-clear</property>
-    <signal name="activate" handler="on_action_delete_theme_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="action_new_theme">
-    <property name="label" translatable="yes">New Theme</property>
-    <property name="short_label" translatable="yes">New</property>
-    <property name="tooltip" translatable="yes">Create a new default theme</property>
-    <property name="stock_id">gtk-new</property>
-    <signal name="activate" handler="on_action_new_theme_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="action_open_theme">
-    <property name="label" translatable="yes">Open A Theme</property>
-    <property name="short_label" translatable="yes">Open</property>
-    <property name="tooltip" translatable="yes">Open a theme</property>
-    <property name="stock_id">gtk-open</property>
-    <signal name="activate" handler="on_action_open_theme_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="action_save_theme">
-    <property name="label" translatable="yes">Save Theme</property>
-    <property name="short_label" translatable="yes">Save</property>
-    <property name="tooltip" translatable="yes">Save the current theme</property>
-    <property name="stock_id">gtk-save</property>
-    <signal name="activate" handler="on_action_save_theme_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="action_save_theme_as">
-    <property name="label" translatable="yes">Save Theme As</property>
-    <property name="short_label" translatable="yes">Save As</property>
-    <property name="tooltip" translatable="yes">Save the current theme with a different name</property>
-    <property name="stock_id">gtk-save-as</property>
-    <signal name="activate" handler="on_action_save_theme_as_activate" swapped="no"/>
-  </object>
+  <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="normal_zone_list_store">
     <columns>
       <!-- column-name Zone -->
@@ -89,11 +33,12 @@
             <property name="can_focus">False</property>
             <child>
               <object class="GtkToolButton" id="toolbutton_new_theme">
-                <property name="related_action">action_new_theme</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">New</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-new</property>
+                <signal name="clicked" handler="on_action_new_theme_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -102,11 +47,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="toolbutton_open_theme">
-                <property name="related_action">action_open_theme</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">Open</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-open</property>
+                <signal name="clicked" handler="on_action_open_theme_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -115,11 +61,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="toolbutton_save_theme">
-                <property name="related_action">action_save_theme</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">Save</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-save</property>
+                <signal name="clicked" handler="on_action_save_theme_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -128,11 +75,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="toolbutton_save_theme_as">
-                <property name="related_action">action_save_theme_as</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">Save As</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-save-as</property>
+                <signal name="clicked" handler="on_action_save_theme_as_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -141,11 +89,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="toolbutton_delete_theme">
-                <property name="related_action">action_delete_theme</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">Delete Theme</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-close</property>
+                <signal name="clicked" handler="on_action_delete_theme_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -164,11 +113,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="toolbutton_delete">
-                <property name="related_action">action_delete</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">Delete Action</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-delete</property>
+                <signal name="clicked" handler="on_action_delete_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -177,11 +127,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="toolbutton_add">
-                <property name="related_action">action_add</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">Add Action</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-add</property>
+                <signal name="clicked" handler="on_action_add_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -200,11 +151,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="toolbutton_apply">
-                <property name="related_action">action_apply</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">Apply</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-apply</property>
+                <signal name="clicked" handler="on_action_apply_activate" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -229,7 +181,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">False</property>
-                <property name="xalign">0</property>
                 <property name="active">True</property>
                 <property name="draw_indicator">False</property>
                 <signal name="toggled" handler="on_radiobutton_normal_zones_toggled" swapped="no"/>
@@ -246,7 +197,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">False</property>
-                <property name="xalign">0</property>
                 <property name="draw_indicator">False</property>
                 <property name="group">radiobutton_normal_zones</property>
                 <signal name="toggled" handler="on_radiobutton_power_zone_toggled" swapped="no"/>
@@ -329,7 +279,6 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="receives_default">False</property>
-                                <property name="xalign">0</property>
                                 <property name="draw_indicator">True</property>
                                 <signal name="toggled" handler="on_radiobutton_fixed_colour_toggled" swapped="no"/>
                               </object>
@@ -345,7 +294,6 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="receives_default">False</property>
-                                <property name="xalign">0</property>
                                 <property name="draw_indicator">True</property>
                                 <property name="group">radiobutton_fixed_colour</property>
                                 <signal name="toggled" handler="on_radiobutton_blinking_colour_toggled" swapped="no"/>
@@ -362,7 +310,6 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="receives_default">False</property>
-                                <property name="xalign">0</property>
                                 <property name="draw_indicator">True</property>
                                 <property name="group">radiobutton_fixed_colour</property>
                                 <signal name="toggled" handler="on_radiobutton_morphing_colour_toggled" swapped="no"/>
@@ -493,6 +440,9 @@
         </child>
       </object>
     </child>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </object>
   <object class="GtkListStore" id="open_theme_list_store">
     <columns>
@@ -514,40 +464,6 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
-        <child>
-          <object class="GtkScrolledWindow" id="scrolledwindow1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="shadow_type">in</property>
-            <child>
-              <object class="GtkTreeView" id="open_theme_list_view">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="model">open_theme_list_store</property>
-                <signal name="row-activated" handler="on_open_theme_list_view_row_activated" swapped="no"/>
-                <child internal-child="selection">
-                  <object class="GtkTreeSelection" id="treeview-selection2"/>
-                </child>
-                <child>
-                  <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-                    <property name="title" translatable="yes">Existing Themes</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="can_focus">False</property>
@@ -589,12 +505,49 @@
             <property name="position">1</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledwindow1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkTreeView" id="open_theme_list_view">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="model">open_theme_list_store</property>
+                <signal name="row-activated" handler="on_open_theme_list_view_row_activated" swapped="no"/>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection2"/>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="treeviewcolumn2">
+                    <property name="title" translatable="yes">Existing Themes</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
       </object>
     </child>
     <action-widgets>
       <action-widget response="0">open_theme_cancel</action-widget>
       <action-widget response="0">open_theme_ok</action-widget>
     </action-widgets>
+    <child>
+      <placeholder/>
+    </child>
   </object>
   <object class="GtkListStore" id="power_zone_list_store">
     <columns>
@@ -623,6 +576,47 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="dialog-action_area2">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="saveas_theme_cancel">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_saveas_theme_cancel_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="saveas_theme_ok">
+                <property name="label" translatable="yes">Save</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_saveas_theme_ok_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
         <child>
           <object class="GtkScrolledWindow" id="scrolledwindow2">
             <property name="visible">True</property>
@@ -696,52 +690,14 @@
             <property name="position">1</property>
           </packing>
         </child>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="dialog-action_area2">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-            <child>
-              <object class="GtkButton" id="saveas_theme_cancel">
-                <property name="label" translatable="yes">Cancel</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_saveas_theme_cancel_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="saveas_theme_ok">
-                <property name="label" translatable="yes">Save</property>
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
-                <property name="can_focus">False</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_saveas_theme_ok_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
       </object>
     </child>
     <action-widgets>
       <action-widget response="0">saveas_theme_cancel</action-widget>
       <action-widget response="0">saveas_theme_ok</action-widget>
     </action-widgets>
+    <child>
+      <placeholder/>
+    </child>
   </object>
 </interface>
