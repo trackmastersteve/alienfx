@@ -7,7 +7,7 @@ has been tested on Debian/Ubuntu/Kali, Fedora and Arch Linux.
 Dependencies:
 ------------
 
-AlienFX is written in python and has been tested on python 2.7. It requires
+AlienFX is written in python and has been tested on python 2.7 and 3.6. It requires
 the following python packages to run:
 
 1. pyusb >= 1.0.0b1
@@ -38,7 +38,8 @@ the following python packages to run:
       - sudo dnf install pygobject3 cairo-gobject
       
    or Arch:
-      - sudo pacman -S python2-gobject python2-cairo 
+      - sudo pacman -S python2-gobject python2-cairo
+      - sudo pacman -S python-gobject python-cairo
 
 Installation:
 ------------
