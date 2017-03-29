@@ -38,7 +38,9 @@ the following python packages to run:
       - sudo dnf install pygobject3 cairo-gobject
       
    or Arch:
+      (For Python 2.7)
       - sudo pacman -S python2-gobject python2-cairo
+      (For Python 3.6)
       - sudo pacman -S python-gobject python-cairo
 
 Installation:
