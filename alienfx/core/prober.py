@@ -39,6 +39,7 @@ import alienfx.core.controller_m11xr1
 import alienfx.core.controller_m11xr2
 import alienfx.core.controller_m11xr3
 import alienfx.core.controller_m13xr2
+import alienfx.core.controller_m13xr3
 import alienfx.core.controller_m14xr1
 import alienfx.core.controller_m14xr2
 import alienfx.core.controller_m14xr3
