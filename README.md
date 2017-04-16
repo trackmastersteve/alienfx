@@ -83,7 +83,7 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 7.  M17x     Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
 8.  M17xR3   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
 9.  M18xR2   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
-10. Arora    Desktop -  support by [Bill Ochetski] (https://github.com/ochetski)
+10. Arora    Desktop -  support by [Bill Ochetski](https://github.com/ochetski)
 
 To add support for a different model of Alienware computer, do the following:
 ----------------------------------------------------------------------------
