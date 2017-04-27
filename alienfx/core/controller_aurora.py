@@ -1,5 +1,5 @@
 #
-# controller_area51.py
+# controller_aurora.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
 # Copyright (C) 2015-2017 Track Master Steve <trackmastersteve@gmail.com>
@@ -23,17 +23,17 @@
 # 	Boston, MA  02110-1301, USA.
 #
 
-""" Specialization of the AlienFxController class for the Area51 controller.
+""" Specialization of the AlienFxController class for the Aurora controller.
 
 This module provides the following classes:
-AlienFXControllerArea51 : Area51 controller
+AlienFXControllerAurora : Aurora controller
 """
 
 import alienfx.core.controller as alienfx_controller
 
-class AlienFXControllerArea51(alienfx_controller.AlienFXController):
+class AlienFXControllerAurora(alienfx_controller.AlienFXController):
     
-    """ Specialization of the AlienFxController class for the Area51 controller.
+    """ Specialization of the AlienFxController class for the Aurora controller.
     """
     
     # Speed capabilities. The higher the number, the slower the speed of 
@@ -43,15 +43,15 @@ class AlienFXControllerArea51(alienfx_controller.AlienFXController):
     MIN_SPEED = 50
     
     # Zone codes
-    LEFT_KEYBOARD = 0x0008
+    LEFT_KEYBOARD = 0x0080
     MIDDLE_LEFT_KEYBOARD = 0x0004
     MIDDLE_RIGHT_KEYBOARD = 0x0002
-    RIGHT_KEYBOARD = 0x0001
+    RIGHT_KEYBOARD = 0x0100
     # Both speakers change together
     RIGHT_SPEAKER = 0x0020
     LEFT_SPEAKER = 0x0040
-    ALIEN_HEAD = 0x0080
-    LOGO = 0x0100
+    ALIEN_HEAD = 0x0001
+    LOGO = 0x0008
     TOUCH_PAD = 0x0200
     MEDIA_BAR = 0x0800
     POWER_BUTTON = 0x2000
@@ -118,4 +118,4 @@ class AlienFXControllerArea51(alienfx_controller.AlienFXController):
         }
 
 alienfx_controller.AlienFXController.supported_controllers.append(
-    AlienFXControllerArea51())
+    AlienFXControllerAurora())
