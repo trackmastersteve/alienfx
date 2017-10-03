@@ -74,16 +74,17 @@ Supported models and adding support for new models:
 
 At present, AlienFX supports and has been tested on the following Alienware models:
 
-1.  M11xR1   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
-2.  M11xR2   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
-3.  M11xR3   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
+1.  M11xR1   Laptop  -  (Needs the correct Zone Codes)
+2.  M11xR2   Laptop  -  (Needs the correct Zone Codes)
+3.  M11xR3   Laptop  -  (Needs the correct Zone Codes)
 4.  M13xR2   Laptop  -  support by [Simon Wood](https://github.com/mungewell)
 5.  M14xR1   Laptop  -  support by [Ashwin Menon](https://github.com/ashwinm76)
-6.  M15x     Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
+6.  M15x     Laptop  -  (Needs the correct Zone Codes)
 7.  M17x     Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
-8.  M17xR3   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
-9.  M18xR2   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
-10. Aurora   Desktop -  support by [Bill Ochetski](https://github.com/ochetski)
+8.  M17xR3   Laptop  -  (Needs the correct Zone Codes)
+9.  M17xR4   Laptop  -  (Needs the correct Zone Codes)
+10. M18xR2   Laptop  -  (Needs the correct Zone Codes)
+11. Aurora   Desktop -  support by [Bill Ochetski](https://github.com/ochetski)
 
 To add support for a different model of Alienware computer, do the following:
 ----------------------------------------------------------------------------
