@@ -82,17 +82,21 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 1.  M11xR1   Laptop  -  (Needs the correct Zone Codes)
 2.  M11xR2   Laptop  -  (Needs the correct Zone Codes)
 3.  M11xR3   Laptop  -  (Needs the correct Zone Codes)
-4.  M13xR2   Laptop  -  support by [Simon Wood](https://github.com/mungewell)
+4.  M13xR2   Laptop  -  support by: `Simon Wood`_
 5.  M13xR3   Laptop  -  (Needs the correct Zone Codes)
-6.  M14xR1   Laptop  -  support by [Ashwin Menon](https://github.com/ashwinm76)
+6.  M14xR1   Laptop  -  support by: `Ashwin Menon`_
 7.  M14xR2   Laptop  -  (Needs the correct Zone Codes)
 8.  M14xR3   Laptop  -  (Needs the correct Zone Codes)
 9.  M15x     Laptop  -  (Needs the correct Zone Codes)
-10. M17x     Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
+10. M17x     Laptop  -  support by: `trackmastersteve`_
 11. M17xR3   Laptop  -  (Needs the correct Zone Codes)
 12. M17xR4   Laptop  -  (Needs the correct Zone Codes)
 13. M18xR2   Laptop  -  (Needs the correct Zone Codes)
 14. Aurora   Desktop -  support by [Bill Ochetski](https://github.com/ochetski)
+
+.. _`Simon Wood` : https://github.com/mungewell
+.. _`Ashwin Menon` : https://github.com/ashwinm76
+.. _`trackmastersteve` : https://github.com/trackmastersteve
 
 To add support for a different model of Alienware computer, do the following:
 ----------------------------------------------------------------------------
