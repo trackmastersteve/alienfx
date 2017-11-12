@@ -63,6 +63,7 @@ the following python packages to run:
       ```
       
    or Arch:
+   
       (For Python 2.7)
       ```sh
       $ sudo pacman -S python2-gobject python2-cairo
