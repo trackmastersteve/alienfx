@@ -7,10 +7,10 @@ has been tested on Debian/Ubuntu/Kali, Fedora and Arch Linux.
 
 ## Table of Contents
 
-- [Dependencies](#Dependencies)
-- [Installation](#Installation)
-- [Usage](#Usage)
-- [Contributing](#Contributing)
+- [Dependencies](#dependencies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
 
 ## Dependencies
 
