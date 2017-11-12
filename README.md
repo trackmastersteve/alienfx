@@ -5,8 +5,14 @@ AlienFX is a Linux utility to control the lighting effects of your Alienware com
 At present there is a CLI version (``alienfx``) and a gtk GUI version (``alienfx-gtk``). And 
 has been tested on Debian/Ubuntu/Kali, Fedora and Arch Linux.
 
-Dependencies:
-------------
+## Table of Contents
+
+- [Dependencies](#Dependencies)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Contributing](#Contributing)
+
+## Dependencies
 
 AlienFX is written in python and has been tested on ``python 2.7`` and ``python 3.6``. It requires
 the following python packages to run:
@@ -43,13 +49,10 @@ the following python packages to run:
       - ``sudo dnf install pygobject3 cairo-gobject``
       
    or Arch:
-      (For Python 2.7)
-      - ``sudo pacman -S python2-gobject python2-cairo``
-      (For Python 3.6)
-      - ``sudo pacman -S python-gobject python-cairo``
+      - ``sudo pacman -S python2-gobject python2-cairo`` (For Python 2.7)
+      - ``sudo pacman -S python-gobject python-cairo`` (For Python 3.6)
 
-Installation:
-------------
+## Installation
 
 Install AlienFX using these commands:
   
@@ -64,8 +67,7 @@ AlienFX USB controller on your computer without needing root permissions. If
 you run the install commands without sudo, then the udev rules file will not 
 be installed. 
 
-Usage:
------
+## Usage
 
 Lighting configurations are stored in "theme files", which are simple json
 files stored in ``$XDG_CONFIG_HOME/alienfx``. If ``XDG_CONFIG_HOME`` is not set, then
@@ -82,22 +84,19 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 1.  M11xR1   Laptop  -  (Needs the correct Zone Codes)
 2.  M11xR2   Laptop  -  (Needs the correct Zone Codes)
 3.  M11xR3   Laptop  -  (Needs the correct Zone Codes)
-4.  M13xR2   Laptop  -  support by: `Simon Wood`_
+4.  M13xR2   Laptop  -  support by [Simon Wood](https://github.com/mungewell)
 5.  M13xR3   Laptop  -  (Needs the correct Zone Codes)
-6.  M14xR1   Laptop  -  support by: `Ashwin Menon`_
+6.  M14xR1   Laptop  -  support by [Ashwin Menon](https://github.com/ashwinm76)
 7.  M14xR2   Laptop  -  (Needs the correct Zone Codes)
 8.  M14xR3   Laptop  -  (Needs the correct Zone Codes)
 9.  M15x     Laptop  -  (Needs the correct Zone Codes)
-10. M17x     Laptop  -  support by: `trackmastersteve`_
+10. M17x     Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
 11. M17xR3   Laptop  -  (Needs the correct Zone Codes)
 12. M17xR4   Laptop  -  (Needs the correct Zone Codes)
 13. M18xR2   Laptop  -  (Needs the correct Zone Codes)
-14. Aurora   Desktop -  support by: `Bill Ochetski`_
+14. Aurora   Desktop -  support by [Bill Ochetski](https://github.com/ochetski)
 
-.. _`Simon Wood` : https://github.com/mungewell
-.. _`Ashwin Menon` : https://github.com/ashwinm76
-.. _`trackmastersteve` : https://github.com/trackmastersteve
-.. _`Bill Ochetski` : https://github.com/ochetski
+## Contributing
 
 To add support for a different model of Alienware computer, do the following:
 ----------------------------------------------------------------------------
@@ -114,8 +113,7 @@ To add support for a different model of Alienware computer, do the following:
 
 4. Test your modifications, and please submit a pull request!
 
-Disclaimer:
-----------
+## Disclaimer
 
 I DO NOT accept responsibility for frying your AlienFX controller chip with my code.
 Haven't fried any yet, but this is just so I can sleep at night. ;)
