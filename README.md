@@ -21,43 +21,67 @@ the following python packages to run:
    Note that your distribution may only provide ``the pre-1.0`` version of ``pyusb``. If
    this is the case, you can install ``pyusb 1.0`` using the 
    following command:
-      - ``pip install --pre pyusb``
+      ```sh
+      $ pip install --pre pyusb
+      ```
 
 2. pkg_resources.
    You can install ``pkg_resources`` using the following command:
-      - ``pip install setuptools``
+      ```sh
+      $ pip install setuptools
+      ```
 
 3. cairo.
    You can install ``cairo`` using the following command:
    
    On Debian/Ubuntu/Kali:
-      - ``sudo apt install libcairo2-dev``
+      ```sh
+      $ sudo apt install libcairo2-dev
+      ```
 
    or Fedora:
-      - ``sudo dnf install cairo-devel``
+      ```sh
+      $ sudo dnf install cairo-devel
+      ```
       
    or Arch:
-      - ``sudo pacman -S cairo``
+      ```sh
+      $ sudo pacman -S cairo
+      ```
 
 4. gi.
    You can install gi using the following command:
    
    On Debian/Ubuntu/Kali:
-      - ``sudo apt install python-gi python-gi-cairo``
+      ```sh
+      $ sudo apt install python-gi python-gi-cairo
+      ```
    
    or Fedora:
-      - ``sudo dnf install pygobject3 cairo-gobject``
+      ```sh
+      $ sudo dnf install pygobject3 cairo-gobject
+      ```
       
    or Arch:
-      - ``sudo pacman -S python2-gobject python2-cairo`` (For Python 2.7)
-      - ``sudo pacman -S python-gobject python-cairo`` (For Python 3.6)
+      (For Python 2.7)
+      ```sh
+      $ sudo pacman -S python2-gobject python2-cairo
+      ```
+      (For Python 3.6)
+      ```sh
+      $ sudo pacman -S python-gobject python-cairo
+      ```
 
 ## Installation
 
 Install AlienFX using these commands:
   
-  - ``sudo python setup.py install``
-  - ``sudo python setup.py install_data``
+  ```sh
+  $ sudo python setup.py install
+  ```
+  ```sh
+  $ sudo python setup.py install_data
+  ```
 
 Note that the second invocation is required to ensure that icon files etc. are
 properly installed.
