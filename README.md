@@ -123,7 +123,7 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 
 ## Contributing
 
-All patches welcome! Please read [CONTRIBUTING.md](https://github.com/trackmastersteve/alienfx/master/CONTRIBUTING.md) for further details.
+All patches welcome! Please read [CONTRIBUTING.md](https://github.com/trackmastersteve/alienfx/blob/master/CONTRIBUTING.md) for further details.
 
 ## Disclaimer
 
