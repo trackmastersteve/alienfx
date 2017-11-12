@@ -92,11 +92,12 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 11. M17xR3   Laptop  -  (Needs the correct Zone Codes)
 12. M17xR4   Laptop  -  (Needs the correct Zone Codes)
 13. M18xR2   Laptop  -  (Needs the correct Zone Codes)
-14. Aurora   Desktop -  support by [Bill Ochetski](https://github.com/ochetski)
+14. Aurora   Desktop -  support by: `Bill Ochetski`_
 
 .. _`Simon Wood` : https://github.com/mungewell
 .. _`Ashwin Menon` : https://github.com/ashwinm76
 .. _`trackmastersteve` : https://github.com/trackmastersteve
+.. _`Bill Ochetski` : https://github.com/ochetski
 
 To add support for a different model of Alienware computer, do the following:
 ----------------------------------------------------------------------------
