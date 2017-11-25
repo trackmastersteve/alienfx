@@ -12,3 +12,8 @@ To add support for a different model of Alienware computer, do the following:
    PID corresponding to the AlienFX USB controller on your computer.
 
 4. Test your modifications, and please submit a patch!
+
+Main Branch is for code to add New Alienware Models ONLY.
+--------------------------------------------------------
+Please push all other code to the LATEST version! Thanks!
+--------------------------------------------------------
