@@ -42,10 +42,10 @@ class AlienFXControllerM15x(alienfx_controller.AlienFXController):
     MIN_SPEED = 50
     
     # Zone codes
-    LEFT_KEYBOARD = 0x0008
-    MIDDLE_LEFT_KEYBOARD = 0x0004
-    MIDDLE_RIGHT_KEYBOARD = 0x0002
-    RIGHT_KEYBOARD = 0x0001
+    LEFT_KEYBOARD = 0x0001
+    MIDDLE_LEFT_KEYBOARD = 0x0002
+    MIDDLE_RIGHT_KEYBOARD = 0x0004
+    RIGHT_KEYBOARD = 0x0008
     # Both speakers change together
     RIGHT_SPEAKER = 0x0020
     LEFT_SPEAKER = 0x0040
