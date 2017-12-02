@@ -16,7 +16,7 @@ has been tested on Debian/Ubuntu/Kali, Fedora and Arch Linux.
 
 ## Dependencies
 
-AlienFX is written in python and has been tested on ``python 2.7`` and ``python 3.6``. It requires
+AlienFX is written in python and has been tested on ``python 3.6``. It requires
 the following python packages to run:
 
 1. pyusb >= 1.0.0b1.
