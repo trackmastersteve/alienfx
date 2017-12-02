@@ -30,7 +30,7 @@ AlienFXActions: encapsulates the theme actions for a lighting zone.
 AlienFxActionCellRenderer: Gtk.CellRenderer subclass to render actions in a
 Gtk.TreeView.
 """
-from __future__ import division
+
 
 from past.utils import old_div
 import cairo
