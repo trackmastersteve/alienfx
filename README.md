@@ -125,7 +125,7 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 
 ## Contributing
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) Please read [CONTRIBUTING.md](https://github.com/trackmastersteve/alienfx/blob/2.1.x/CONTRIBUTING.md) for further details. 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) Please read [CONTRIBUTING.md](https://github.com/trackmastersteve/alienfx/blob/master/CONTRIBUTING.md) for further details. 
 
 ## Disclaimer
 
