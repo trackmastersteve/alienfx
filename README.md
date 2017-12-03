@@ -30,7 +30,7 @@ For 2.1.1:
       $ sudo pacman -S python-pyusb python-setuptools python-gobject python-cairo python-future
 ```
 
-On other Distros you need to install ``pyusb`` and ``pkg_resources`` using pip:
+On other distributions you need to install ``pyusb`` and ``pkg_resources`` using pip:
 1. pyusb >= 1.0.0b1.
    Note that your distribution may only provide ``the pre-1.0`` version of ``pyusb``. If
    this is the case, you can install ``pyusb 1.0`` using the 
