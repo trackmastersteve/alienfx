@@ -16,9 +16,21 @@ has been tested on Debian/Ubuntu/Kali, Fedora and Arch Linux.
 
 ## Dependencies
 
-AlienFX is written in python and has been tested on ``python 3.6``. It requires
+AlienFX is written in python and has been tested on ``python 3.6`` (<2.1.1 using ``python 2.7.14``). It requires
 the following python packages to run:
 
+On Arch Linux:
+
+For 2.0.6:
+```sh
+      $ sudo pacman -S python2-pyusb python2-setuptools python2-gobject python2-cairo
+```
+For 2.1.1:
+```sh
+      $ sudo pacman -S python-pyusb python-setuptools python-gobject python-cairo python-future
+```
+
+On other Distros you need to install ``pyusb`` and ``pkg_resources`` using pip:
 1. pyusb >= 1.0.0b1.
    Note that your distribution may only provide ``the pre-1.0`` version of ``pyusb``. If
    this is the case, you can install ``pyusb 1.0`` using the 
@@ -26,58 +38,30 @@ the following python packages to run:
       ```sh
       $ pip install --pre pyusb
       ```
-
+      
 2. pkg_resources.
    You can install ``pkg_resources`` using the following command:
       ```sh
       $ pip install setuptools
       ```
-
-3. cairo.
-   You can install ``cairo`` using the following command:
+      
+And then install following packages using package manager:      
    
    On Debian/Ubuntu/Kali:
       ```sh
-      $ sudo apt install libcairo2-dev
+      $ sudo apt install libcairo2-dev python-gi python-gi-cairo
       ```
 
-   or Fedora:
+   On Fedora:
       ```sh
-      $ sudo dnf install cairo-devel
-      ```
-      
-   or Arch:
-      ```sh
-      $ sudo pacman -S cairo
-      ```
-
-4. gi.
-   You can install gi using the following command:
-   
-   On Debian/Ubuntu/Kali:
-      ```sh
-      $ sudo apt install python-gi python-gi-cairo
-      ```
-   
-   or Fedora:
-      ```sh
-      $ sudo dnf install pygobject3 cairo-gobject
-      ```
-      
-   or Arch:
-   
-      (For Python 2.7)
-      ```sh
-      $ sudo pacman -S python2-gobject python2-cairo
-      ```
-      (For Python 3.6)
-      ```sh
-      $ sudo pacman -S python-gobject python-cairo
+      $ sudo dnf install cairo-devel pygobject3 cairo-gobject
       ```
 
 ## Installation
 
-Install AlienFX using these commands:
+On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.org/packages/alienfx/)
+
+For manual installation of AlienFX, use the following commands:
   
   ```sh
   $ sudo python setup.py install
