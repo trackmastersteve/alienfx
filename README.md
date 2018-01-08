@@ -36,26 +36,26 @@ On other distributions you need to install ``pyusb`` and ``pkg_resources`` using
    this is the case, you can install ``pyusb 1.0`` using the 
    following command:
       ```sh
-      $ pip install --pre pyusb
+            $ pip install --pre pyusb
       ```
       
 2. pkg_resources.
    You can install ``pkg_resources`` using the following command:
       ```sh
-      $ pip install setuptools
+            $ pip install setuptools
       ```
       
 And then install following packages using package manager:      
    
-   On Debian/Ubuntu/Kali:
-      ```sh
-      $ sudo apt install libcairo2-dev python-gi python-gi-cairo
-      ```
+   On Debian/Ubuntu/Kali: 
+   ```sh
+            $ sudo apt install libcairo2-dev python-gi python-gi-cairo
+   ```
 
-   On Fedora:
-      ```sh
-      $ sudo dnf install cairo-devel pygobject3 cairo-gobject
-      ```
+   On Fedora: 
+   ```sh
+            $ sudo dnf install cairo-devel pygobject3 cairo-gobject
+   ```
 
 ## Installation
 
@@ -64,10 +64,10 @@ On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.
 For manual installation of AlienFX, use the following commands:
   
   ```sh
-  $ sudo python setup.py install
+      $ sudo python setup.py install
   ```
   ```sh
-  $ sudo python setup.py install_data
+      $ sudo python setup.py install_data
   ```
 
 Note that the second invocation is required to ensure that icon files etc. are
