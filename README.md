@@ -25,7 +25,7 @@ For 2.0.6:
 ```sh
       $ sudo pacman -S python2-pyusb python2-setuptools python2-gobject python2-cairo
 ```
-For 2.1.1:
+For 2.1.x:
 ```sh
       $ sudo pacman -S python-pyusb python-setuptools python-gobject python-cairo python-future
 ```
