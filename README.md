@@ -44,7 +44,11 @@ On other distributions you need to install ``pyusb`` and ``pkg_resources`` using
       ```sh
             $ pip install setuptools
       ```
-      
+3. future.
+   You can install ``future`` using the following command:
+      ```sh
+            $ pip install future
+      ```
 And then install following packages using package manager:      
    
    On Debian/Ubuntu/Kali: 
