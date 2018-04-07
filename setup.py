@@ -53,7 +53,7 @@ entry_points = {
 
 setup(
     name = "alienfx",
-    version = "2.1.1",
+    version = "2.1.2",
     fullname = "AlienFX Configuration Utility",
     description = "AlienFX Configuration Utility",
     author = "Track Master Steve",
