@@ -1,5 +1,5 @@
 #
-# controller_m18xr2.py
+# controller_17r3.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
 # Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
