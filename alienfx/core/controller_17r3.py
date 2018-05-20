@@ -118,4 +118,4 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
         }
 
 alienfx_controller.AlienFXController.supported_controllers.append(
-    AlienFXControllerM18xR2())
+    AlienFXController17R3())
