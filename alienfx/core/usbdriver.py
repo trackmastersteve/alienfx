@@ -36,6 +36,7 @@ import logging
 import usb
 from usb import USBError
 
+
 class AlienFXUSBDriver(object):
     
     """ Provides low level acquire/release and read/write access to an AlienFX
@@ -61,7 +62,8 @@ class AlienFXUSBDriver(object):
         if not self._control_taken:
             return
         try:
-            self._dev.ctrl_transfer(
+            device = self._dev
+            device.ctrl_transfer(
                 self.OUT_BM_REQUEST_TYPE, 
                 self.OUT_B_REQUEST, self.OUT_W_VALUE, 
                 self.OUT_W_INDEX, pkt, 0)
@@ -73,13 +75,16 @@ class AlienFXUSBDriver(object):
         if not self._control_taken:
             return
         try:
-            pkt = self._dev.ctrl_transfer(
+            xyz = self._controller.cmd_packet.PACKET_LENGTH
+            device = self._dev
+            pkt = device.ctrl_transfer(
                 self.IN_BM_REQUEST_TYPE, 
                 self.IN_B_REQUEST, self.IN_W_VALUE, 
-                self.IN_W_INDEX, self._controller.cmd_packet.PACKET_LENGTH, 0)
+                self.IN_W_INDEX, xyz, 0)
             return pkt
         except USBError as exc:
             logging.error("read_packet: {}".format(exc))
+
         
     def acquire(self):
         """ Acquire control from libusb of the AlienFX controller."""

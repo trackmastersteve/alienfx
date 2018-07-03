@@ -36,6 +36,7 @@ import logging
 
 import alienfx.core.usbdriver as alienfx_usbdriver
 import alienfx.core.cmdpacket as alienfx_cmdpacket
+import alienfx.core.newcmdpacket as alienfx_newcmdpacket
 from alienfx.core.themefile import AlienFXThemeFile
 from functools import reduce
 
@@ -75,6 +76,8 @@ class AlienFXController(object):
     STATE_BATTERY_SLEEP = "Battery Sleep"
     STATE_BATTERY_ON = "Battery On"
     STATE_BATTERY_CRITICAL = "Battery Critical"
+
+    ALIENFX_CONTROLLER_TYPE = "old"  #Modern Notebooks are using 8 bits per color. older ones just 4
     
     def __init__(self):
         self.zone_map = {}
@@ -83,9 +86,23 @@ class AlienFXController(object):
         self.state_map = {}
         self.vendor_id = 0
         self.product_id = 0
+        # if self.ALIENFX_CONTROLLER_TYPE == "new":
+            # New controller
+#            self.cmd_packet = alienfx_newcmdpacket.NewAlienFXCmdPacket()
+ #       else:
+            # Old Controller
         self.cmd_packet = alienfx_cmdpacket.AlienFXCmdPacket()
+
         self._driver = alienfx_usbdriver.AlienFXUSBDriver(self)
-    
+
+    def switch_to_new_controller(self):
+        self.cmd_packet = alienfx_newcmdpacket.NewAlienFXCmdPacket()
+        return
+
+    def switch_to_old_controller(self):
+        self.cmd_packet = self.cmd_packet = alienfx_cmdpacket.AlienFXCmdPacket()
+        return
+
     def get_zone_name(self, pkt):
         """ Given 3 bytes of a command packet, return a string zone
             name corresponding to it

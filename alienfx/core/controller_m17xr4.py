@@ -69,6 +69,9 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     BATTERY_SLEEP = 7
     BATTERY_ON = 8
     BATTERY_CRITICAL = 9
+
+    #Controller Type
+    MYCONTROLLER = "new" #Defines the controllertype: old=pre Alienware 17R4 (4 bits per color) / new=AW17R4 and probably others, which are using 8 bits per color
     
     def __init__(self):
         alienfx_controller.AlienFXController.__init__(self)
@@ -77,6 +80,13 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
         # USB VID and PID
         self.vendor_id = 0x187c
         self.product_id = 0x0530
+
+        #Switch Controllertype
+        if self.MYCONTROLLER == "new":
+            self.switch_to_new_controller()
+        else:
+            self.switch_to_old_controller()
+
         
         # map the zone names to their codes
         self.zone_map = {
