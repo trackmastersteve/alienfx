@@ -47,14 +47,15 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     MIDDLE_LEFT_KEYBOARD = 0x0004  # Code OK
     MIDDLE_RIGHT_KEYBOARD = 0x0002  # Code OK
     RIGHT_KEYBOARD = 0x0001  # Code OK
-    # Both speakers change together
-    RIGHT_SPEAKER = 0x0800  # (bottom right?) wrong
-    LEFT_SPEAKER = 0x0400  # Not sure (bottom left?)
+    # Both speakers might change together
+    RIGHT_SPEAKER = 0x4800  # (bottom right?) wrong - testing
+    LEFT_SPEAKER = 0x2400  # Not sure (bottom left?) - testing
+    # 0x0060 seems to bee alien head and logo...?
     ALIEN_HEAD = 0x0080  # TODO: wrong. causes flashing in bottom right
-    LOGO = 0x0200  # TODO: Seems to be wrong
+    LOGO = 0x0050  # TODO: Seems to be wrong may be 0x0050
     TOUCH_PAD = 0x0300  # TODO: Seems to be wrong
     MEDIA_BAR = 0x0900  # TODO: seems to be bottom right but also causes power button to flash in that color...
-    POWER_BUTTON = 0x0100  # Todo: Seems to be wrong. causes flashing in powerbutton and bottom right...
+    POWER_BUTTON = 0x0100  # Todo: unsure. further testing. could be wrong. causes flashing in powerbutton and bottom right...
     HDD_LEDS = 0x4000  # TODO: Device has no hdd indicator
 
     # Reset codes
