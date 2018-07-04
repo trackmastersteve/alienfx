@@ -62,8 +62,7 @@ class AlienFXUSBDriver(object):
         if not self._control_taken:
             return
         try:
-            device = self._dev
-            device.ctrl_transfer(
+            self._dev.ctrl_transfer(
                 self.OUT_BM_REQUEST_TYPE, 
                 self.OUT_B_REQUEST, self.OUT_W_VALUE, 
                 self.OUT_W_INDEX, pkt, 0)
@@ -75,12 +74,10 @@ class AlienFXUSBDriver(object):
         if not self._control_taken:
             return
         try:
-            xyz = self._controller.cmd_packet.PACKET_LENGTH
-            device = self._dev
-            pkt = device.ctrl_transfer(
+            pkt = self._dev.ctrl_transfer(
                 self.IN_BM_REQUEST_TYPE, 
                 self.IN_B_REQUEST, self.IN_W_VALUE, 
-                self.IN_W_INDEX, xyz, 0)
+                self.IN_W_INDEX, self._controller.cmd_packet.PACKET_LENGTH, 0)
             return pkt
         except USBError as exc:
             logging.error("read_packet: {}".format(exc))

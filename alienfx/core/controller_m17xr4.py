@@ -43,26 +43,26 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     MIN_SPEED = 50
     
     # Zone codes
-    LEFT_KEYBOARD = 0x0008
-    MIDDLE_LEFT_KEYBOARD = 0x0004
-    MIDDLE_RIGHT_KEYBOARD = 0x0002
-    RIGHT_KEYBOARD = 0x0001
+    LEFT_KEYBOARD = 0x0008  # Code OK
+    MIDDLE_LEFT_KEYBOARD = 0x0004  # Code OK
+    MIDDLE_RIGHT_KEYBOARD = 0x0002  # Code OK
+    RIGHT_KEYBOARD = 0x0001  # Code OK
     # Both speakers change together
-    RIGHT_SPEAKER = 0x0020
-    LEFT_SPEAKER = 0x0040
-    ALIEN_HEAD = 0x0080
-    LOGO = 0x0100
-    TOUCH_PAD = 0x0200
-    MEDIA_BAR = 0x0800
-    POWER_BUTTON = 0x2000
-    HDD_LEDS = 0x4000
+    RIGHT_SPEAKER = 0x0800  # (bottom right?) wrong
+    LEFT_SPEAKER = 0x0400  # Not sure (bottom left?)
+    ALIEN_HEAD = 0x0080  # TODO: wrong. causes flashing in bottom right
+    LOGO = 0x0200  # TODO: Seems to be wrong
+    TOUCH_PAD = 0x0300  # TODO: Seems to be wrong
+    MEDIA_BAR = 0x0900  # TODO: seems to be bottom right but also causes power button to flash in that color...
+    POWER_BUTTON = 0x0100  # Todo: Seems to be wrong. causes flashing in powerbutton and bottom right...
+    HDD_LEDS = 0x4000  # TODO: Device has no hdd indicator
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
     RESET_ALL_LIGHTS_ON = 4
     
     # State codes
-    BOOT = 1
+    BOOT = 1  # Todo: Seems to be wrong. Seems State is 1 when booted and on AC. may be other states are wrong as well
     AC_SLEEP = 2
     AC_CHARGED = 5
     AC_CHARGING = 6

@@ -5,7 +5,7 @@
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
 # Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
 #
-# This Version is modified by Dennis <derCo0n> Marx (https://github.com/derco0n) to meet the reqiurement of newer alienfx-controller-chips
+# This Version is modified by Dennis <derCo0n> Marx (https://github.com/derco0n) to meet the requirement of newer alienfx-controller-chips
 # as newer chips are using 8 instead of 4 bit per color
 #
 # Alienfx is free software.
@@ -36,13 +36,20 @@ AlienFXCmdPacket: base class for AlienFX command packets
 
 from builtins import hex
 from builtins import object
+
+
 class NewAlienFXCmdPacket(object):
     
     """Provides facilities to parse and create packets
     
     This class provides methods to parse binary packets into human readable
     strings. It also provides methods to create binary packets.
+
+    As this is for newer alienfx controllers which are setting 8-bits per color (256 values from 0-255 each) we have to convert the color.json-values as they are 4-bits (16 values from 0-15)
+
     """
+
+
     
     # Command codes
     CMD_SET_MORPH_COLOUR = 0x1
@@ -83,6 +90,8 @@ class NewAlienFXCmdPacket(object):
     def _unpack_colour_pair(pkt):
         """ Unpack two colour values from the given packet and return them as a
         list of two tuples (each colour is a 3-member tuple)
+
+        TODO: i think this ist still bullshit for the newer controller
         """ 
         red1 = hex(pkt[0] >> 4)
         green1 = hex(pkt[0] & 0xf)
@@ -99,16 +108,31 @@ class NewAlienFXCmdPacket(object):
         """
         (red1, green1, blue1) = colour1
         (red2, green2, blue2) = colour2
+        # pkt = []
+        # pkt.append(((red1&0xf)<<4) + (green1&0xf))
+        # pkt.append(((blue1&0xf)<<4) + (red2&0xf))
+        # pkt.append(((green2&0xf)<<4) + (blue2&0xf))
         pkt = []
-        pkt.append(((red1&0xf)<<4) + (green1&0xf))
-        pkt.append(((blue1&0xf)<<4) + (red2&0xf))
-        pkt.append(((green2&0xf)<<4) + (blue2&0xf))
+        red8_1 = red1 / float(15) * 255
+        green8_1 = green1 / float(15) * 255
+        blue8_1 = blue1 / float(15) * 255
+        red8_2 = red2 / float(15) * 255
+        green8_2 = green2 / float(15) * 255
+        blue8_2 = blue2 / float(15) * 255
+        pkt.append(int(red8_1))
+        pkt.append(int(green8_1))
+        pkt.append(int(blue8_1))
+        pkt.append(int(red8_2))
+        pkt.append(int(green8_2))
+        pkt.append(int(blue8_2))
         return pkt
     
     @staticmethod    
     def _unpack_colour(pkt):
         """ Unpack a colour value from the given packet and return it as a
         3-member tuple
+
+        TODO: This mist still be bullshit too
         """
         red = hex(pkt[0] >> 4)
         green = hex(pkt[0] & 0xf)
@@ -121,12 +145,15 @@ class NewAlienFXCmdPacket(object):
         colour is a 3-member tuple
         """
         (red, green, blue) = colour
-        # pkt = []
+        pkt = []
         # pkt = [255, 0, 255] # DEBUG should set every color to pink (100% red, 0% green, 100% blue)
-        pkt = [255, 255, 0]  # DEBUG
-        # pkt.append(red << 8)
-        # pkt.append(green << 8)
-        # pkt.append(blue << 8)
+        red8 = red / float(15) * 255
+        green8 = green / float(15) * 255
+        blue8 = blue / float(15) * 255
+        # pkt = [255, 255, 0]  # DEBUG
+        pkt.append(int(red8))
+        pkt.append(int(green8))
+        pkt.append(int(blue8))
         return pkt
         
     @classmethod
