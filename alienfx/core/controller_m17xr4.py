@@ -41,22 +41,51 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     # the lowest value that will not result in strange blink/morph behaviour.
     DEFAULT_SPEED = 200
     MIN_SPEED = 50
-    
+
+    # reverse-engineer-knowledgebase:
+    # ###############################
+    # NOTICE:
+    # it seems that alienfx is using doubles for base zone adresses...
+    # there are a lot more zone- and command-codes which are doing thing we dont know about (yet), like -for example- setting multiple zones to different colors ans such stuff
+    # i think that these are used (or can be used) by some games
+    #
+    # 0x0001 Keyboard right
+    # 0x0002 Keyboard middle-right
+    # 0x0004 Keyboard middle-left
+    # 0x0008 Keyboard left
+    # 0x000F Keyboard: all fields <= interesting: 0x1 + 0x2 + 0x4 + 0x8 = 0xF
+    # 0x0010 may be: Alienhead (Display outside)?
+    # 0x0020 Alienhead (Display outside)
+    # 0x0040 Alienware-Logo
+    # 0x0050 may be: Alienware logo?
+    # 0x0080 seems nothing
+    # 0x0100 Power button
+    # 0x0200 seems nothing
+    #
+    # side-bars:
+    # ==========
+    # 0x0400 seems bottom left
+    # 0x0800 seems bottom right
+    # 0x1000 seems top (display) left
+    # 0x2000 seems top (display) right
+    #
+    # 0x4000 seems keyboard macrokey-bar (left)
+
     # Zone codes
     LEFT_KEYBOARD = 0x0008  # Code OK
     MIDDLE_LEFT_KEYBOARD = 0x0004  # Code OK
     MIDDLE_RIGHT_KEYBOARD = 0x0002  # Code OK
     RIGHT_KEYBOARD = 0x0001  # Code OK
-    # Both speakers might change together
-    RIGHT_SPEAKER = 0x4800  # (bottom right?) wrong - testing
-    LEFT_SPEAKER = 0x2400  # Not sure (bottom left?) - testing
+
+    RIGHT_SPEAKER = 0x0800  # todo: (bottom right?) wrong - testing
+    LEFT_SPEAKER = 0x0400  # todo: Not sure (bottom left?) - testing
     # 0x0060 seems to bee alien head and logo...?
     ALIEN_HEAD = 0x0020  # Seems OK
-    LOGO = 0x0050  # Seems OK
-    TOUCH_PAD = 0x0200  # TODO: Seems to be wrong
-    MEDIA_BAR = 0x0900  # TODO: seems to be bottom right but also causes power button to flash in that color...
+    LOGO = 0x0040  # Alienware below screen. Seems OK or may be 0x0050
+    TOUCH_PAD = 0x0600  # TODO: still unknown
+    MEDIA_BAR = 0x4000  # TODO: seems to be bottom right but also causes power button to flash in that color...
     POWER_BUTTON = 0x0100  # Seems OK. Caution: State 1 (Boot) conflicts with settings for other states (AC/Battery-Charged/Charging etc. ...)
-    HDD_LEDS = 0x4000  # TODO: Device has no hdd indicator
+    HDD_LEDS = 0xf001  # TODO: Device has no hdd indicator
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
