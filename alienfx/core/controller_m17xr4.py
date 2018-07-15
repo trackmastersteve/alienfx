@@ -58,7 +58,7 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     # 0x0020 Alienhead (Display outside)
     # 0x0040 Alienware-Logo
     # 0x0050 may be: Alienware logo?
-    # 0x0080 seems nothing
+    # 0x0080 Touchpad
     # 0x0100 Power button
     # 0x0200 seems nothing
     #
@@ -82,8 +82,8 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     # 0x0060 seems to bee alien head and logo...?
     ALIEN_HEAD = 0x0020  # Seems OK
     LOGO = 0x0040  # Alienware below screen. Seems OK or may be 0x0050
-    TOUCH_PAD = 0x0600  # TODO: still unknown
-    MEDIA_BAR = 0x4000  # TODO: seems to be bottom right but also causes power button to flash in that color...
+    TOUCH_PAD = 0x0080  # Seems OK. You may need to set touchpad-lightning to always on in BIOS for this to work, as the on-touch-event seems to be not recognized correctly
+    MEDIA_BAR = 0x4000  # Seems OK. If Media_Bar should be Macro-Key-Bar
     POWER_BUTTON = 0x0100  # Seems OK. Caution: State 1 (Boot) conflicts with settings for other states (AC/Battery-Charged/Charging etc. ...)
     HDD_LEDS = 0xf001  # TODO: Device has no hdd indicator
 
