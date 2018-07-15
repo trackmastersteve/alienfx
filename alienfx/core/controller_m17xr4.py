@@ -49,6 +49,8 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     # there are a lot more zone- and command-codes which are doing thing we dont know about (yet), like -for example- setting multiple zones to different colors ans such stuff
     # i think that these are used (or can be used) by some games
     #
+    # States: Some zone seem to be only be accessed in some states. Caution: different settings for a zone in different states may interfere, so that flashing can occure...
+    #
     # 0x0001 Keyboard right
     # 0x0002 Keyboard middle-right
     # 0x0004 Keyboard middle-left
