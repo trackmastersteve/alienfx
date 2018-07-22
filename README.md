@@ -5,7 +5,7 @@ AlienFX is a Linux utility to control the lighting effects of your Alienware com
 At present there is a CLI version (``alienfx``) and a gtk GUI version (``alienfx-gtk``). And 
 has been tested on Debian/Ubuntu/Kali, Fedora and Arch Linux.
 
-[![Version](https://img.shields.io/badge/version-2.1.2-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network) 
+[![Version](https://img.shields.io/badge/version-2.2.0-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network) 
 
 ## Table of Contents
 
@@ -25,7 +25,7 @@ For 2.0.6:
 ```sh
       $ sudo pacman -S python2-pyusb python2-setuptools python2-gobject python2-cairo
 ```
-For 2.1.x:
+For 2.1+:
 ```sh
       $ sudo pacman -S python-pyusb python-setuptools python-gobject python-cairo python-future
 ```
@@ -104,10 +104,10 @@ At present, AlienFX supports and has been tested on the following Alienware mode
 6.  M14xR1   Laptop  -  support by [Ashwin Menon](https://github.com/ashwinm76)
 7.  M14xR2   Laptop  -  (Needs the correct Zone Codes)
 8.  M14xR3   Laptop  -  (Needs the correct Zone Codes)
-9.  M15x     Laptop  -  support by [Gennadiy Chernyshyk](https://github.com/shatur95)
-10. M17x     Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
+9.  M15xR1   Laptop  -  support by [Gennadiy Chernyshyk](https://github.com/shatur95)
+10. M17xR1   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
 11. M17xR3   Laptop  -  (Needs the correct Zone Codes)
-12. M17xR4   Laptop  -  (Needs the correct Zone Codes)
+12. M17xR4   Laptop  -  support by [Dennis Marx](https://github.com/derco0n)
 13. M18xR2   Laptop  -  (Needs the correct Zone Codes)
 14. Aurora   Desktop -  support by [Bill Ochetski](https://github.com/ochetski)
 15. 17R3     Laptop  -  (Needs the correct Zone Codes)

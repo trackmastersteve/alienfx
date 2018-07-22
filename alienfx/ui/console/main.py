@@ -36,9 +36,10 @@ from alienfx.core.prober import AlienFXProber
 import alienfx.core.themefile as alienfx_themefile
 import alienfx.core.logger as alienfx_logger
 
+
 def start():
     """ Main entry point for the alienfx cli."""
-    
+
     controller = AlienFXProber.get_controller()
     if controller is None:
         logging.error("No supported Alien FX controllers found!")
