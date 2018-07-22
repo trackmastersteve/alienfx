@@ -1,0 +1,745 @@
+{
+  "Battery On": [
+    {
+      "zones": [
+        "Power Button"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    }
+  ],
+  "Boot": [
+    {
+      "zones": [
+        "Right Keyboard"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "fixed"
+        },
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Middle-right Keyboard"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "fixed"
+        },
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Middle-left Keyboard"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "fixed"
+        },
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Left Keyboard"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "fixed"
+        },
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Left Speaker"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "blink"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Right Speaker"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "blink"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Left Display"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+        {
+          "colours": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Right Display"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+        {
+          "colours": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Alien Head"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+        {
+          "colours": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Logo"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+        {
+          "colours": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		  {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+        {
+          "colours": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Touchpad"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              10,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Media Bar"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ]
+          ],
+          "type": "fixed"
+        },
+        {
+          "colours": [
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+		{
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    }
+  ],
+  "Battery Critical": [
+    {
+      "zones": [
+        "Power Button"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              15,
+              15
+            ]
+          ],
+          "type": "blink"
+        }
+      ]
+    }
+  ],
+  "AC Charged": [
+    {
+      "zones": [
+        "Power Button"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              15,
+              15
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    }
+  ],
+  "Battery Sleep": [
+    {
+      "zones": [
+        "Power Button"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              15,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              15,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Left Keyboard",
+        "Middle-left Keyboard",
+        "Middle-right Keyboard",
+        "Right Keyboard",
+        "Right Speaker",
+        "Left Speaker",
+        "Logo",
+        "Touchpad",
+        "Media Bar"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    }
+  ],
+  "AC Sleep": [
+    {
+      "zones": [
+        "Power Button",
+        "HDD LEDs"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              15,
+              15
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+        {
+          "colours": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              15,
+              15,
+              15
+            ]
+          ],
+          "type": "morph"
+        }
+      ]
+    },
+    {
+      "zones": [
+        "Left Keyboard",
+        "Middle-left Keyboard",
+        "Middle-right Keyboard",
+        "Right Keyboard",
+        "Right Speaker",
+        "Left Speaker",
+        "Logo",
+        "Touchpad",
+        "Media Bar"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "type": "fixed"
+        }
+      ]
+    }
+  ],
+  "speed": 200,
+  "AC Charging": [
+    {
+      "zones": [
+        "Power Button",
+        "HDD LEDs"
+      ],
+      "loop": [
+        {
+          "colours": [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              15,
+              15,
+              0
+            ]
+          ],
+          "type": "morph"
+        },
+        {
+          "colours": [
+            [
+              15,
+              15,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ]
+          ],
+          "type": "morph"
+        }
+      ]
+    }
+  ]
+}
