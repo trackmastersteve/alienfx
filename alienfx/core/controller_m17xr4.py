@@ -46,23 +46,25 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     # ###############################
     # NOTICE:
     # it seems that alienfx is using doubles for base zone adresses...
-    # there are a lot more zone- and command-codes which are doing thing we dont know about (yet), like -for example- setting multiple zones to different colors ans such stuff
+    # there are a lot more zone- and command-codes which are doing things we dont know about (yet),
+    # like -for example- setting multiple zones to different colors ans such stuff
     # i think that these are used (or can be used) by some games
     #
-    # States: Some zone seem to be only be accessed in some states. Caution: different settings for a zone in different states may interfere, so that flashing can occure...
+    # States: Some zone seem to be only be accessed in some states.
+    # Caution: different settings for a zone in different states may interfere, so that flashing can happen...
     #
     # 0x0001 Keyboard right
     # 0x0002 Keyboard middle-right
     # 0x0004 Keyboard middle-left
     # 0x0008 Keyboard left
     # 0x000F Keyboard: all fields <= interesting: 0x1 + 0x2 + 0x4 + 0x8 = 0xF
-    # 0x0010 may be: Alienhead (Display outside)?
+    # 0x0010 unknown...
     # 0x0020 Alienhead (Display outside)
     # 0x0040 Alienware-Logo
     # 0x0050 may be: Alienware logo?
     # 0x0080 Touchpad
     # 0x0100 Power button
-    # 0x0200 seems nothing
+    # 0x0200 unknown...
     #
     # side-bars:
     # ==========
@@ -79,22 +81,29 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     MIDDLE_RIGHT_KEYBOARD = 0x0002  # Code OK
     RIGHT_KEYBOARD = 0x0001  # Code OK
 
-    RIGHT_SPEAKER = 0x0800  # todo: (bottom right?) wrong - testing
-    LEFT_SPEAKER = 0x0400  # todo: Not sure (bottom left?) - testing
-    # 0x0060 seems to bee alien head and logo...?
-    ALIEN_HEAD = 0x0020  # Seems OK
-    LOGO = 0x0040  # Alienware below screen. Seems OK or may be 0x0050
-    TOUCH_PAD = 0x0080  # Seems OK. You may need to set touchpad-lightning to always on in BIOS for this to work, as the on-touch-event seems to be not recognized correctly
+    RIGHT_SPEAKER = 0x0800  # Code OK, Bottom  - Right light bar
+    LEFT_SPEAKER = 0x0400  # Code OK, Bottom  - Left light bar
+    LEFT_DISPLAY = 0x1000  # Code OK, Display - Left light bar
+    RIGHT_DISPLAY = 0x2000  # Code OK, Display - Right light bar
+
+    ALIEN_HEAD = 0x0020  # Code OK
+    LOGO = 0x0040  # Code OK. Alienware-logo below screen.
+    # 0x0060 seems to bee alien head and logo 0x20+0x40=0x60
+
+    # Touchpad:
+    # Seems OK. You may need to set touchpad-lightning to always on in BIOS for this to work,
+    # as the on-touch-event seems to be not recognized correctly
+    TOUCH_PAD = 0x0080  # Code OK. Have a look at your BIOS settings.
     MEDIA_BAR = 0x4000  # Seems OK. If Media_Bar should be Macro-Key-Bar
-    POWER_BUTTON = 0x0100  # Seems OK. Caution: State 1 (Boot) conflicts with settings for other states (AC/Battery-Charged/Charging etc. ...)
-    HDD_LEDS = 0xf001  # TODO: Device has no hdd indicator
+    POWER_BUTTON = 0x0100  # Seems OK. Caution: S1 (Boot) conflicts with settings for other states...
+    # HDD_LEDS = 0xf001  # Inactive: Device has no hdd indicator
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
     RESET_ALL_LIGHTS_ON = 4
     
     # State codes
-    BOOT = 1  # Seems State is still 1 when booted and on AC. ...?!
+    BOOT = 1  # Seems some zone can only be defined by Boot-State and have no effect on higher states
     AC_SLEEP = 2
     AC_CHARGED = 5
     AC_CHARGING = 6
@@ -133,13 +142,16 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
             self.ZONE_TOUCH_PAD: self.TOUCH_PAD,
             self.ZONE_MEDIA_BAR: self.MEDIA_BAR,
             self.ZONE_POWER_BUTTON: self.POWER_BUTTON,
-            self.ZONE_HDD_LEDS: self.HDD_LEDS,
+            self.ZONE_LEFT_DISPLAY: self.LEFT_DISPLAY,
+            self.ZONE_RIGHT_DISPLAY: self.RIGHT_DISPLAY
+            # self.ZONE_HDD_LEDS: self.HDD_LEDS,  # Not used, as de AW17R4 does not have an HDD indicator
+
         }
         
         # zones that have special behaviour in the different power states
         self.power_zones = [
-            self.ZONE_POWER_BUTTON,
-            self.ZONE_HDD_LEDS
+            self.ZONE_POWER_BUTTON  # ,
+            # self.ZONE_HDD_LEDS
         ]
         
         # map the reset names to their codes

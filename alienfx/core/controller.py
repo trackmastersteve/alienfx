@@ -67,7 +67,9 @@ class AlienFXController(object):
     ZONE_STATUS_LEDS = "Status LEDs"
     ZONE_POWER_BUTTON = "Power Button"
     ZONE_HDD_LEDS = "HDD LEDs"
-        
+    ZONE_RIGHT_DISPLAY = "Right Display"  # LED-bar display right side, as built in the AW17R4
+    ZONE_LEFT_DISPLAY = "Left Display"  # LED-bar display left side, as built in the AW17R4
+
     # State names
     STATE_BOOT = "Boot"
     STATE_AC_SLEEP = "AC Sleep"
