@@ -71,4 +71,15 @@ class AlienFXProber(object):
             if dev is not None:
                 return controller
         return None
-        
+
+    @staticmethod
+    def find_controllers(vendor):
+        """Go through the usb-bus and find devices(and most likely controllers) by vendor-id"""
+        devs = usb.core.find("find_all")  # All USB devices
+        devices = []  # List of found AFX-Controllers
+        for dev in devs:
+            if dev.manufacturer == vendor:
+                devices.__add__(dev)
+        if devices.count() > 0:
+            return devices
+        return None
