@@ -30,7 +30,9 @@ AlienFXProber: probes the USB bus for supported Alien FX controllers.
 """
 
 from builtins import object
+from builtins import int
 import usb
+import usb.core
 
 from alienfx.core.controller import AlienFXController as AlienFXController
 
@@ -75,11 +77,15 @@ class AlienFXProber(object):
     @staticmethod
     def find_controllers(vendor):
         """Go through the usb-bus and find devices(and most likely controllers) by vendor-id"""
-        devs = usb.core.find("find_all")  # All USB devices
+        vid = int(vendor, 16)  # Convert our given Vendor-HEX-String to an equivalent intenger
+
+        devs = usb.core.find(find_all=1)  # All USB devices
         devices = []  # List of found AFX-Controllers
         for dev in devs:
-            if dev.manufacturer == vendor:
-                devices.__add__(dev)
-        if devices.count() > 0:
+            if dev is not None:
+                if dev.idVendor is not None:
+                    if dev.idVendor == vid:
+                        devices.append(dev)
+        if devices.__len__ > 0:
             return devices
         return None

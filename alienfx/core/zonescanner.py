@@ -26,10 +26,23 @@
 # Zonescanner-class which should test different zone codes. - This could make adding new devices easier.
 # initial development by derco0n <https://github.com/derco0n> (July/2018)
 
+from alienfx.core.prober import AlienFXProber
+from builtins import str,hex
+import alienfx.core.controller as alienfx_controller
+import os
+
 
 class Zonescanner:
     def __init__(self, vendorid):
         self.vendorid=vendorid
 
     def scan(self):
+        if os.geteuid() != 0:
+            exit("You need to have root privileges to run zonescanning as we need to probe usb-devices.\nPlease try again, this time using 'sudo'. Exiting.")
+
+        afxcontroldevs=AlienFXProber.find_controllers(self.vendorid)  # Get a list of all usb-devices with the given vendor-id
+        for controller in afxcontroldevs:
+            print("Found device \""+str(hex(controller.idVendor))+" / "+str(hex(controller.idProduct))+"\". - Testing zones...")
+            # TODO: Perform zone scanning for each controller found...
+
         return False

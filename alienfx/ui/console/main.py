@@ -37,6 +37,7 @@ import sys
 import alienfx.core.zonescanner as alienfx_zonescanner
 
 def askuser(question):
+    return True  # DEBUG. Comment this line!!
     while "Your answer was invalid.":
         # Python 2.x => raw_input / python 3.x => input
         if sys.version_info < (3,0):
@@ -64,7 +65,7 @@ def start():
             # User answered yes: Zonescan should be performed
             print("Performing zonescan...")
             # Call Zonescanning here...
-            zonescan=alienfx_zonescanner.Zonescanner("0x187")
+            zonescan=alienfx_zonescanner.Zonescanner("0x187c")
             zonescan.scan()
             print("Zonescan finished")
             logging.info("Zonescan finished")
