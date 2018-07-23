@@ -45,4 +45,4 @@ class Zonescanner:
             print("Found device \""+str(hex(controller.idVendor))+" / "+str(hex(controller.idProduct))+"\". - Testing zones...")
             # TODO: Perform zone scanning for each controller found...
 
-        return False
+        return False  # DEBUG
