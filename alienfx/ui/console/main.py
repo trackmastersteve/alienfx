@@ -33,30 +33,33 @@ import alienfx.common
 from alienfx.core.prober import AlienFXProber
 import alienfx.core.themefile as alienfx_themefile
 import alienfx.core.logger as alienfx_logger
-import sys
 import alienfx.core.zonescanner as alienfx_zonescanner
+import sys
+
 
 def askuser(question):
-    return True  # DEBUG. Comment this line!!
     while "Your answer was invalid.":
         # Python 2.x => raw_input / python 3.x => input
-        if sys.version_info < (3,0):
+        if sys.version_info < (3, 0):
             # Python 2.x
             reply = raw_input((question+' (y/n): ').lower().strip())
         else:
             # Python 3.x
             reply = input((question + ' (y/n): ').lower().strip())
-        if reply[0] == 'y':
-            return True
-        if reply[0] == 'n':
-            return False
+        if reply.__len__() > 0:
+            if reply[0] == 'y':
+                return True
+            if reply[0] == 'n':
+                return False
 
 def start():
     """ Main entry point for the alienfx cli."""
     print("You are running alienfx under Python-Version: "+sys.version)
 
-    # controller = AlienFXProber.get_controller() # DEBUG uncomment again!!!
-    controller = None  #DEBUG remove again!!!
+    # You may switch the commenting of the following 2 lines to force zonescan-execution
+    controller = AlienFXProber.get_controller()  # DEBUG: you may comment this out for development of zonescanner
+    # controller = None  # DEBUG: you may uncomment this out for development of zonescanner
+
     if controller is None:
         logging.error("No Alien FX controller, defined by a supported model, found!")
         logging.info("Asking user for zone probing...")
@@ -73,7 +76,7 @@ def start():
             # No Zonescan should be performed
             print("OK. Bye.")
             logging.info("Zonescanning not performed")
-        quit() #Finish
+        quit()  # Finish
         
     themefile = alienfx_themefile.AlienFXThemeFile(controller)
     try:
