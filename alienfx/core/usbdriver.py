@@ -72,6 +72,7 @@ class AlienFXUSBDriver(object):
     def read_packet(self):
         """ Read a packet over USB from the AlienFX controller and return it."""
         if not self._control_taken:
+            logging.error("read_packet: control not taken...")
             return
         try:
             pkt = self._dev.ctrl_transfer(

@@ -79,7 +79,7 @@ class AlienFXController(object):
     STATE_BATTERY_ON = "Battery On"
     STATE_BATTERY_CRITICAL = "Battery Critical"
 
-    ALIENFX_CONTROLLER_TYPE = "old"  #Modern Notebooks are using 8 bits per color. older ones just 4
+    ALIENFX_CONTROLLER_TYPE = "old"  # Default controllertype=old. Note that modern controllerss are using 8 bits per color. older ones just 4
     
     def __init__(self):
         self.zone_map = {}
@@ -88,12 +88,8 @@ class AlienFXController(object):
         self.state_map = {}
         self.vendor_id = 0
         self.product_id = 0
-        # if self.ALIENFX_CONTROLLER_TYPE == "new":
-            # New controller
-#            self.cmd_packet = alienfx_newcmdpacket.NewAlienFXCmdPacket()
- #       else:
-            # Old Controller
-        self.cmd_packet = alienfx_cmdpacket.AlienFXCmdPacket()
+
+        self.cmd_packet = alienfx_cmdpacket.AlienFXCmdPacket()  # intially load old cmdpacket for backwards compatibility
 
         self._driver = alienfx_usbdriver.AlienFXUSBDriver(self)
 
@@ -157,12 +153,20 @@ class AlienFXController(object):
         return only when the controller is ready
         """
         ready = False
+        errcount=0
         while not ready:
             pkt = self.cmd_packet.make_cmd_get_status()
             logging.debug("SENDING: {}".format(self.pkt_to_string(pkt)))
             self._driver.write_packet(pkt)
-            resp = self._driver.read_packet()
-            ready = (resp[0] == self.cmd_packet.STATUS_READY)
+            try:
+                resp = self._driver.read_packet()
+                ready = (resp[0] == self.cmd_packet.STATUS_READY)
+            except TypeError:
+                errcount += 1
+                logging.debug("No Status received yet... Failed tries=" + str(errcount))
+            if errcount > 50:
+                logging.error("Controller status could not be retrieved. Is the device already in use?")
+                quit(-99)
         
     def pkt_to_string(self, pkt_bytes):
         """ Return a human readable string representation of an AlienFX
@@ -265,7 +269,7 @@ class AlienFXController(object):
         for cmd in cmds:
             logging.debug("SENDING: {}".format(self.pkt_to_string(cmd)))
             self._driver.write_packet(cmd)
-    
+
     def set_theme(self, themefile):
         """ Send the given theme settings to the controller. This should result
         in the lights changing to the theme settings immediately.
@@ -297,3 +301,4 @@ class AlienFXController(object):
             self._send_cmds([cmd])
         finally:
             self._driver.release()
+

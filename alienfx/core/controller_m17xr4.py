@@ -42,44 +42,12 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     DEFAULT_SPEED = 200
     MIN_SPEED = 50
 
-    # reverse-engineer-knowledgebase:
-    # ###############################
-    # NOTICE:
-    # it seems that alienfx is using doubles for base zone adresses...
-    # there are a lot more zone- and command-codes which are doing things we dont know about (yet),
-    # like -for example- setting multiple zones to different colors ans such stuff
-    # i think that these are used (or can be used) by some games
-    #
-    # States: Some zone seem to be only be accessed in some states.
-    # Caution: different settings for a zone in different states may interfere, so that flashing can happen...
-    #
-    # 0x0001 Keyboard right
-    # 0x0002 Keyboard middle-right
-    # 0x0004 Keyboard middle-left
-    # 0x0008 Keyboard left
-    # 0x000F Keyboard: all fields <= interesting: 0x1 + 0x2 + 0x4 + 0x8 = 0xF
-    # 0x0010 unknown...
-    # 0x0020 Alienhead (Display outside)
-    # 0x0040 Alienware-Logo
-    # 0x0050 may be: Alienware logo?
-    # 0x0080 Touchpad
-    # 0x0100 Power button
-    # 0x0200 unknown...
-    #
-    # side-bars:
-    # ==========
-    # 0x0400 seems bottom left
-    # 0x0800 seems bottom right
-    # 0x1000 seems top (display) left
-    # 0x2000 seems top (display) right
-    #
-    # 0x4000 seems keyboard macrokey-bar (left)
-
     # Zone codes
     LEFT_KEYBOARD = 0x0008  # Code OK
     MIDDLE_LEFT_KEYBOARD = 0x0004  # Code OK
     MIDDLE_RIGHT_KEYBOARD = 0x0002  # Code OK
     RIGHT_KEYBOARD = 0x0001  # Code OK
+    # 0x000F - Keyboard: all fields (0x1+0x2+0x4+0x8=0xF). You may have look at reverse-engineering-knowledgebase.md
 
     RIGHT_SPEAKER = 0x0800  # Code OK, Bottom  - Right light bar
     LEFT_SPEAKER = 0x0400  # Code OK, Bottom  - Left light bar
@@ -88,7 +56,7 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
 
     ALIEN_HEAD = 0x0020  # Code OK
     LOGO = 0x0040  # Code OK. Alienware-logo below screen.
-    # 0x0060 seems to bee alien head and logo 0x20+0x40=0x60
+    # 0x0060 seems to bee alien head and logo (0x20+0x40=0x60). You may have look at reverse-engineering-knowledgebase.md
 
     # Touchpad:
     # Seems OK. You may need to set touchpad-lightning to always on in BIOS for this to work,
@@ -96,7 +64,7 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     TOUCH_PAD = 0x0080  # Code OK. Have a look at your BIOS settings.
     MEDIA_BAR = 0x4000  # Seems OK. If Media_Bar should be Macro-Key-Bar
     POWER_BUTTON = 0x0100  # Seems OK. Caution: S1 (Boot) conflicts with settings for other states...
-    # HDD_LEDS = 0xf001  # Inactive: Device has no hdd indicator
+    # HDD_LEDS = ???  # Inactive: Device has no hdd indicator
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
