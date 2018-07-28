@@ -48,14 +48,14 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
     MIDDLE_RIGHT_KEYBOARD = 0x0002
     RIGHT_KEYBOARD = 0x0001
     # Both speakers change together
-    RIGHT_SPEAKER = 0x0020
-    LEFT_SPEAKER = 0x0040
-    ALIEN_HEAD = 0x0080
-    LOGO = 0x0100
-    TOUCH_PAD = 0x0200
-    MEDIA_BAR = 0x0800
+    RIGHT_SPEAKER = 0x0040 #Please check these zones
+    LEFT_SPEAKER = 0x0800
+    ALIEN_HEAD = 0x0100
+    LOGO = 0x0020
+    TOUCH_PAD = 0x4000 #Please check these zones
+    MEDIA_BAR = 0x0080
     POWER_BUTTON = 0x2000
-    HDD_LEDS = 0x4000
+    HDD_LEDS = 0x0200
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
