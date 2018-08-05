@@ -79,7 +79,7 @@ class AlienFXController(object):
     STATE_BATTERY_ON = "Battery On"
     STATE_BATTERY_CRITICAL = "Battery Critical"
 
-    ALIENFX_CONTROLLER_TYPE = "old"  # Default controllertype=old. Note that modern controllerss are using 8 bits per color. older ones just 4
+    ALIENFX_CONTROLLER_TYPE = "old"  # Default controllertype=old. Note that modern controllers are using 8 bits per color. older ones just 4
     
     def __init__(self):
         self.zone_map = {}

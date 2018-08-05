@@ -13,8 +13,7 @@ To add support for a different model of Alienware computer, do the following:
 
 4. Test your modifications, and please submit a patch!
 
-Main Branch will get back-ported code to add New Alienware Models ONLY.
---------------------------------------------------------
+
 Please pull request all code to the LATEST version! Thanks!
 --------------------------------------------------------
 

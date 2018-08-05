@@ -86,6 +86,6 @@ class AlienFXProber(object):
                 if dev.idVendor is not None:
                     if dev.idVendor == vid:
                         devices.append(dev)
-        if devices.__len__ > 0:
+        if len(devices):
             return devices
         return None
