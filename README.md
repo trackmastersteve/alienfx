@@ -53,10 +53,10 @@ On other distributions you need to install ``pyusb`` and ``pkg_resources`` using
       ```
 You can install all of these by running the command:
 
-      ```sh
-            $ sudo pip install -r requirements.txt
-      ```
-
+   ```sh
+            $ pip install -r requirements.txt
+   ```
+      
 And then install following packages using package manager:      
    
    On Debian/Ubuntu/Kali: 
