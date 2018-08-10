@@ -2,6 +2,24 @@
     "speed": 200,
     "Boot": [
         {
+            "zones": ["Left Display"],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [ [0,0,15] ]
+                }
+            ]
+        },
+        {
+            "zones": ["Right Display"],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [ [0,0,15] ]
+                }
+            ]
+        },
+        {
             "zones": ["Right Keyboard"],
             "loop": [
                 {
