@@ -269,7 +269,7 @@ class AlienFXApp(Gtk.Application):
                     a = AlienFXActions()
                     a.actions = self.themefile.get_zone_actions(state, zone)
                     power_zone_list_store.append([state, a])
-            elif zone in self.controller.zone_map:
+            elif zone in self.controller.zone_map:  # Is elif really necessary? Aren't we already iterating self.controller.zone_map?
                 a = AlienFXActions()
                 a.actions = self.themefile.get_zone_actions(self.controller.STATE_BOOT, zone)
                 normal_zone_list_store.append([zone, a])
