@@ -3,7 +3,7 @@ AlienFX is a Linux utility to control the lighting effects of your Alienware com
 ============
 
 At present there is a CLI version (``alienfx``) and a gtk GUI version (``alienfx-gtk``). And 
-has been tested on Debian/Ubuntu/Kali, Fedora and Arch Linux.
+has been tested on Debian/Ubuntu/Kali/Mint 19, Fedora and Arch Linux.
 
 [![Version](https://img.shields.io/badge/version-2.3.2-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network) 
 
@@ -33,18 +33,18 @@ For 2.1+:
 ```
 
 On other distributions you need to install ``pyusb`` and ``pkg_resources`` using pip:
-1. pyusb >= 1.0.0b1.
+1. pkg_resources.
+   You can install ``pkg_resources`` using the following command:
+      ```sh
+            $ pip install setuptools
+      ```
+
+2. pyusb >= 1.0.0b1.
    Note that your distribution may only provide ``the pre-1.0`` version of ``pyusb``. If
    this is the case, you can install ``pyusb 1.0`` using the 
    following command:
       ```sh
             $ pip install --pre pyusb
-      ```
-      
-2. pkg_resources.
-   You can install ``pkg_resources`` using the following command:
-      ```sh
-            $ pip install setuptools
       ```
 3. future.
    You can install ``future`` using the following command:
@@ -68,6 +68,9 @@ And then install following packages using package manager:
 On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.org/packages/alienfx/)
 
 For manual installation of AlienFX, use the following commands:
+
+Please note, that the installer is still written in python 2.x while the application should already be python 3.x compatible.
+So if you have python 2 and 3 installed, run the installer with python2 instead of python.
   
   ```sh
       $ sudo python setup.py install
@@ -93,32 +96,31 @@ files, and the GUI program allows you to create new themes as well.
 
 See the man page of alienfx for the cli options supported.
 
+If you run the CLI-version of alienfx on a currently unsupported device, the programm will ask you if you wish to perform a zonescan.
+Please consider using this feature to determine the correct zone-codes for your device.
+If you found the correct codes, please contribute to the project. - You'll find more information in Section [Contributing](#contributing) 
+
 Supported models and adding support for new models:
 --------------------------------------------------
 
-At present, AlienFX supports and has been tested on the following Alienware models:
-
-1.  M11xR1   Laptop  -  (Needs the correct Zone Codes)
-2.  M11xR2   Laptop  -  (Needs the correct Zone Codes)
-3.  M11xR3   Laptop  -  (Needs the correct Zone Codes)
-4.  M13xR2   Laptop  -  support by [Simon Wood](https://github.com/mungewell)
-5.  M13xR3   Laptop  -  (Needs the correct Zone Codes)
-6.  M14xR1   Laptop  -  support by [Ashwin Menon](https://github.com/ashwinm76)
-7.  M14xR2   Laptop  -  (Needs the correct Zone Codes)
-8.  M14xR3   Laptop  -  (Needs the correct Zone Codes)
-9.  M15xR1   Laptop  -  support by [Gennadiy Chernyshyk](https://github.com/shatur95)
-10. M17xR1   Laptop  -  support by [trackmastersteve](https://github.com/trackmastersteve)
-11. M17xR3   Laptop  -  (Needs the correct Zone Codes)
-12. M17xR4   Laptop  -  support by [Dennis Marx](https://github.com/derco0n)
-13. M18xR2   Laptop  -  (Needs the correct Zone Codes)
-14. Aurora   Desktop -  support by [Bill Ochetski](https://github.com/ochetski)
-15. 17R3     Laptop  -  (Needs the correct Zone Codes)
+Please have a look at [devicelist](https://github.com/trackmastersteve/alienfx/blob/master/docs/Knowledgebase/Devicelist.md)
 
 ## Contributing
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) Please read [CONTRIBUTING.md](https://github.com/trackmastersteve/alienfx/blob/master/CONTRIBUTING.md) for further details. 
 
-## Disclaimer
+## Further Information
+If you look for further informations, have a look in docs/Knowledgebase
 
-I DO NOT accept responsibility for frying your AlienFX controller chip with my code.
-Haven't fried any yet, but this is just so I can sleep at night. ;)
+## Disclaimer and License
+If you use this software, you use it ON YOUR OWN RISK.
+I and the contributing developers DO NOT accept responsibility for frying your AlienFX controller chip with this code.
+Not fried any yet, but this is just so we can sleep at night. ;)
+
+
+This software is licenced under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
+
+This is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation.
+
+This programm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU GPL]((https://www.gnu.org/licenses/gpl-3.0.html)) for more detail.
+
