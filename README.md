@@ -59,7 +59,7 @@ You can install all of these by running the command:
       
 And then install following packages using package manager:      
    
-   On Debian/Ubuntu/Kali: 
+   On Debian/Ubuntu/Mint/Kali: 
    ```sh
             $ sudo apt install libcairo2-dev python-gi python-gi-cairo
    ```
