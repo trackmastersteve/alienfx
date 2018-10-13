@@ -74,9 +74,6 @@ And then install following packages using package manager:
 On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.org/packages/alienfx/)
 
 For manual installation of AlienFX, use the following commands:
-
-Please note, that the installer is still written in python 2.x while the application should already be python 3.x compatible.
-So if you have python 2 and 3 installed, run the installer with python2 instead of python.
   
   ```sh
       $ sudo python setup.py install
