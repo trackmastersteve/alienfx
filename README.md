@@ -97,7 +97,7 @@ files stored in ``$XDG_CONFIG_HOME/alienfx``. If ``XDG_CONFIG_HOME`` is not set,
 ``~/.config/alienfx`` is used. Both the CLI and GUI programs use these theme
 files, and the GUI program allows you to create new themes as well.
 
-See the man page of alienfx for the cli options supported. ``$ man alienfx``
+See the man page of alienfx ``$ man alienfx`` for the cli options supported. 
 
 If you run the CLI-version of alienfx on a currently unsupported device, the programm will ask you if you wish to perform a zonescan.
 Please consider using this feature to determine the correct zone-codes for your device.
