@@ -48,14 +48,15 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
     MIDDLE_RIGHT_KEYBOARD = 0x0002
     RIGHT_KEYBOARD = 0x0001
     # Both speakers change together
-    RIGHT_SPEAKER = 0x0040 #Please check these zones
+    RIGHT_SPEAKER = 0x1000
     LEFT_SPEAKER = 0x0800
-    ALIEN_HEAD = 0x0100
-    LOGO = 0x0020
-    TOUCH_PAD = 0x4000 #Please check these zones
-    MEDIA_BAR = 0x0080
-    POWER_BUTTON = 0x2000
-    HDD_LEDS = 0x0200
+    ALIEN_HEAD = 0x0020
+    LOGO = 0x0040
+    TOUCH_PAD = 0x4000
+    MEDIA_BAR = 0x0020
+    POWER_BUTTON = 0x0100
+    HDD_LEDS = 0x0080
+    TOUCH_PAD = 0x2000 # Macro Keys
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
@@ -97,7 +98,8 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
         # zones that have special behaviour in the different power states
         self.power_zones = [
             self.ZONE_POWER_BUTTON,
-            self.ZONE_HDD_LEDS
+            # self.ZONE_HDD_LEDS
+            # HDD_LEDS should not be impacted by power state
         ]
         
         # map the reset names to their codes
