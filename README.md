@@ -5,7 +5,7 @@ AlienFX is a Linux utility to control the lighting effects of your Alienware com
 At present there is a CLI version (``alienfx``) and a gtk GUI version (``alienfx-gtk``). And 
 has been tested on Debian/Ubuntu/Kali/Mint 19, Fedora and Arch Linux.
 
-[![Version](https://img.shields.io/badge/version-2.3.2-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network) 
+[![Version](https://img.shields.io/badge/version-2.3.4-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network) 
 
 ![AlienFX](https://github.com/trackmastersteve/alienfx/blob/master/alienfx/data/pixmaps/alienfx.png)
 
@@ -51,9 +51,15 @@ On other distributions you need to install ``pyusb`` and ``pkg_resources`` using
       ```sh
             $ pip install future
       ```
+You can install all of these by running the command:
+
+   ```sh
+            $ pip install -r requirements.txt
+   ```
+      
 And then install following packages using package manager:      
    
-   On Debian/Ubuntu/Kali: 
+   On Debian/Ubuntu/Mint/Kali: 
    ```sh
             $ sudo apt install libcairo2-dev python-gi python-gi-cairo
    ```
@@ -68,9 +74,6 @@ And then install following packages using package manager:
 On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.org/packages/alienfx/)
 
 For manual installation of AlienFX, use the following commands:
-
-Please note, that the installer is still written in python 2.x while the application should already be python 3.x compatible.
-So if you have python 2 and 3 installed, run the installer with python2 instead of python.
   
   ```sh
       $ sudo python setup.py install
@@ -94,9 +97,9 @@ files stored in ``$XDG_CONFIG_HOME/alienfx``. If ``XDG_CONFIG_HOME`` is not set,
 ``~/.config/alienfx`` is used. Both the CLI and GUI programs use these theme
 files, and the GUI program allows you to create new themes as well.
 
-See the man page of alienfx for the cli options supported.
+See the man page of alienfx ``$ man alienfx`` for the cli options supported. 
 
-If you run the CLI-version of alienfx on a currently unsupported device, the programm will ask you if you wish to perform a zonescan.
+If you run the CLI-version of alienfx on a currently unsupported device, the program will ask you if you wish to perform a zonescan.
 Please consider using this feature to determine the correct zone-codes for your device.
 If you found the correct codes, please contribute to the project. - You'll find more information in Section [Contributing](#contributing) 
 
