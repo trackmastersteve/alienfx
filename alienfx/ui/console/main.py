@@ -52,6 +52,7 @@ def askuser(question):
             if reply[0] == 'n':
                 return False
 
+
 def doZonescan():
     if sys.version_info < (3, 0):
         # Python 2.x
@@ -61,6 +62,7 @@ def doZonescan():
     # Call Zonescanning here...
     zonescan = alienfx_zonescanner.Zonescanner("0x187c")
     zonescan.scan()
+
 
 def start():
     """ Main entry point for the alienfx cli."""
@@ -79,6 +81,7 @@ def start():
             doZonescan()
             print("Zonescan finished")
             logging.info("Zonescan finished")
+            return True
         else:
             # No Zonescan should be performed
             print("OK. Bye.")
@@ -113,19 +116,20 @@ def start():
         args = argparser.parse_args()
         if args.zonescan is not None:
             if args.zonescan:
-                    doZonescan()
-        else:
-            if args.log is not None:
-                alienfx_logger.set_logfile(args.log)
-            if args.list is not None:
-                print("Available themes:")
-                themes = themefile.get_themes()
-                for t in themes:
-                    print(("\t{}").format(t))
-            elif args.theme is not None:
-                themefile.load(args.theme)
-                controller.set_theme(themefile)
-                themefile.applied()
+                doZonescan()
+                return True
+
+        if args.log is not None:
+            alienfx_logger.set_logfile(args.log)
+        if args.list is not None:
+            print("Available themes:")
+            themes = themefile.get_themes()
+            for t in themes:
+                print(("\t{}").format(t))
+        elif args.theme is not None:
+            themefile.load(args.theme)
+            controller.set_theme(themefile)
+            themefile.applied()
             
     except Exception as e:
         logging.error(e)
