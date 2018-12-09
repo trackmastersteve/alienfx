@@ -52,6 +52,18 @@ def askuser(question):
             if reply[0] == 'n':
                 return False
 
+
+def doZonescan():
+    if sys.version_info < (3, 0):
+        # Python 2.x
+        print("Zonescan might not run correctly under Python 2."
+              "If you experience issues, try running under Python 3 instead.")
+    print("Performing zonescan...")
+    # Call Zonescanning here...
+    zonescan = alienfx_zonescanner.Zonescanner("0x187c")
+    zonescan.scan()
+
+
 def start():
     """ Main entry point for the alienfx cli."""
     print("You are running alienfx under Python-Version: "+sys.version)
@@ -66,12 +78,10 @@ def start():
         # print("No Alien FX controller, defined by a supported model, found.")
         if askuser("Would you like to perform a zonescan?"):
             # User answered yes: Zonescan should be performed
-            print("Performing zonescan...")
-            # Call Zonescanning here...
-            zonescan=alienfx_zonescanner.Zonescanner("0x187c")
-            zonescan.scan()
+            doZonescan()
             print("Zonescan finished")
             logging.info("Zonescan finished")
+            return True
         else:
             # No Zonescan should be performed
             print("OK. Bye.")
@@ -100,7 +110,15 @@ def start():
             "-v", "--version", action="version", 
             version="%(prog)s {}".format(alienfx.common.get_version())
         )
+        argparser.add_argument(
+            "-z", "--zonescan", action="store_true", help="starts a zonescan"
+        )
         args = argparser.parse_args()
+        if args.zonescan is not None:
+            if args.zonescan:
+                doZonescan()
+                return True
+
         if args.log is not None:
             alienfx_logger.set_logfile(args.log)
         if args.list is not None:

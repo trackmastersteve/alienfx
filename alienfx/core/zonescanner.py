@@ -152,8 +152,8 @@ class Zonescanner:
                     zonename = self.askzonename()
                     self.zonesfound[zonename] = zone  # Store name an zone code in Dictionary
                 zone = zone*2
-
-            print("These are your zonecodes for current controller (\""+vendorstring + " / " + devicestring + "\"):")
+            print("")
+            print("These are your " + str(len(self.zonesfound.items())) + " zonecodes for the current controller (\"VID: "+vendorstring + " / DEV: " + devicestring + "\"):")
             for z in self.zonesfound.items():
                 print(z[0]+": 0x"+format(z[1], '04x'))  # Print out each zone found
             print("")

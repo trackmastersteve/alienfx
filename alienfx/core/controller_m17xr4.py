@@ -39,7 +39,7 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     # Speed capabilities. The higher the number, the slower the speed of 
     # blink/morph actions. The min speed is selected by trial and error as 
     # the lowest value that will not result in strange blink/morph behaviour.
-    DEFAULT_SPEED = 200
+    DEFAULT_SPEED = 75
     MIN_SPEED = 50
 
     # Zone codes
