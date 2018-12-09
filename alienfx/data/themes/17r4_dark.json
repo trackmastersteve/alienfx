@@ -395,7 +395,7 @@
             ]
         }
     ],
-    "speed": 200,
+    "speed": 75,
     "AC Charging": [
         {
             "zones": [
