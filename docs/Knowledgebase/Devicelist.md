@@ -20,3 +20,4 @@ device list
 | 14 | ? | controller_m17xr3.py |  | Laptop | Needs the correct Zone Codes | 0x0520 | 4 |  |
 | 15 | Alienware 17 R4 | controller_m17xr4.py | Q3/2016 | Laptop | support by [Dennis Marx](https://github.com/derco0n) | 0x0530 | 8 | ![Alienware 17 R4](https://github.com/trackmastersteve/alienfx/blob/master/docs/Knowledgebase/images/devices/aw17r4.png) |
 | 16 | ? | controller_m18xr2.py |  | Laptop | Needs the correct Zone Codes | 0x0518 | 4 |  |
+| 17 | ? | controller_area51_r2.py | | Desktop | Unknown | 0x0526 | 4 | |

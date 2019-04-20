@@ -38,6 +38,7 @@ from alienfx.core.controller import AlienFXController as AlienFXController
 
 """ Import all subclasses of AlienFXController here. """
 import alienfx.core.controller_area51
+import alienfx.core.controller_area51_r2
 import alienfx.core.controller_aurora
 import alienfx.core.controller_m11xr1
 import alienfx.core.controller_m11xr2
