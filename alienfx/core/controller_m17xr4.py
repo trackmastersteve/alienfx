@@ -40,7 +40,7 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     # blink/morph actions. The min speed is selected by trial and error as 
     # the lowest value that will not result in strange blink/morph behaviour.
     DEFAULT_SPEED = 75
-    MIN_SPEED = 50
+    MIN_SPEED = 1
 
     # Zone codes
     LEFT_KEYBOARD = 0x0008  # Code OK
@@ -80,23 +80,23 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     BATTERY_CRITICAL = 9
 
     #Controller Type
-    MYCONTROLLER = "new" #Defines the controllertype: old=pre Alienware 17R4 (4 bits per color) / new=AW17R4 and probably others, which are using 8 bits per color
+    # Defines the controllertype:
+    # 1 = old pre Alienware 17R4 (4 bits per color)
+    # 2 = AW17R4 and probably others, which are using 8 bits per color
+    MYCONTROLLERREV = 2
+
     
     def __init__(self):
-        alienfx_controller.AlienFXController.__init__(self)
+        # For new controller-defintions controller-revision should be provided as it defaults to 1!
+        # Wrong revision might result in packet errors 32 and 75 (Overflow and Pipeoverflow)
+        alienfx_controller.AlienFXController.__init__(self, self.MYCONTROLLERREV)
+
         self.name = "Alienware M17xR4"
         
         # USB VID and PID
         self.vendor_id = 0x187c
         self.product_id = 0x0530
 
-        #Switch Controllertype
-        if self.MYCONTROLLER == "new":
-            self.switch_to_new_controller()
-        else:
-            self.switch_to_old_controller()
-
-        
         # map the zone names to their codes
         self.zone_map = {
             self.ZONE_LEFT_KEYBOARD: self.LEFT_KEYBOARD,
@@ -113,7 +113,6 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
             self.ZONE_LEFT_DISPLAY: self.LEFT_DISPLAY,
             self.ZONE_RIGHT_DISPLAY: self.RIGHT_DISPLAY
             # self.ZONE_HDD_LEDS: self.HDD_LEDS,  # Not used, as de AW17R4 does not have an HDD indicator
-
         }
         
         # zones that have special behaviour in the different power states

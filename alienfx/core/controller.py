@@ -36,7 +36,6 @@ import logging
 
 import alienfx.core.usbdriver as alienfx_usbdriver
 import alienfx.core.cmdpacket as alienfx_cmdpacket
-import alienfx.core.newcmdpacket as alienfx_newcmdpacket
 from alienfx.core.themefile import AlienFXThemeFile
 from functools import reduce
 
@@ -81,7 +80,9 @@ class AlienFXController(object):
 
     ALIENFX_CONTROLLER_TYPE = "old"  # Default controllertype=old. Note that modern controllers are using 8 bits per color. older ones just 4
     
-    def __init__(self):
+    def __init__(self, conrev=1):  # conrev defaulting to 1 to maintain compatibility with old definitions
+        # conrev=1  -> old controllers (DEFAULT)
+        # conrev=2  -> newer controllers (17R4 ...)
         self.zone_map = {}
         self.power_zones = []
         self.reset_types = {}
@@ -89,17 +90,12 @@ class AlienFXController(object):
         self.vendor_id = 0
         self.product_id = 0
 
-        self.cmd_packet = alienfx_cmdpacket.AlienFXCmdPacket()  # intially load old cmdpacket for backwards compatibility
+        self.cmd_packet = alienfx_cmdpacket.AlienFXCmdPacket(conrev)  # Loads the cmdpacket.
 
         self._driver = alienfx_usbdriver.AlienFXUSBDriver(self)
 
-    def switch_to_new_controller(self):
-        self.cmd_packet = alienfx_newcmdpacket.NewAlienFXCmdPacket()
-        return
 
-    def switch_to_old_controller(self):
-        self.cmd_packet = self.cmd_packet = alienfx_cmdpacket.AlienFXCmdPacket()
-        return
+
 
     def get_zone_name(self, pkt):
         """ Given 3 bytes of a command packet, return a string zone
