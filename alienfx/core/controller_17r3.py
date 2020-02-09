@@ -26,7 +26,7 @@
 """ Specialization of the AlienFxController class for the 17R3 controller.
 
 This module provides the following classes:
-AlienFXControllerM18xR2 : 17R3 controller
+AlienFXController17xR3 : 17R3 controller
 """
 
 import alienfx.core.controller as alienfx_controller
