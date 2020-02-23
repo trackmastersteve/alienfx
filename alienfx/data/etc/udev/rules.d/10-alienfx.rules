@@ -44,9 +44,11 @@ SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0520", MODE:="666", 
 # USB device 0x187c:0x0530 (AlienFX controller for M17xR4 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0530", MODE:="666", GROUP="users"
 
+# USB device 0x187c:0x0528 (AlienFX controller for 17R1 laptop)
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0524", MODE:="666", GROUP="users"
+
 # USB device 0x187c:0x0528 (AlienFX controller for 17R3 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0528", MODE:="666", GROUP="users"
 
 # USB device 0x187c:0x0518 (AlienFX controller for M18xR2 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0518", MODE:="666", GROUP="users"
-

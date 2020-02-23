@@ -52,6 +52,7 @@ import alienfx.core.controller_m15x
 import alienfx.core.controller_m17x
 import alienfx.core.controller_m17xr3
 import alienfx.core.controller_m17xr4
+import alienfx.core.controller_17r1
 import alienfx.core.controller_17r3
 import alienfx.core.controller_m18xr2
 
