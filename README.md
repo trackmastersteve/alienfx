@@ -76,10 +76,10 @@ On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.
 For manual installation of AlienFX, use the following commands:
   
   ```sh
-      $ sudo python setup.py install
+      $ sudo python3 setup.py install
   ```
   ```sh
-      $ sudo python setup.py install_data
+      $ sudo python3 setup.py install_data
   ```
 
 Note that the second invocation is required to ensure that icon files etc. are

@@ -5,7 +5,7 @@
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
 # Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
 #
-# This Version is modified by Dennis <derCo0n> Marx (https://github.com/derco0n) to meet the requirement of newer alienfx-controller-chips
+# This Version is modified by Dennis <derCo0n> Marx (https://github.com/derco0n) to meet the requirements of newer alienfx-controller-chips
 # as newer chips are using 8 instead of 4 bit per color
 #
 # Alienfx is free software.
@@ -91,7 +91,7 @@ class NewAlienFXCmdPacket(object):
         """ Unpack two colour values from the given packet and return them as a
         list of two tuples (each colour is a 3-member tuple)
 
-        TODO: i think this ist still bullshit for the newer controller
+        TODO: i think this is still garbage for the newer controller(s)
         """ 
         red1 = hex(pkt[0] >> 4)
         green1 = hex(pkt[0] & 0xf)

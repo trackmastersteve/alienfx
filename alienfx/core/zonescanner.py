@@ -73,12 +73,7 @@ class Zonescanner:
             return reply.lower().strip()
 
     def scanzone(self, zone, controllertype, vid, pid):
-        myctr=alienfx_controller.AlienFXController()
-
-        if controllertype == "new":
-            myctr.switch_to_new_controller()
-        else:
-            myctr.switch_to_old_controller()
+        myctr=alienfx_controller.AlienFXController(controllertype)
 
         myctr.vendor_id = vid
         myctr.product_id = pid
@@ -141,11 +136,18 @@ class Zonescanner:
             zone = 1  # initial zone from which we start iterating
             vendorstring = "0x" + format(controller.idVendor, '04x')
             devicestring = "0x" + format(controller.idProduct, '04x')
-            print("Found device \""+vendorstring + " / " + devicestring + "\". - Testing zones...")
+            print("Found device \""+vendorstring + " / " + devicestring + "\". ")
+            if self.askuser("Would you like to test a newer controller? Default=Y\r\n"
+                            "Note that choosing a wrong controller will result in packet-errors.\r\n"
+                            "In this case you might choose another one instead."):
+                crev=2  # newer controller revision
+            else:
+                crev=1  # old controller revision
+            print("- Testing zones...")
             while zone <= self.maxzone:
                 # Iterate all possible zone codes (have a look at reverse-engineering-knowledgebase.txt for possible codes...)
                 print("Testing zone \"0x"+format(zone, '04x')+"\"")
-                if self.scanzone(zone, "new", controller.idVendor, controller.idProduct):
+                if self.scanzone(zone, crev, controller.idVendor, controller.idProduct):
                     # Zone found
                     print("Zone found :)")
                     # Ask user for a name, store name and zonecode
