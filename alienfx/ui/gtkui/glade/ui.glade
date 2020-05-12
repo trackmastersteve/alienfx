@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="normal_zone_list_store">
@@ -35,6 +35,7 @@
               <object class="GtkToolButton" id="toolbutton_new_theme">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Create new theme</property>
                 <property name="label" translatable="yes">New</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-new</property>
@@ -49,6 +50,7 @@
               <object class="GtkToolButton" id="toolbutton_open_theme">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Open existing theme</property>
                 <property name="label" translatable="yes">Open</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-open</property>
@@ -63,6 +65,7 @@
               <object class="GtkToolButton" id="toolbutton_save_theme">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Save theme</property>
                 <property name="label" translatable="yes">Save</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-save</property>
@@ -77,6 +80,7 @@
               <object class="GtkToolButton" id="toolbutton_save_theme_as">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Save theme as</property>
                 <property name="label" translatable="yes">Save As</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-save-as</property>
@@ -91,6 +95,7 @@
               <object class="GtkToolButton" id="toolbutton_delete_theme">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Delete theme</property>
                 <property name="label" translatable="yes">Delete Theme</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-close</property>
@@ -115,6 +120,7 @@
               <object class="GtkToolButton" id="toolbutton_delete">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Delete colour block</property>
                 <property name="label" translatable="yes">Delete Action</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-delete</property>
@@ -129,6 +135,7 @@
               <object class="GtkToolButton" id="toolbutton_add">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Add colour block</property>
                 <property name="label" translatable="yes">Add Action</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-add</property>
@@ -153,6 +160,7 @@
               <object class="GtkToolButton" id="toolbutton_apply">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Apply theme</property>
                 <property name="label" translatable="yes">Apply</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-apply</property>
@@ -545,7 +553,7 @@
       <action-widget response="0">open_theme_cancel</action-widget>
       <action-widget response="0">open_theme_ok</action-widget>
     </action-widgets>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
   </object>
@@ -696,7 +704,7 @@
       <action-widget response="0">saveas_theme_cancel</action-widget>
       <action-widget response="0">saveas_theme_ok</action-widget>
     </action-widgets>
-    <child>
+    <child type="titlebar">
       <placeholder/>
     </child>
   </object>
