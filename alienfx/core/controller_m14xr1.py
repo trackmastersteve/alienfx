@@ -88,7 +88,7 @@ class AlienFXControllerM14XR1(alienfx_controller.AlienFXController):
             self.ZONE_TOUCH_PAD: self.TOUCH_PAD,
             self.ZONE_STATUS_LEDS: self.STATUS_LEDS,
             self.ZONE_POWER_BUTTON: self.POWER_BUTTON,
-            self.ZONE_HDD_LEDS: self.HDD_LEDS,
+            self.ZONE_HDD_LEDS: self.HDD_LEDS
         }
         
         # zones that have special behaviour in the different power states
