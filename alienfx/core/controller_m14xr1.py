@@ -94,7 +94,8 @@ class AlienFXControllerM14XR1(alienfx_controller.AlienFXController):
         # zones that have special behaviour in the different power states
         self.power_zones = [
             self.ZONE_POWER_BUTTON,
-            self.ZONE_HDD_LEDS
+            self.ZONE_HDD_LEDS,
+            self.ZONE_STATUS_LEDS
         ]
         
         # map the reset names to their codes
