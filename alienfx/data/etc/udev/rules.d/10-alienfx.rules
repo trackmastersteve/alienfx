@@ -6,7 +6,7 @@
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0511", MODE:="666", GROUP="users"
 
 # USB device 0x187c:0x0526 (AlienFX controller for Area51 R2 Desktop)
-SUBSYSTEM=="usb", ATTR(idVender)=="187c", ATTR(idProduct)=="0526", MODE:="666", GROUP="users"
+SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0526", MODE:="666", GROUP="users"
 
 # USB device 0x187c:0x0514 (AlienFX controller for M11xR1 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0514", MODE:="666", GROUP="users"
