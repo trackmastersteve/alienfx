@@ -66,7 +66,7 @@ And then install following packages using package manager:
 
    On Fedora: 
    ```sh
-            $ sudo dnf install cairo-devel pygobject3 cairo-gobject
+            $ sudo dnf install cairo-devel python3-gobject cairo-gobject
    ```
 
 ## Installation
