@@ -3,7 +3,7 @@ AlienFX is a Linux utility to control the lighting effects of your Alienware com
 ============
 
 At present there is a CLI version (``alienfx``) and a gtk GUI version (``alienfx-gtk``). And 
-has been tested on Debian/Ubuntu/Kali/Mint 19, Fedora and Arch Linux.
+has been tested on Debian/Ubuntu/Kali/Mint, Fedora and Arch Linux.
 
 [![Version](https://img.shields.io/badge/version-2.3.4-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.9-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network) 
 
@@ -18,16 +18,11 @@ has been tested on Debian/Ubuntu/Kali/Mint 19, Fedora and Arch Linux.
 
 ## Dependencies
 
-AlienFX is written in python and has been tested on ``python 3.9`` (<2.1.1 using ``python 2.7``). It requires
+AlienFX is written in python and has been tested on ``python 3.9``. It requires
 the following python packages to run:
 
 On Arch Linux:
 
-For 2.0.6:
-```sh
-      $ sudo pacman -S python2-pyusb python2-setuptools python2-gobject python2-cairo
-```
-For 2.1+:
 ```sh
       $ sudo pacman -S python-pyusb python-setuptools python-gobject python-cairo python-future
 ```
