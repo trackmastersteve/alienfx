@@ -11,7 +11,7 @@ device list
 | 5 | ? | controller_m11xr2.py |  | Laptop | Needs the correct Zone Codes | 0x0515 | 4 |  |
 | 6 | ? | controller_m11xr3.py |  | Laptop | Needs the correct Zone Codes | 0x0522 | 4 |  |
 | 7 | ? | controller_m13xr2.py |  | Laptop | support by [Simon Wood](https://github.com/mungewell) | 0x0527 | 4 |  |
-| 8 | ? | controller_m13xr3.py |  | Laptop | Needs the correct Zone Codes | 0x0529 | 4 |  |
+| 8 | Alienware 13 R3 | controller_13r3.py | Q1/2017 | Laptop | support by [Yoann Mourot](https://github.com/YoannMourot) | 0x0529 | 8 | ![Alienware 13 R3](https://github.com/trackmastersteve/alienfx/blob/master/docs/Knowledgebase/images/devices/aw13r3.jpg) |
 | 9 | ? | controller_m14xr1.py |  | Laptop | support by [Ashwin Menon](https://github.com/ashwinm76) | 0x0521 | 4 |  |
 | 10 | ? | controller_m14xr2.py |  | Laptop | Needs the correct Zone Codes | 0x0521 | 4 |  |
 | 11 | ? | controller_m14xr3.py |  | Laptop | Needs the correct Zone Codes | 0x0525 | 4 |  |
