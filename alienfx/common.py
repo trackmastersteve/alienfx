@@ -2,7 +2,7 @@
 # common.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
-# Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2021 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #
@@ -34,4 +34,4 @@ def get_version():
     for r in requirements:
         if r.key == "alienfx":
             return r.version
-    return "2.3.4"
+    return "2.3.5"
