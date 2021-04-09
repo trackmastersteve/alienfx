@@ -64,7 +64,7 @@ setup(
     url = "https://github.com/trackmastersteve/alienfx",
     license = "GPLv3",
     
-    install_requires = ["pyusb>=1.0.0b1"],
+    install_requires = ["pyusb>=1.1.1"],
     data_files = data_files,
     entry_points = entry_points,
     packages = find_packages(),
