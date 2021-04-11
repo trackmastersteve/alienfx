@@ -161,4 +161,4 @@ class Zonescanner:
             print("")
             print("Current controller finished.")
 
-        print("All controllers done. I hope i was helpful.")
+        print("All controllers done. I hope this was helpful.")
