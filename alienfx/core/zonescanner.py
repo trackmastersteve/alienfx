@@ -129,7 +129,7 @@ class Zonescanner:
         return False
 
     def scan(self):
-        print("Welcome. This will help you to scan for alienfx-controllers and their lightning zones.")
+        print("Welcome. This will help you to scan for alienfx-controllers and their lighting zones.")
         afxcontroldevs=AlienFXProber.find_controllers(self.vendorid)  # Get a list of all usb-devices with the given vendor-id
         for controller in afxcontroldevs:
             # Perform zone scanning for each controller found...
