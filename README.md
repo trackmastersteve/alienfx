@@ -18,7 +18,7 @@ has been tested on Debian/Ubuntu/Kali/Mint, Fedora and Arch Linux.
 
 ## Dependencies
 
-AlienFX is written in python and has been tested on ``python 3.9``. It requires
+AlienFX is written in python and has been tested on ``python 3.10``. It requires
 the following python packages to run:
 
 On Arch Linux:
@@ -111,14 +111,14 @@ Please have a look at [devicelist](https://github.com/trackmastersteve/alienfx/b
 If you look for further informations, have a look in docs/Knowledgebase
 
 ## Disclaimer and License
-If you use this software, you use it ON YOUR OWN RISK.
+If you use this software, you use it AT YOUR OWN RISK.
 I and the contributing developers DO NOT accept responsibility for frying your AlienFX controller chip with this code.
-Not fried any yet, but this is just so we can sleep at night. ;)
+Haven't fried any yet, but this is just so we can sleep at night. ;)
 
 
 This software is licenced under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 This is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation.
 
-This programm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU GPL]((https://www.gnu.org/licenses/gpl-3.0.html)) for more detail.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU GPL]((https://www.gnu.org/licenses/gpl-3.0.html)) for more detail.
 
