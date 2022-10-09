@@ -111,9 +111,9 @@ Please have a look at [devicelist](https://github.com/trackmastersteve/alienfx/b
 If you look for further informations, have a look in docs/Knowledgebase
 
 ## Disclaimer and License
-If you use this software, you use it ON YOUR OWN RISK.
+If you use this software, you use it AT YOUR OWN RISK.
 I and the contributing developers DO NOT accept responsibility for frying your AlienFX controller chip with this code.
-Not fried any yet, but this is just so we can sleep at night. ;)
+Haven't fried any yet, but this is just so we can sleep at night. ;)
 
 
 This software is licenced under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
