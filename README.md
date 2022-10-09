@@ -18,7 +18,7 @@ has been tested on Debian/Ubuntu/Kali/Mint, Fedora and Arch Linux.
 
 ## Dependencies
 
-AlienFX is written in python and has been tested on ``python 3.9``. It requires
+AlienFX is written in python and has been tested on ``python 3.10``. It requires
 the following python packages to run:
 
 On Arch Linux:
