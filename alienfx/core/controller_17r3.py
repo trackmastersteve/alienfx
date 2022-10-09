@@ -52,11 +52,10 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
     LEFT_SPEAKER = 0x0800
     ALIEN_HEAD = 0x0020
     LOGO = 0x0040
-    TOUCH_PAD = 0x4000
-    MEDIA_BAR = 0x1c20
+    TOUCH_PAD = 0x0 # TODO
+    MEDIA_BAR = 0x2000 # Left macro keys
     POWER_BUTTON = 0x0100
-    HDD_LEDS = 0x0080
-    TOUCH_PAD = 0x2000 # Macro Keys
+    HDD_LEDS = 0x0280
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
