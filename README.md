@@ -26,43 +26,18 @@ On Arch Linux:
 ```sh
       $ sudo pacman -S python-pyusb python-setuptools python-gobject python-cairo python-future
 ```
+    
+On Debian/Ubuntu/Mint/Kali: 
 
-On other distributions you need to install ``pyusb`` and ``pkg_resources`` using pip:
-1. pkg_resources.
-   You can install ``pkg_resources`` using the following command:
-      ```sh
-            $ pip install setuptools
-      ```
+```sh
+      $ sudo apt install libcairo2-dev python3-gi python3-gi-cairo python3-setuptools python3-usb python3-future
+```
 
-2. pyusb >= 1.0.0b1.
-   Note that your distribution may only provide ``the pre-1.0`` version of ``pyusb``. If
-   this is the case, you can install ``pyusb 1.0`` using the 
-   following command:
-      ```sh
-            $ pip install --pre pyusb
-      ```
-3. future.
-   You can install ``future`` using the following command:
-      ```sh
-            $ pip install future
-      ```
-You can install all of these by running the command:
+On Fedora: 
 
-   ```sh
-            $ pip install -r requirements.txt
-   ```
-      
-And then install following packages using package manager:      
-   
-   On Debian/Ubuntu/Mint/Kali: 
-   ```sh
-            $ sudo apt install libcairo2-dev python-gi python-gi-cairo
-   ```
-
-   On Fedora: 
-   ```sh
-            $ sudo dnf install cairo-devel python3-gobject cairo-gobject
-   ```
+```sh
+      $ sudo dnf install cairo-devel python3-gobject cairo-gobject python3-setuptools python3-usb python3-future
+```
 
 ## Installation
 
@@ -71,10 +46,10 @@ On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.
 For manual installation of AlienFX, use the following commands:
   
   ```sh
-      $ sudo python3 setup.py install
+      $ sudo python setup.py install
   ```
   ```sh
-      $ sudo python3 setup.py install_data
+      $ sudo python setup.py install_data
   ```
 
 Note that the second invocation is required to ensure that icon files etc. are
