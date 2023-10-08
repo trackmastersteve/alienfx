@@ -3,9 +3,9 @@ AlienFX is a Linux utility to control the lighting effects of your Alienware com
 ============
 
 At present there is a CLI version (``alienfx``) and a gtk GUI version (``alienfx-gtk``). And 
-has been tested on Debian/Ubuntu/Kali/Mint 19, Fedora and Arch Linux.
+has been tested on Debian/Ubuntu/Kali/Mint, Fedora and Arch Linux.
 
-[![Version](https://img.shields.io/badge/version-2.3.4-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.6-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network) 
+[![Version](https://img.shields.io/badge/version-2.4.0-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.10-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network) 
 
 ![AlienFX](https://github.com/trackmastersteve/alienfx/blob/master/alienfx/data/pixmaps/alienfx.png)
 
@@ -18,56 +18,26 @@ has been tested on Debian/Ubuntu/Kali/Mint 19, Fedora and Arch Linux.
 
 ## Dependencies
 
-AlienFX is written in python and has been tested on ``python 3.6`` (<2.1.1 using ``python 2.7``). It requires
+AlienFX is written in python and has been tested on ``python 3.10``. It requires
 the following python packages to run:
 
 On Arch Linux:
 
-For 2.0.6:
-```sh
-      $ sudo pacman -S python2-pyusb python2-setuptools python2-gobject python2-cairo
-```
-For 2.1+:
 ```sh
       $ sudo pacman -S python-pyusb python-setuptools python-gobject python-cairo python-future
 ```
+    
+On Debian/Ubuntu/Mint/Kali: 
 
-On other distributions you need to install ``pyusb`` and ``pkg_resources`` using pip:
-1. pkg_resources.
-   You can install ``pkg_resources`` using the following command:
-      ```sh
-            $ pip install setuptools
-      ```
+```sh
+      $ sudo apt install libcairo2-dev python3-gi python3-gi-cairo python3-setuptools python3-usb python3-future
+```
 
-2. pyusb >= 1.0.0b1.
-   Note that your distribution may only provide ``the pre-1.0`` version of ``pyusb``. If
-   this is the case, you can install ``pyusb 1.0`` using the 
-   following command:
-      ```sh
-            $ pip install --pre pyusb
-      ```
-3. future.
-   You can install ``future`` using the following command:
-      ```sh
-            $ pip install future
-      ```
-You can install all of these by running the command:
+On Fedora: 
 
-   ```sh
-            $ pip install -r requirements.txt
-   ```
-      
-And then install following packages using package manager:      
-   
-   On Debian/Ubuntu/Mint/Kali: 
-   ```sh
-            $ sudo apt install libcairo2-dev python-gi python-gi-cairo
-   ```
-
-   On Fedora: 
-   ```sh
-            $ sudo dnf install cairo-devel pygobject3 cairo-gobject
-   ```
+```sh
+      $ sudo dnf install cairo-devel python3-gobject cairo-gobject python3-setuptools python3-usb python3-future
+```
 
 ## Installation
 
@@ -76,10 +46,10 @@ On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.
 For manual installation of AlienFX, use the following commands:
   
   ```sh
-      $ sudo python3 setup.py install
+      $ sudo python setup.py install
   ```
   ```sh
-      $ sudo python3 setup.py install_data
+      $ sudo python setup.py install_data
   ```
 
 Note that the second invocation is required to ensure that icon files etc. are
@@ -116,14 +86,14 @@ Please have a look at [devicelist](https://github.com/trackmastersteve/alienfx/b
 If you look for further informations, have a look in docs/Knowledgebase
 
 ## Disclaimer and License
-If you use this software, you use it ON YOUR OWN RISK.
+If you use this software, you use it AT YOUR OWN RISK.
 I and the contributing developers DO NOT accept responsibility for frying your AlienFX controller chip with this code.
-Not fried any yet, but this is just so we can sleep at night. ;)
+Haven't fried any yet, but this is just so we can sleep at night. ;)
 
 
 This software is licenced under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 This is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation.
 
-This programm is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU GPL]((https://www.gnu.org/licenses/gpl-3.0.html)) for more detail.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU GPL]((https://www.gnu.org/licenses/gpl-3.0.html)) for more detail.
 

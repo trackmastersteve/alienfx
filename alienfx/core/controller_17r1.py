@@ -1,5 +1,5 @@
 #
-# controller_17r3.py
+# controller_17r1.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
 # Copyright (C) 2015-2022 Track Master Steve <trackmastersteve@gmail.com>
@@ -23,17 +23,17 @@
 # 	Boston, MA  02110-1301, USA.
 #
 
-""" Specialization of the AlienFxController class for the 17R3 controller.
+""" Specialization of the AlienFxController class for the 17R1 controller.
 
 This module provides the following classes:
-AlienFXController17xR3 : 17R3 controller
+AlienFXController17R1 : 17R1 controller
 """
 
 import alienfx.core.controller as alienfx_controller
 
-class AlienFXController17R3(alienfx_controller.AlienFXController):
+class AlienFXController17R1(alienfx_controller.AlienFXController):
     
-    """ Specialization of the AlienFxController class for the 17R3 controller.
+    """ Specialization of the AlienFxController class for the 17R1 controller.
     """
     
     # Speed capabilities. The higher the number, the slower the speed of 
@@ -43,19 +43,18 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
     MIN_SPEED = 50
     
     # Zone codes
-    LEFT_KEYBOARD = 0x0008
-    MIDDLE_LEFT_KEYBOARD = 0x0004
-    MIDDLE_RIGHT_KEYBOARD = 0x0002
-    RIGHT_KEYBOARD = 0x0001
-    # Both speakers change together
-    RIGHT_SPEAKER = 0x1000
-    LEFT_SPEAKER = 0x0800
-    ALIEN_HEAD = 0x0020
-    LOGO = 0x0040
-    TOUCH_PAD = 0x0 # TODO
-    MEDIA_BAR = 0x2000 # Left macro keys
-    POWER_BUTTON = 0x0100
-    HDD_LEDS = 0x0280
+    LEFT_KEYBOARD = 0x0001
+    MIDDLE_LEFT_KEYBOARD = 0x0002
+    MIDDLE_RIGHT_KEYBOARD = 0x0004
+    RIGHT_KEYBOARD = 0x0008
+    RIGHT_SPEAKER = 0x0040
+    LEFT_SPEAKER = 0x0020
+    ALIEN_HEAD = 0x0080
+    LOGO = 0x0100
+    TOUCH_PAD = 0x0200
+    MEDIA_BAR = 0x0800
+    POWER_BUTTON = 0x2000
+    HDD_LEDS = 0x4000
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
@@ -72,11 +71,11 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
     
     def __init__(self):
         alienfx_controller.AlienFXController.__init__(self)
-        self.name = "Alienware 17R3"
+        self.name = "Alienware 17R1"
         
         # USB VID and PID
         self.vendor_id = 0x187c
-        self.product_id = 0x0528
+        self.product_id = 0x0524
         
         # map the zone names to their codes
         self.zone_map = {
@@ -97,8 +96,7 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
         # zones that have special behaviour in the different power states
         self.power_zones = [
             self.ZONE_POWER_BUTTON,
-            # self.ZONE_HDD_LEDS
-            # HDD_LEDS should not be impacted by power state
+            self.ZONE_HDD_LEDS
         ]
         
         # map the reset names to their codes
@@ -119,4 +117,4 @@ class AlienFXController17R3(alienfx_controller.AlienFXController):
         }
 
 alienfx_controller.AlienFXController.supported_controllers.append(
-    AlienFXController17R3())
+    AlienFXController17R1())

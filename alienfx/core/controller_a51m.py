@@ -1,8 +1,8 @@
 #
-# controller_m13xr3.py
+# controller_a51m.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
-# Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2022 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #
@@ -23,45 +23,42 @@
 # 	Boston, MA  02110-1301, USA.
 #
 
-""" Specialization of the AlienFxController class for the M13xR3 controller.
-
+""" Specialization of the AlienFxController class for the a51m controller.
 This module provides the following classes:
-AlienFXControllerM13xR3 : M13xR3 controller
+AlienFXControllera51m : a51m controller
 """
 
 import alienfx.core.controller as alienfx_controller
 
-class AlienFXControllerM13xr3(alienfx_controller.AlienFXController):
-    
-    """ Specialization of the AlienFxController class for the m13xR3 controller.
+class AlienFXControllera51m(alienfx_controller.AlienFXController):
+
+    """ Specialization of the AlienFxController class for the a51m controller.
     """
-    
+
     # Speed capabilities. The higher the number, the slower the speed of 
     # blink/morph actions. The min speed is selected by trial and error as 
     # the lowest value that will not result in strange blink/morph behaviour.
     DEFAULT_SPEED = 200
     MIN_SPEED = 50
-    
+
     # Zone codes
-    LEFT_KEYBOARD = 0x0008
-    MIDDLE_LEFT_KEYBOARD = 0x0004
-    MIDDLE_RIGHT_KEYBOARD = 0x0002
-    RIGHT_KEYBOARD = 0x0001
-    # External 'Alien Head' and 'Slashes' change together
-    ALIEN_HEAD = 0x0020
-    # 'Alienware' below screen
-    LOGO = 0x0040
-    # Windows the next 3 as a single 'Zone 8'
-    HDD_LED = 0x0200
-    WIFI_LED = 0x0400
-    CAPS_LED = 0x0080
-    TOUCH_PAD = HDD_LED | WIFI_LED | CAPS_LED
-    POWER_BUTTON = 0x0100
+    LEFT_KEYBOARD = 0x0001
+    MIDDLE_LEFT_KEYBOARD = 0x0002
+    MIDDLE_RIGHT_KEYBOARD = 0x0004
+    RIGHT_KEYBOARD = 0x0008
+    RIGHT_SPEAKER = 0x0040
+    LEFT_SPEAKER = 0x0020
+    ALIEN_HEAD = 0x0080
+    LOGO = 0x0100
+    TOUCH_PAD = 0x0200
+    MEDIA_BAR = 0x0800
+    POWER_BUTTON = 0x2000
+    HDD_LEDS = 0x4000
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
     RESET_ALL_LIGHTS_ON = 4
-    
+
     # State codes
     BOOT = 1
     AC_SLEEP = 2
@@ -70,38 +67,43 @@ class AlienFXControllerM13xr3(alienfx_controller.AlienFXController):
     BATTERY_SLEEP = 7
     BATTERY_ON = 8
     BATTERY_CRITICAL = 9
-    
+
     def __init__(self):
         alienfx_controller.AlienFXController.__init__(self)
-        self.name = "Alienware m13xR3"
-        
+        self.name = "Alienware a51m"
+
         # USB VID and PID
         self.vendor_id = 0x187c
-        self.product_id = 0x0529
-        
+        self.product_id = 0x0550
+
         # map the zone names to their codes
         self.zone_map = {
             self.ZONE_LEFT_KEYBOARD: self.LEFT_KEYBOARD,
             self.ZONE_MIDDLE_LEFT_KEYBOARD: self.MIDDLE_LEFT_KEYBOARD,
             self.ZONE_MIDDLE_RIGHT_KEYBOARD: self.MIDDLE_RIGHT_KEYBOARD,
             self.ZONE_RIGHT_KEYBOARD: self.RIGHT_KEYBOARD,
+            self.ZONE_RIGHT_SPEAKER: self.RIGHT_SPEAKER,
+            self.ZONE_LEFT_SPEAKER: self.LEFT_SPEAKER,
             self.ZONE_ALIEN_HEAD: self.ALIEN_HEAD,
             self.ZONE_LOGO: self.LOGO,
             self.ZONE_TOUCH_PAD: self.TOUCH_PAD,
+            self.ZONE_MEDIA_BAR: self.MEDIA_BAR,
             self.ZONE_POWER_BUTTON: self.POWER_BUTTON,
+            self.ZONE_HDD_LEDS: self.HDD_LEDS,
         }
-        
+
         # zones that have special behaviour in the different power states
         self.power_zones = [
             self.ZONE_POWER_BUTTON,
+            self.ZONE_HDD_LEDS
         ]
-        
+
         # map the reset names to their codes
         self.reset_types = {
             self.RESET_ALL_LIGHTS_OFF: "all-lights-off",
             self.RESET_ALL_LIGHTS_ON: "all-lights-on"
         }
-        
+
         # map the state names to their codes
         self.state_map = {
             self.STATE_BOOT: self.BOOT,
@@ -114,4 +116,4 @@ class AlienFXControllerM13xr3(alienfx_controller.AlienFXController):
         }
 
 alienfx_controller.AlienFXController.supported_controllers.append(
-    AlienFXControllerM13xr3())
+    AlienFXControllera51m())

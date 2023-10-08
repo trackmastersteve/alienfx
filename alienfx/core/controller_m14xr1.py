@@ -2,7 +2,7 @@
 # controller_m14xr1.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
-# Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2021 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #
@@ -88,13 +88,14 @@ class AlienFXControllerM14XR1(alienfx_controller.AlienFXController):
             self.ZONE_TOUCH_PAD: self.TOUCH_PAD,
             self.ZONE_STATUS_LEDS: self.STATUS_LEDS,
             self.ZONE_POWER_BUTTON: self.POWER_BUTTON,
-            self.ZONE_HDD_LEDS: self.HDD_LEDS,
+            self.ZONE_HDD_LEDS: self.HDD_LEDS
         }
         
         # zones that have special behaviour in the different power states
         self.power_zones = [
             self.ZONE_POWER_BUTTON,
-            self.ZONE_HDD_LEDS
+            self.ZONE_HDD_LEDS,
+            self.ZONE_STATUS_LEDS
         ]
         
         # map the reset names to their codes
