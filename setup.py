@@ -3,7 +3,7 @@
 # setup.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
-# Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2022 Track Master Steve <trackmastersteve@gmail.com>
 #
 # You may redistribute it and/or modify it under the terms of the
 # GNU General Public License, as published by the Free Software
@@ -53,7 +53,7 @@ entry_points = {
 
 setup(
     name = "alienfx",
-    version = "2.3.4",
+    version = "2.4.1",
     fullname = "AlienFX Configuration Utility",
     description = "AlienFX Configuration Utility",
     author = "Track Master Steve",
@@ -64,7 +64,7 @@ setup(
     url = "https://github.com/trackmastersteve/alienfx",
     license = "GPLv3",
     
-    install_requires = ["pyusb>=1.0.0b1"],
+    install_requires = ["pyusb>=1.2.1"],
     data_files = data_files,
     entry_points = entry_points,
     packages = find_packages(),

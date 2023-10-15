@@ -1,8 +1,8 @@
 #
-# controller_m17xr3.py
+# controller_13r3.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
-# Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2021 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #
@@ -23,21 +23,21 @@
 # 	Boston, MA  02110-1301, USA.
 #
 
-""" Specialization of the AlienFxController class for the M17xR4 controller.
+""" Specialization of the AlienFxController class for the 13R3 controller.
 
 This module provides the following classes:
-AlienFXControllerM17xR4 : M17xR4 controller
+AlienFXController13R3 : 13R3 controller
 """
 
 import alienfx.core.controller as alienfx_controller
 
-class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
-    
-    """ Specialization of the AlienFxController class for the M17xR4 controller.
+class AlienFXController13R3(alienfx_controller.AlienFXController):
+
+    """ Specialization of the AlienFxController class for the 13R3 controller.
     """
-    
-    # Speed capabilities. The higher the number, the slower the speed of 
-    # blink/morph actions. The min speed is selected by trial and error as 
+
+    # Speed capabilities. The higher the number, the slower the speed of
+    # blink/morph actions. The min speed is selected by trial and error as
     # the lowest value that will not result in strange blink/morph behaviour.
     DEFAULT_SPEED = 75
     MIN_SPEED = 1
@@ -49,10 +49,10 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     RIGHT_KEYBOARD = 0x0001  # Code OK
     # 0x000F - Keyboard: all fields (0x1+0x2+0x4+0x8=0xF). You may have look at reverse-engineering-knowledgebase.md
 
-    RIGHT_SPEAKER = 0x0800  # Code OK, Bottom  - Right light bar
-    LEFT_SPEAKER = 0x0400  # Code OK, Bottom  - Left light bar
-    LEFT_DISPLAY = 0x1000  # Code OK, Display - Left light bar
-    RIGHT_DISPLAY = 0x2000  # Code OK, Display - Right light bar
+    # RIGHT_SPEAKER = 0x0800  # Code OK, Bottom  - Right light bar
+    # LEFT_SPEAKER = 0x0400  # Code OK, Bottom  - Left light bar
+    # LEFT_DISPLAY = 0x1000  # Code OK, Display - Left light bar
+    # RIGHT_DISPLAY = 0x2000  # Code OK, Display - Right light bar
 
     ALIEN_HEAD = 0x0020  # Code OK
     LOGO = 0x0040  # Code OK. Alienware-logo below screen.
@@ -62,14 +62,14 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
     # Seems OK. You may need to set touchpad-lightning to always on in BIOS for this to work,
     # as the on-touch-event seems to be not recognized correctly
     TOUCH_PAD = 0x0080  # Code OK. Have a look at your BIOS settings.
-    MEDIA_BAR = 0x4000  # Seems OK. If Media_Bar should be Macro-Key-Bar
+    # MEDIA_BAR = 0x4000  # Seems OK. If Media_Bar should be Macro-Key-Bar
     POWER_BUTTON = 0x0100  # Seems OK. Caution: S1 (Boot) conflicts with settings for other states...
     # HDD_LEDS = ???  # Inactive: Device has no hdd indicator
 
     # Reset codes
     RESET_ALL_LIGHTS_OFF = 3
     RESET_ALL_LIGHTS_ON = 4
-    
+
     # State codes
     BOOT = 1  # Seems some zone can only be defined by Boot-State and have no effect on higher states
     AC_SLEEP = 2
@@ -81,21 +81,21 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
 
     #Controller Type
     # Defines the controllertype:
-    # 1 = old pre Alienware 17R4 (4 bits per color)
-    # 2 = AW17R4 and probably others, which are using 8 bits per color
+    # 1 = old pre Alienware 13R3 (4 bits per color)
+    # 2 = AW17R4 AND AW13R3 and probably others, which are using 8 bits per color
     MYCONTROLLERREV = 2
 
-    
+
     def __init__(self):
         # For new controller-defintions controller-revision should be provided as it defaults to 1!
         # Wrong revision might result in packet errors 32 and 75 (Overflow and Pipeoverflow)
         alienfx_controller.AlienFXController.__init__(self, self.MYCONTROLLERREV)
 
-        self.name = "Alienware M17xR4"
-        
+        self.name = "Alienware 13R3"
+
         # USB VID and PID
         self.vendor_id = 0x187c
-        self.product_id = 0x0530
+        self.product_id = 0x0529
 
         # map the zone names to their codes
         self.zone_map = {
@@ -103,30 +103,30 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
             self.ZONE_MIDDLE_LEFT_KEYBOARD: self.MIDDLE_LEFT_KEYBOARD,
             self.ZONE_MIDDLE_RIGHT_KEYBOARD: self.MIDDLE_RIGHT_KEYBOARD,
             self.ZONE_RIGHT_KEYBOARD: self.RIGHT_KEYBOARD,
-            self.ZONE_RIGHT_SPEAKER: self.RIGHT_SPEAKER,
-            self.ZONE_LEFT_SPEAKER: self.LEFT_SPEAKER,
+            #self.ZONE_RIGHT_SPEAKER: self.RIGHT_SPEAKER,
+            #self.ZONE_LEFT_SPEAKER: self.LEFT_SPEAKER,
             self.ZONE_ALIEN_HEAD: self.ALIEN_HEAD,
             self.ZONE_LOGO: self.LOGO,
             self.ZONE_TOUCH_PAD: self.TOUCH_PAD,
-            self.ZONE_MEDIA_BAR: self.MEDIA_BAR,
+            #self.ZONE_MEDIA_BAR: self.MEDIA_BAR,
             self.ZONE_POWER_BUTTON: self.POWER_BUTTON,
-            self.ZONE_LEFT_DISPLAY: self.LEFT_DISPLAY,
-            self.ZONE_RIGHT_DISPLAY: self.RIGHT_DISPLAY
+            #self.ZONE_LEFT_DISPLAY: self.LEFT_DISPLAY,
+            #self.ZONE_RIGHT_DISPLAY: self.RIGHT_DISPLAY
             # self.ZONE_HDD_LEDS: self.HDD_LEDS,  # Not used, as de AW17R4 does not have an HDD indicator
         }
-        
+
         # zones that have special behaviour in the different power states
         self.power_zones = [
             self.ZONE_POWER_BUTTON  # ,
             # self.ZONE_HDD_LEDS
         ]
-        
+
         # map the reset names to their codes
         self.reset_types = {
             self.RESET_ALL_LIGHTS_OFF: "all-lights-off",
             self.RESET_ALL_LIGHTS_ON: "all-lights-on"
         }
-        
+
         # map the state names to their codes
         self.state_map = {
             self.STATE_BOOT: self.BOOT,
@@ -139,4 +139,4 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
         }
 
 alienfx_controller.AlienFXController.supported_controllers.append(
-    AlienFXControllerM17xR4())
+    AlienFXController13R3())

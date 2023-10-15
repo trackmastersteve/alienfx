@@ -2,7 +2,7 @@
 # prober.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
-# Copyright (C) 2015-2018 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2022 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #
@@ -37,20 +37,23 @@ import usb.core
 from alienfx.core.controller import AlienFXController as AlienFXController
 
 """ Import all subclasses of AlienFXController here. """
+import alienfx.core.controller_a51m
 import alienfx.core.controller_area51
+import alienfx.core.controller_area51_r2
 import alienfx.core.controller_aurora
 import alienfx.core.controller_m11xr1
 import alienfx.core.controller_m11xr2
 import alienfx.core.controller_m11xr3
 import alienfx.core.controller_m13xr2
-import alienfx.core.controller_m13xr3
 import alienfx.core.controller_m14xr1
 import alienfx.core.controller_m14xr2
 import alienfx.core.controller_m14xr3
 import alienfx.core.controller_m15x
 import alienfx.core.controller_m17x
 import alienfx.core.controller_m17xr3
-import alienfx.core.controller_m17xr4
+import alienfx.core.controller_17r4
+import alienfx.core.controller_13r3
+import alienfx.core.controller_17r1
 import alienfx.core.controller_17r3
 import alienfx.core.controller_m18xr2
 
