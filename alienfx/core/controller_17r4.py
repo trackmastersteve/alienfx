@@ -1,5 +1,5 @@
 #
-# controller_m17xr3.py
+# controller_17r4.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
 # Copyright (C) 2015-2021 Track Master Steve <trackmastersteve@gmail.com>
@@ -26,7 +26,7 @@
 """ Specialization of the AlienFxController class for the M17xR4 controller.
 
 This module provides the following classes:
-AlienFXControllerM17xR4 : M17xR4 controller
+AlienFXControllerM17R4 : 17R4 controller
 """
 
 import alienfx.core.controller as alienfx_controller
@@ -91,7 +91,7 @@ class AlienFXControllerM17xR4(alienfx_controller.AlienFXController):
         # Wrong revision might result in packet errors 32 and 75 (Overflow and Pipeoverflow)
         alienfx_controller.AlienFXController.__init__(self, self.MYCONTROLLERREV)
 
-        self.name = "Alienware M17xR4"
+        self.name = "Alienware 17R4"
         
         # USB VID and PID
         self.vendor_id = 0x187c
