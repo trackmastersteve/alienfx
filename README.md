@@ -36,7 +36,7 @@ On Debian/Ubuntu/Mint/Kali:
 On Fedora: 
 
 ```sh
-      $ sudo dnf install cairo-devel python3-gobject cairo-gobject python3-setuptools python3-usb python3-future
+      $ sudo dnf install cairo-devel python3-gobject cairo-gobject python3-setuptools python3-pyusb python3-future
 ```
 
 ## Installation
