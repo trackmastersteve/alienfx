@@ -25,9 +25,10 @@
 try:
     from setuptools import setup, find_packages
 except ImportError:
-    import ez_setup
-    ez_setup.use_setuptools()
-    from setuptools import setup, find_packages
+    print("ImportError: Unable to import 'setup' and 'find_packages' from setuptools."
+    #import ez_setup
+    #ez_setup.use_setuptools()
+    #from setuptools import setup, find_packages
 
 import os
 import os.path
