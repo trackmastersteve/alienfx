@@ -25,7 +25,7 @@
 try:
     from setuptools import setup, find_packages
 except ImportError:
-    print("ImportError: Unable to import 'setup' and 'find_packages' from setuptools."
+    print("ImportError: Unable to import 'setup' and 'find_packages' from setuptools.")
     #import ez_setup
     #ez_setup.use_setuptools()
     #from setuptools import setup, find_packages
@@ -54,7 +54,7 @@ entry_points = {
 
 setup(
     name = "alienfx",
-    version = "2.4.2",
+    version = "2.4.3",
     fullname = "AlienFX Configuration Utility",
     description = "AlienFX Configuration Utility",
     author = "Track Master Steve",
