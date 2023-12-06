@@ -3,7 +3,7 @@
 ##
 # based on cmdpacket.py of the alienfx-package, developed by the following authors
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
-# Copyright (C) 2015-2021 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2024 Track Master Steve <trackmastersteve@gmail.com>
 #
 # This Version is modified by Dennis <derCo0n> Marx (https://github.com/derco0n) to meet the requirements of newer alienfx-controller-chips
 # as newer chips are using 8 instead of 4 bit per color
