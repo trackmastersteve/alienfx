@@ -31,7 +31,7 @@ ColourPalette: A colour palette consisting of instances of ColourPaletteSquare.
 """
 
 import gi
-gi.require_version('Gtk', '3.0')
+gi.require_version('Gtk', '4.0')
 from gi.repository import Gtk
 from gi.repository import Gdk
 import cairo
