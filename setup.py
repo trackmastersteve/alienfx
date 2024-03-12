@@ -32,7 +32,7 @@ except ImportError:
 
 import os
 import os.path
-from pkg_resources import resource_filename
+from importlib import resources
 import shutil
 
 data_files = [
@@ -78,7 +78,7 @@ setup(
 )
 
 # Copy the udev rules file
-udev_file = resource_filename("alienfx", "data/etc/udev/rules.d/10-alienfx.rules")
+udev_file = resources.files("alienfx").joinpath("data/etc/udev/rules.d/10-alienfx.rules").open('rb')
 udev_rules_dir = "/etc/udev/rules.d/"
 try:
     if not os.path.exists(udev_rules_dir):
