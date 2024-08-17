@@ -55,6 +55,7 @@ import alienfx.core.controller_17r4
 import alienfx.core.controller_13r3
 import alienfx.core.controller_17r1
 import alienfx.core.controller_17r3
+import alienfx.core.controller_m18r2
 import alienfx.core.controller_m18xr2
 
 class AlienFXProber(object):
