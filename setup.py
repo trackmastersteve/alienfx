@@ -78,7 +78,7 @@ setup(
 )
 
 # Copy the udev rules file
-udev_file = resources.files("alienfx").joinpath("data/etc/udev/rules.d/10-alienfx.rules").open('rb')
+udev_file = resources.files("alienfx").joinpath("data/etc/udev/rules.d/10-alienfx.rules")
 udev_rules_dir = "/etc/udev/rules.d/"
 try:
     if not os.path.exists(udev_rules_dir):
