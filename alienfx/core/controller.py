@@ -60,6 +60,7 @@ class AlienFXController(object):
     ZONE_RIGHT_SPEAKER = "Right Speaker"
     ZONE_LEFT_SPEAKER = "Left Speaker"
     ZONE_ALIEN_HEAD = "Alien Head"
+    ZONE_LEFT_SIDE = "Left Side"
     ZONE_LOGO = "Logo"
     ZONE_TOUCH_PAD = "Touchpad"
     ZONE_MEDIA_BAR = "Media Bar"
@@ -156,7 +157,7 @@ class AlienFXController(object):
             self._driver.write_packet(pkt)
             try:
                 resp = self._driver.read_packet()
-                ready = (resp[0] == self.cmd_packet.STATUS_READY)
+                ready = bool(resp) and (resp[0] == self.cmd_packet.STATUS_READY)
             except TypeError:
                 errcount += 1
                 logging.debug("No Status received yet... Failed tries=" + str(errcount))

@@ -1,0 +1,168 @@
+{
+    "speed": 200,
+    "Boot": [
+        {
+            "zones": [
+                "Power Button",
+                "Alien Head"
+            ],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [
+                        [
+                            15,
+                            0,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "zones": [
+                "Side Left"
+            ],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [
+                        [
+                            15,
+                            0,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        }
+    ],
+    "AC Sleep": [
+        {
+            "zones": [
+                "Power Button",
+                "Alien Head",
+                "Side Left"
+            ],
+            "loop": [
+                {
+                    "type": "blink",
+                    "colours": [
+                        [
+                            0,
+                            0,
+                            15
+                        ],
+                        [
+                            0,
+                            0,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "type": "morph",
+                    "colours": [
+                        [
+                            0,
+                            0,
+                            15
+                        ],
+                        [
+                            0,
+                            0,
+                            15
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "zones": [
+                "Left Keyboard",
+                "Middle-left Keyboard",
+                "Middle-right Keyboard",
+                "Right Keyboard",
+                "Right Speaker",
+                "Left Speaker",
+                "Logo",
+                "Touchpad",
+                "Media Bar"
+            ],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [
+                        [
+                            0,
+                            0,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        }
+    ],
+    "AC Charged": [
+        {
+            "zones": [
+                "Power Button",
+                "Alien Head",
+                "Side Left"
+            ],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [
+                        [
+                            5,
+                            0,
+                            14
+                        ]
+                    ]
+                }
+            ]
+        }
+    ],
+    "AC Charging": [
+        {
+            "zones": [
+                "Power Button",
+                "Alien Head",
+                "Side Left"
+            ],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [
+                        [
+                            0,
+                            0,
+                            15
+                        ],
+                        [
+                            15,
+                            9,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "type": "morph",
+                    "colours": [
+                        [
+                            15,
+                            9,
+                            0
+                        ],
+                        [
+                            0,
+                            0,
+                            15
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

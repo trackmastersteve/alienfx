@@ -1,3 +1,5 @@
 pyusb>=1.2.1
 setuptools>=68.0.0
 future>=0.18.3
+PyGObject>=3.42.0
+pycairo>=1.20.0

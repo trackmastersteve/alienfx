@@ -99,6 +99,15 @@
                     "colours": [ [0,0,15] ]
                 }
             ]
+        },
+        {
+            "zones": ["Power Button","Alien Head","Side Left"],
+            "loop": [
+                {
+                    "type": "fixed",
+                    "colours": [ [15,0,0] ]
+                }
+            ]
         }
     ],
     "AC Sleep": [

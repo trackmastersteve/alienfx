@@ -34,6 +34,9 @@ from alienfx.core.prober import AlienFXProber
 import alienfx.core.themefile as alienfx_themefile
 import alienfx.core.logger as alienfx_logger
 import alienfx.core.zonescanner as alienfx_zonescanner
+from alienfx.core.colorutil import parse_rgb_string
+import json
+from alienfx import Alienware, Zone
 import sys
 
 
@@ -66,7 +69,6 @@ def doZonescan():
 
 def start():
     """ Main entry point for the alienfx cli."""
-    print("You are running alienfx under Python-Version: "+sys.version)
 
     # You may switch the commenting of the following 2 lines to force zonescan-execution
     controller = AlienFXProber.get_controller()  # DEBUG: you may comment this out for development of zonescanner
@@ -113,11 +115,85 @@ def start():
         argparser.add_argument(
             "-z", "--zonescan", action="store_true", help="starts a zonescan"
         )
+        argparser.add_argument(
+            "-c", "--connector", action="store_true", help="show HDMI connector state"
+        )
+        argparser.add_argument(
+            "-e", "--led-state", action="store_true", help="show LED state"
+        )
+        argparser.add_argument(
+            "-H", "--head", help="set head LED (name or 'R G B')"
+        )
+        argparser.add_argument(
+            "-L", "--left", help="set left LED (name or 'R G B')"
+        )
+        argparser.add_argument(
+            "-R", "--right", help="set right LED (name or 'R G B')"
+        )
+        argparser.add_argument(
+            "-j", "--json", action="store_true", help="output JSON for machine readability"
+        )
         args = argparser.parse_args()
         if args.zonescan is not None:
             if args.zonescan:
                 doZonescan()
                 return True
+
+        # New sysfs-based quick commands (use the Alienware helper)
+        if any([args.connector, args.led_state, args.head, args.left, args.right]):
+            aw = Alienware()
+            json_data = {}
+            if args.connector:
+                try:
+                    hdmi = aw.get_hdmi()
+                    if args.json:
+                        json_data['hdmi'] = {
+                            'exists': hdmi.exists,
+                            'input': str(hdmi.cable_state),
+                            'output': str(hdmi.source),
+                        }
+                    else:
+                        print("HDMI passthrough state:", "present" if hdmi.exists else "not present")
+                        if hdmi.exists:
+                            print("    Input HDMI is {}".format(hdmi.cable_state))
+                            print("    Output HDMI is connected to {}".format(hdmi.source))
+                        print()
+                except PermissionError:
+                    print("You do not have permission to run this command (sudo required.)")
+
+            if args.led_state:
+                try:
+                    leds = aw.get_rgb_zones()
+                    if args.json:
+                        leds_data: dict = {'exists': leds.exists}
+                        for zone, val in leds.zones.items():
+                            leds_data[str(zone)] = {'red': val.red, 'green': val.green, 'blue': val.blue}
+                        json_data['leds'] = leds_data
+                    else:
+                        print("LED state:", "present" if leds.exists else "not present")
+                        if leds.exists:
+                            for zone, val in leds.zones.items():
+                                print("    {}:".format(zone))
+                                print("        red: {}".format(val.red))
+                                print("        green: {}".format(val.green))
+                                print("        blue: {}".format(val.blue))
+                        print()
+                except PermissionError:
+                    print("You do not have permission to run this command (sudo required.)")
+
+
+            for arg_name, zone in [(args.head, Zone.Head), (args.left, Zone.Left)]:
+                if arg_name is not None:
+                    rgb = parse_rgb_string(arg_name)
+                    if rgb is not None:
+                        try:
+                            aw.set_rgb_zone(zone, rgb[0], rgb[1], rgb[2])
+                        except PermissionError:
+                            print("You do not have permission to run this command (sudo required.)")
+
+            if args.json:
+                print(json.dumps(json_data))
+            return True
 
         if args.log is not None:
             alienfx_logger.set_logfile(args.log)
@@ -132,4 +208,4 @@ def start():
             themefile.applied()
             
     except Exception as e:
-        logging.error(e)
+        logging.error(str(e) + "\n Python-Version: "+sys.version) 

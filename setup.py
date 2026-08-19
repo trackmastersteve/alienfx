@@ -24,23 +24,35 @@
 
 try:
     from setuptools import setup, find_packages
-except ImportError:
-    print("ImportError: Unable to import 'setup' and 'find_packages' from setuptools.")
-    #import ez_setup
-    #ez_setup.use_setuptools()
-    #from setuptools import setup, find_packages
+except ImportError as exc:
+    raise SystemExit(
+        "ImportError: Unable to import 'setup' and 'find_packages' from setuptools."
+    ) from exc
 
 import os
 import os.path
 from importlib import resources
+from collections.abc import Sequence
 import shutil
+import gzip
 
-data_files = [
+man1 = "docs/man/alienfx.1"
+man1_gz = "docs/man/alienfx.1.gz"
+# Ensure a gzipped manpage exists so installations provide alienfx.1.gz
+try:
+    if os.path.exists(man1) and not os.path.exists(man1_gz):
+        with open(man1, "rb") as f_in, gzip.open(man1_gz, "wb") as f_out:
+            shutil.copyfileobj(f_in, f_out)
+except Exception:
+    # If gz creation fails, fall back to installing the uncompressed manpage
+    man1_gz = man1
+
+data_files: list[tuple[str, Sequence[str]]] = [
     ("share/applications", ["alienfx/data/share/applications/alienfx.desktop"]),
     ("share/icons/hicolor/scalable/apps", ["alienfx/data/icons/hicolor/scalable/apps/alienfx.svg"]),
     ("share/icons/hicolor/48x48/apps", ["alienfx/data/icons/hicolor/48x48/apps/alienfx.png"]),
-    ('share/pixmaps', ["alienfx/data/pixmaps/alienfx.png"]),
-    ("share/man/man1", ["docs/man/alienfx.1"])
+    ("share/pixmaps", ["alienfx/data/pixmaps/alienfx.png"]),
+    ("share/man/man1", [man1_gz])
 ]
         
 entry_points = {
@@ -54,7 +66,7 @@ entry_points = {
 
 setup(
     name = "alienfx",
-    version = "2.4.3",
+    version = "2.4.4",
     fullname = "AlienFX Configuration Utility",
     description = "AlienFX Configuration Utility",
     author = "Track Master Steve",
@@ -86,6 +98,6 @@ try:
     elif not os.access(udev_rules_dir, os.W_OK):
         print("Udev rules directory {} is not writable. Will not copy udev rules file.".format(udev_rules_dir))
     else:
-        shutil.copy(udev_file, udev_rules_dir)
+        shutil.copy(str(udev_file), udev_rules_dir)
 except IOError:
     print("Unable to copy udev rules file {} to {}".format(udev_file, udev_rules_dir))

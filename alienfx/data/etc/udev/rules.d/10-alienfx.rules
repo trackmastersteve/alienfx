@@ -2,6 +2,8 @@
 # allow user access of the AlienFX controllers for use by e.g. the alienfx 
 # program.
 
+# ===== USB-BASED ALIENWARE SYSTEMS =====
+
 # USB device 0x187c:0x0551 (AlienFX controller for M18R2 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0551", MODE:="666", GROUP="users"
 
@@ -58,3 +60,14 @@ SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0528", MODE:="666", 
 
 # USB device 0x187c:0x0518 (AlienFX controller for M18xR2 laptop)
 SUBSYSTEM=="usb", ATTR{idVendor}=="187c", ATTR{idProduct}=="0518", MODE:="666", GROUP="users"
+
+
+# ===== ACPI/WMI-BASED ALIENWARE SYSTEMS =====
+
+# Alienware Alpha ASM100 (uses ACPI/WMI via alienware-wmi kernel module, NOT USB)
+# NOTE: Alpha ASM100 does NOT have a USB AlienFX controller
+# Lighting is controlled through /sys/devices/platform/alienware-wmi/
+# Ensure alienware-wmi kernel module is loaded (add to /etc/modules-load.d/alienware.conf)
+
+# ACPI/WMI device alienware-wmi (AlienFX controller for Alienware Alpha)
+SUBSYSTEM=="platform", ATTR{idVendor}=="187c", ATTR{idProduct}=="ASM100", MODE:="666", GROUP="users", DRIVER=="alienware-wmi", RUN+="/bin/chmod 666 /sys/devices/platform/alienware-wmi/*"

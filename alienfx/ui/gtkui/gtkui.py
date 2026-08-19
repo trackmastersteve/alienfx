@@ -29,16 +29,21 @@ This module provides the following classes:
 AlienFXApp: The main GUI application.
 """
 
+import argparse
+import logging
 import os
+import shutil
+import subprocess
 import sys
 import threading
+import time
+from importlib import resources
 
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import GObject
 from gi.repository import Gtk
-from gi.repository import Gdk
-import pkg_resources
+from gi.repository import GLib
 
 from alienfx.ui.gtkui.colour_palette import ColourPalette
 from alienfx.core.prober import AlienFXProber
@@ -47,6 +52,9 @@ from alienfx.ui.gtkui.action_renderer import AlienFXActionCellRenderer
 from alienfx.ui.gtkui.action_renderer import AlienFXActions
         
 class AlienFXApp(Gtk.Application):
+    application_id = "io.github.trackmastersteve.alienfx"
+    application_name = "AlienFX"
+    wm_class = "alienfx"
     
     # These are the colours you can set a zone action to.
     colours = [
@@ -72,15 +80,139 @@ class AlienFXApp(Gtk.Application):
             "#009AF4"
         ]
         
-    def __init__(self):
-        Gtk.Application.__init__(self)
+    def __init__(self, root_mode=False):
+        GLib.set_prgname(self.wm_class)
+        GLib.set_application_name(self.application_name)
+        Gtk.Window.set_default_icon_name(self.wm_class)
+        Gtk.Application.__init__(self, application_id=self.application_id)
         self.connect("activate", self.on_activate)
+        self.root_mode = root_mode or os.geteuid() == 0
         self.controller = AlienFXProber.get_controller()
         self.themefile = AlienFXThemeFile(self.controller)
         self.selected_action = None
         self.action_type = self.themefile.KW_ACTION_TYPE_FIXED
         self.theme_edited = False
         self.set_theme_done = True
+        self.apply_error = None
+        self.apply_started_at = None
+        self.apply_timeout_seconds = 30
+        self.mode_context_id = None
+        self.pkexec_path = shutil.which("pkexec")
+
+    def _project_root(self):
+        return os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+
+    def _root_launcher_base_command(self):
+        return [sys.executable, "-m", "alienfx.ui.gtkui.gtkui"]
+
+    def _root_launcher_env_assignments(self):
+        env_keys = [
+            "DISPLAY",
+            "XAUTHORITY",
+            "XDG_RUNTIME_DIR",
+            "DBUS_SESSION_BUS_ADDRESS",
+            "WAYLAND_DISPLAY",
+            "XDG_CURRENT_DESKTOP",
+            "DESKTOP_SESSION",
+            "LANG",
+            "LC_ALL",
+            "PATH",
+        ]
+        assignments = []
+        for key in env_keys:
+            value = os.environ.get(key)
+            if value:
+                assignments.append("{}={}".format(key, value))
+
+        python_path = os.environ.get("PYTHONPATH", "")
+        project_root = self._project_root()
+        if project_root not in python_path.split(os.pathsep):
+            python_path = os.pathsep.join([part for part in [python_path, project_root] if part])
+        if python_path:
+            assignments.append("PYTHONPATH={}".format(python_path))
+        return assignments
+
+    def _set_mode_status(self, message):
+        statusbar = self.builder.get_object("statusbar")
+        if self.mode_context_id is None:
+            self.mode_context_id = statusbar.get_context_id("Mode")
+        statusbar.pop(self.mode_context_id)
+        statusbar.push(self.mode_context_id, message)
+
+    def _refresh_privilege_ui(self):
+        auth_button = self.builder.get_object("toolbutton_authenticate")
+        if self.root_mode:
+            auth_button.set_sensitive(False)
+            auth_button.set_tooltip_text("AlienFX is already running with root privileges.")
+            self._set_mode_status("Running in root mode.")
+            return
+
+        if self.pkexec_path is None:
+            auth_button.set_sensitive(False)
+            auth_button.set_tooltip_text("Install pkexec to relaunch AlienFX with root privileges.")
+            self._set_mode_status("Running in user mode. Root mode requires pkexec.")
+            return
+
+        auth_button.set_sensitive(True)
+        auth_button.set_tooltip_text("Authenticate and relaunch AlienFX in root mode.")
+        self._set_mode_status("Running in user mode. Use Authenticate for root mode.")
+
+    def _show_root_mode_error(self, message):
+        self.builder.get_object("toolbar").set_sensitive(True)
+        self._refresh_privilege_ui()
+        main_window = self.builder.get_object("main_window")
+        dialog = Gtk.MessageDialog(
+            main_window,
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.ERROR,
+            Gtk.ButtonsType.CLOSE,
+            message,
+        )
+        dialog.run()
+        dialog.destroy()
+
+    def _launch_root_mode_worker(self):
+        command = [
+            self.pkexec_path,
+            "env",
+            *self._root_launcher_env_assignments(),
+            *self._root_launcher_base_command(),
+            "--spawn-root-ui",
+        ]
+        try:
+            completed = subprocess.run(
+                command,
+                cwd=self._project_root(),
+                check=False,
+            )
+        except Exception as exc:
+            GLib.idle_add(
+                self._show_root_mode_error,
+                "Failed to start root mode: {}".format(exc),
+            )
+            return
+
+        if completed.returncode == 0:
+            GLib.idle_add(self.quit)
+            return
+
+        GLib.idle_add(
+            self._show_root_mode_error,
+            "Authentication was cancelled or root mode failed to start.",
+        )
+
+    def on_action_authenticate_activate(self, widget):
+        if self.root_mode:
+            return
+        if self.pkexec_path is None:
+            self._show_root_mode_error(
+                "Unable to authenticate because pkexec is not installed on this system."
+            )
+            return
+
+        self.builder.get_object("toolbar").set_sensitive(False)
+        self._set_mode_status("Waiting for authentication to enter root mode...")
+        threading.Thread(target=self._launch_root_mode_worker, daemon=True).start()
 
     def enable_delete_theme_button(self, enable):
         """ Enable or disable the "Delete Theme" button."""
@@ -97,6 +229,12 @@ class AlienFXApp(Gtk.Application):
         response = dialog.run()
         dialog.destroy()
         return response == Gtk.ResponseType.YES
+
+    def _resource_path(self, *parts):
+        resource = resources.files("alienfx.ui.gtkui")
+        for part in parts:
+            resource = resource.joinpath(part)
+        return resource
             
     def on_action_new_theme_activate(self, widget):
         """ Handler for when the "New Theme" action is triggered."""
@@ -137,7 +275,7 @@ class AlienFXApp(Gtk.Application):
     def on_action_save_theme_as_activate(self, widget):
         """ Handler for when the "Save Theme As" action is triggered."""
         themes = self.themefile.get_themes()
-        saveas_theme_list_store = self.builder.get_object("saveas_theme_list store")
+        saveas_theme_list_store = self.builder.get_object("saveas_theme_list_store")
         saveas_theme_list_store.clear()
         for theme in themes:
             saveas_theme_list_store.append([theme])
@@ -190,7 +328,8 @@ class AlienFXApp(Gtk.Application):
         model = self.zone_list_view.get_model()
         actions = model[treeiter][1]
         new_action = self.themefile.make_zone_action(self.action_type, [[15, 15, 15]])
-        actions.actions.insert(action_index+1, new_action)
+        insert_index = action_index + 1 if action_index is not None else len(actions.actions)
+        actions.actions.insert(insert_index, new_action)
         self.builder.get_object("toolbutton_delete").set_sensitive(True)
         model[treeiter][1] = actions
         self.set_theme_dirty(True)
@@ -211,19 +350,55 @@ class AlienFXApp(Gtk.Application):
         
     def set_theme(self):
         """ Set the current theme on the computer."""
-        self.controller.set_theme(self.themefile)
-        self.themefile.applied()
+        try:
+            if self.controller is None:
+                raise RuntimeError("No AlienFX controller available")
+            self.controller.set_theme(self.themefile)
+            self.themefile.applied()
+            self.apply_error = None
+        except Exception as exc:
+            self.apply_error = str(exc)
+            logging.exception("Error applying theme")
         self.set_theme_done = True
         
     def set_theme_done_cb(self):
         """ This idle task updates the GUI when the theme has been sent to the
         AlienFX controller."""
+        # Prevent UI from remaining frozen forever if controller apply blocks.
+        if (not self.set_theme_done and
+                self.apply_started_at is not None and
+                (time.monotonic() - self.apply_started_at) > self.apply_timeout_seconds):
+            self.apply_error = (
+                "The controller may be unresponsive and is timed out after {}s.".format(
+                    self.apply_timeout_seconds
+                )
+            )
+            self.set_theme_done = True
+
         if self.set_theme_done:
             spinner = self.builder.get_object("spinner")
             spinner.stop()
             spinner.hide()
-            self.builder.get_object("statusbar").pop(self.context_id)
+            statusbar = self.builder.get_object("statusbar")
+            statusbar.pop(self.context_id)
             self.builder.get_object("toolbar").set_sensitive(True)
+            if self.apply_error is not None:
+                # Keep error visible in statusbar as requested.
+                statusbar.push(self.context_id, "Apply failed: {}".format(self.apply_error))
+                main_window = self.builder.get_object("main_window")
+                dialog = Gtk.MessageDialog(
+                    main_window,
+                    Gtk.DialogFlags.MODAL,
+                    Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.CLOSE,
+                    "Failed: {}".format(self.apply_error),
+                )
+                dialog.run()
+                dialog.destroy()
+                self.apply_error = None
+            else:
+                statusbar.push(self.context_id, "Theme applied.")
+            self.apply_started_at = None
             return False
         else:
             return True
@@ -238,8 +413,10 @@ class AlienFXApp(Gtk.Application):
         spinner.show()
         spinner.start()
         self.set_theme_done = False
-        GObject.idle_add(self.set_theme_done_cb)
-        self.set_theme_thread = threading.Thread(target=self.set_theme)
+        self.apply_started_at = time.monotonic()
+        self.apply_timeout_seconds = 10
+        GLib.idle_add(self.set_theme_done_cb)
+        self.set_theme_thread = threading.Thread(target=self.set_theme, daemon=True)
         self.set_theme_thread.start()
 
     def set_window_title(self, theme_name):
@@ -252,27 +429,76 @@ class AlienFXApp(Gtk.Application):
         theme file currently loaded."""
         normal_zone_list_store = self.builder.get_object("normal_zone_list_store")
         power_zone_list_store = self.builder.get_object("power_zone_list_store")
+        normal_zones_added = set()
         normal_zone_list_store.clear()
+        power_zone_list_store.clear()
+        # If controller isn't available, nothing to load
+        if not self.controller:
+            return
         zones = self.controller.zone_map
         for zone in zones:
             if zone in self.controller.power_zones:
-                power_zone_list_store.clear()
-                power_states = [
+                # Get available power states from controller's state_map
+                # This handles both laptop (with battery states) and desktop (AC-only) controllers
+                power_states = []
+                
+                # Add AC states if available
+                ac_states = [
                     self.controller.STATE_AC_SLEEP,
                     self.controller.STATE_AC_CHARGED,
                     self.controller.STATE_AC_CHARGING,
+                ]
+                for state in ac_states:
+                    if state in self.controller.state_map:
+                        power_states.append(state)
+                
+                # Add battery states if available (laptop controllers)
+                battery_states = [
                     self.controller.STATE_BATTERY_SLEEP,
                     self.controller.STATE_BATTERY_ON,
-                    self.controller.STATE_BATTERY_CRITICAL
+                    self.controller.STATE_BATTERY_CRITICAL,
                 ]
+                for state in battery_states:
+                    if state in self.controller.state_map:
+                        power_states.append(state)
+                
                 for state in power_states:
                     a = AlienFXActions()
                     a.actions = self.themefile.get_zone_actions(state, zone)
                     power_zone_list_store.append([state, a])
-            elif zone in self.controller.zone_map:  # Is elif really necessary? Aren't we already iterating self.controller.zone_map?
-                a = AlienFXActions()
-                a.actions = self.themefile.get_zone_actions(self.controller.STATE_BOOT, zone)
-                normal_zone_list_store.append([zone, a])
+
+        # Keep compatibility with themes/controllers that use a dedicated
+        # power zone for the power button, even if the controller doesn't have a separate power button zone.
+        normal_states = []
+
+        zone_states = [
+            self.controller.ZONE_LEFT_KEYBOARD,
+            self.controller.ZONE_MIDDLE_LEFT_KEYBOARD,
+            self.controller.ZONE_MIDDLE_RIGHT_KEYBOARD,
+            self.controller.ZONE_RIGHT_KEYBOARD,
+            self.controller.ZONE_RIGHT_SPEAKER,
+            self.controller.ZONE_LEFT_SPEAKER,
+            self.controller.ZONE_ALIEN_HEAD,
+            self.controller.ZONE_LEFT_SIDE,
+            self.controller.ZONE_LOGO,
+            self.controller.ZONE_TOUCH_PAD,
+            self.controller.ZONE_MEDIA_BAR,
+            self.controller.ZONE_STATUS_LEDS,
+            self.controller.ZONE_POWER_BUTTON,
+            self.controller.ZONE_HDD_LEDS,
+            self.controller.ZONE_RIGHT_DISPLAY,  # LED-bar display right side, as built in the AW17R4
+            self.controller.ZONE_LEFT_DISPLAY,  # LED-bar display left side, as built in the AW17R4         
+        ]                
+        for state in zone_states:
+            if state in self.controller.power_zones:
+                normal_states.append(state)                
+        
+        for state in normal_states:
+            a = AlienFXActions()
+            a.actions = self.themefile.get_zone_actions(self.controller.STATE_BOOT, state)
+            normal_zone_list_store.append([state, a])
+            normal_zones_added.add(state)
+
         self.zone_list_view.set_model(normal_zone_list_store)
         self.builder.get_object("radiobutton_normal_zones").set_active(True)
         if theme_name is not None:
@@ -368,8 +594,8 @@ class AlienFXApp(Gtk.Application):
         
     def on_activate(self, data=None):
         self.builder = Gtk.Builder()
-        self.builder.add_from_file(pkg_resources.resource_filename(
-            "alienfx.ui.gtkui", "glade/ui.glade"))
+        with resources.as_file(self._resource_path("glade", "ui.glade")) as ui_glade:
+            self.builder.add_from_file(str(ui_glade))
         
         self.zone_list_view = self.builder.get_object("zone_list_view")
         self.zone_list_view.get_selection().set_mode(Gtk.SelectionMode.SINGLE)
@@ -406,10 +632,15 @@ class AlienFXApp(Gtk.Application):
         
         self.builder.connect_signals(self)
         main_window = self.builder.get_object("main_window")
-        main_window.set_icon_from_file(pkg_resources.resource_filename(
-            "alienfx", "data/icons/hicolor/scalable/apps/alienfx.svg"))
+        with resources.as_file(resources.files("alienfx").joinpath(
+            "data", "icons", "hicolor", "scalable", "apps", "alienfx.svg"
+        )) as icon_file:
+            main_window.set_icon_from_file(str(icon_file))
+        main_window.set_icon_name(self.wm_class)
+        main_window.set_wmclass(self.wm_class, self.application_name)
         main_window.show_all()
         self.add_window(main_window)
+        self._refresh_privilege_ui()
         
         if self.controller is None:
             Gtk.MessageDialog(
@@ -455,6 +686,8 @@ class AlienFXApp(Gtk.Application):
     def on_colour_selected(self, sender=None, data=None):
         if self.selected_action is None:
             return
+        if sender is None:
+            return
             
         colour = sender.get_colour()
         (treeiter, action_index) = self.selected_action
@@ -466,14 +699,21 @@ class AlienFXApp(Gtk.Application):
         if (self.action_type in [
                 self.themefile.KW_ACTION_TYPE_FIXED, 
                 self.themefile.KW_ACTION_TYPE_BLINK]):
-            if len(old_colours) != 1:
-                old_colours = old_colours[0:0]
+            if len(old_colours) == 0:
+                old_colours = [[0, 0, 0]]
+            elif len(old_colours) > 1:
+                old_colours = old_colours[0:1]
         if self.action_type == self.themefile.KW_ACTION_TYPE_MORPH:
-            if len(old_colours) != 2:
+            if len(old_colours) == 0:
+                old_colours = [[0, 0, 0], [0, 0, 0]]
+            elif len(old_colours) == 1:
                 old_colours.append([0, 0, 0])
-        if sender.get_parent() == self.palette1:
+            elif len(old_colours) > 2:
+                old_colours = old_colours[0:2]
+        parent = sender.get_parent() if sender is not None else None
+        if parent == self.palette1:
             old_colours[0] = colour
-        if sender.get_parent() == self.palette2:
+        if parent == self.palette2:
             old_colours[1] = colour
         self.themefile.set_action_colours(action, old_colours)
         model[treeiter][1] = actions
@@ -495,7 +735,7 @@ class AlienFXApp(Gtk.Application):
             model = treeview.get_model()
             treeiter = model.get_iter(path)
             actions = model[treeiter][1]
-            if action_index < len(actions.actions):
+            if action_index is not None and action_index < len(actions.actions):
                 self.enable_action_edit_controls(True)
                 self.selected_action = (treeiter, action_index)
                 if len(actions.actions) == 1:
@@ -503,5 +743,42 @@ class AlienFXApp(Gtk.Application):
         
 def start():
     """ Entry point for the GTK GUI interface to alienfx. """
-    app = AlienFXApp()
+    args = parse_args()
+    if args.spawn_root_ui:
+        return spawn_root_ui()
+    app = AlienFXApp(root_mode=args.root_mode)
     app.run(None)
+    return 0
+
+
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--root-mode", action="store_true")
+    parser.add_argument("--spawn-root-ui", action="store_true")
+    return parser.parse_args(argv)
+
+
+def spawn_root_ui():
+    env = os.environ.copy()
+    command = [
+        sys.executable,
+        "-m",
+        "alienfx.ui.gtkui.gtkui",
+        "--root-mode",
+    ]
+    try:
+        subprocess.Popen(
+            command,
+            cwd=os.getcwd(),
+            env=env,
+            start_new_session=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    except Exception:
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(start())

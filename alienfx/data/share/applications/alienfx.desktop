@@ -1,10 +1,11 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=AlienFX
-Comment=AlienFX
+Comment=AlienFX lighting controller
 Type=Application
 Exec=alienfx-gtk
 Icon=alienfx
+StartupWMClass=alienfx
 Categories=Utility;
+GenericName=AlienFX
 GenericName[en_IN]=AlienFX
 Name[en_IN]=AlienFX
