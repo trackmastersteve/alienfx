@@ -76,7 +76,7 @@ class AlienFXThemeFile(object):
                 self._theme_dir = os.path.expanduser("~/.config/alienfx")
             else:
                 self._theme_dir = os.path.join(
-                    os.environ("XDG_CONFIG_HOME"), "alienfx")
+                    os.environ["XDG_CONFIG_HOME"], "alienfx")
             if not os.path.exists(self._theme_dir):
                 os.makedirs(self._theme_dir)
         except Exception as exc:
