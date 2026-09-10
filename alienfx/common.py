@@ -29,7 +29,7 @@ from importlib.metadata import PackageNotFoundError, version
 
 def get_version():
     """ Returns the version of the installed alienfx package."""
-    
+
     try:
         return version("alienfx")
     except PackageNotFoundError:
