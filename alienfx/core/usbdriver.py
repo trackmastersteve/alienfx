@@ -29,8 +29,6 @@ This module provides the following classes:
 AlienFXUSBDriver: low level USB communication API with an AlienFX controller.
 """
 
-from builtins import hex
-from builtins import object
 import logging
 
 import usb

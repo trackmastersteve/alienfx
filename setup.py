@@ -76,6 +76,7 @@ setup(
         the lights of your Alienware computer.""",
     url = "https://github.com/trackmastersteve/alienfx",
     license = "GPLv3",
+    python_requires = ">=3.14",
     
     install_requires = ["pyusb>=1.2.1"],
     data_files = data_files,

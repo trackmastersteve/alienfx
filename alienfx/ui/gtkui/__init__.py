@@ -1,6 +1,3 @@
-from __future__ import absolute_import
-
-
 def start(*args, **kwargs):
 	from alienfx.ui.gtkui.gtkui import start as gtkui_start
 

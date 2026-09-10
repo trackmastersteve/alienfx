@@ -25,13 +25,12 @@
 
 """ Common functions used by various parts of AlienFX """
 
-import pkg_resources
+from importlib.metadata import PackageNotFoundError, version
 
 def get_version():
     """ Returns the version of the installed alienfx package."""
     
-    requirements = pkg_resources.require("alienfx")
-    for r in requirements:
-        if r.key == "alienfx":
-            return r.version
-    return "2.4.4"
+    try:
+        return version("alienfx")
+    except PackageNotFoundError:
+        return "2.4.4"

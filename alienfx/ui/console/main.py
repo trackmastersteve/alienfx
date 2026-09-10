@@ -28,7 +28,6 @@
 
 import argparse
 import logging
-import pkg_resources
 import alienfx.common
 from alienfx.core.prober import AlienFXProber
 import alienfx.core.themefile as alienfx_themefile
@@ -42,13 +41,7 @@ import sys
 
 def askuser(question):
     while "Your answer was invalid.":
-        # Python 2.x => raw_input / python 3.x => input
-        if sys.version_info < (3, 0):
-            # Python 2.x
-            reply = raw_input((question+' (y/n): ').lower().strip())
-        else:
-            # Python 3.x
-            reply = input((question + ' (y/n): ').lower().strip())
+        reply = input((question + ' (y/n): ').lower().strip())
         if reply.__len__() > 0:
             if reply[0] == 'y':
                 return True
@@ -57,10 +50,6 @@ def askuser(question):
 
 
 def doZonescan():
-    if sys.version_info < (3, 0):
-        # Python 2.x
-        print("Zonescan might not run correctly under Python 2."
-              "If you experience issues, try running under Python 3 instead.")
     print("Performing zonescan...")
     # Call Zonescanning here...
     zonescan = alienfx_zonescanner.Zonescanner("0x187c")

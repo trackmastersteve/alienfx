@@ -30,8 +30,6 @@ AlienFXACPIController:  base class for ACPI/WMI AlienFX controller chips
 AlienFXACPIDriver: low level ACPI/WMI communication driver
 """
 
-from builtins import hex
-from builtins import object
 import logging
 import os
 import struct

@@ -27,10 +27,8 @@
 # initial development by derco0n <https://github.com/derco0n> (July/2018)
 
 from alienfx.core.prober import AlienFXProber
-from builtins import str,hex
 import alienfx.core.controller as alienfx_controller
 import os
-import sys
 import logging
 
 
@@ -47,13 +45,7 @@ class Zonescanner:
 
     def askuser(self, question):
         while "Your answer was invalid.":
-            # Python 2.x => raw_input / python 3.x => input
-            if sys.version_info < (3, 0):
-                # Python 2.x
-                reply = raw_input((question + ' (y/n): ').lower().strip())
-            else:
-                # Python 3.x
-                reply = input((question + ' (y/n): ').lower().strip())
+            reply = input((question + ' (y/n): ').lower().strip())
             if reply.__len__() > 0:
                 if reply[0] == 'y':
                     return True
@@ -62,13 +54,7 @@ class Zonescanner:
 
     def askzonename(self):
         question = "Please enter a name for this zone."
-        # Python 2.x => raw_input / python 3.x => input
-        if sys.version_info < (3, 0):
-            # Python 2.x
-            reply = raw_input((question + ' : ').lower().strip())
-        else:
-            # Python 3.x
-            reply = input((question + ' : ').lower().strip())
+        reply = input((question + ' : ').lower().strip())
         if reply.__len__() > 0:
             return reply.lower().strip()
 

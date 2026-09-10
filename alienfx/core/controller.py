@@ -30,8 +30,6 @@ This module provides the following classes:
 AlienFXController: base class for AlienFX controller chips
 """
 
-from builtins import hex
-from builtins import object
 import logging
 
 import alienfx.core.usbdriver as alienfx_usbdriver

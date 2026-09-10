@@ -37,8 +37,6 @@ This module provides the following classes:
 AlienFXCmdPacket: base class for AlienFX command packets
 """
 
-from builtins import hex
-from builtins import object
 
 class AlienFXCmdPacket(object):
 

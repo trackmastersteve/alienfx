@@ -32,13 +32,12 @@ This module provides the following classes:
 AlienFXThemeFile: theme file abstraction
 """
 
-from builtins import object
 import json
 import logging
 import os
 import os.path
 
-import pkg_resources
+from importlib import resources
 
 class AlienFXThemeFile(object):
     
@@ -203,9 +202,10 @@ class AlienFXThemeFile(object):
             
     def set_default_theme(self):
         """ Sets the theme contents to a default value."""
-        default_themefile = pkg_resources.resource_filename(
-            "alienfx", "data/themes/default.json")
-        self._load_from_file(default_themefile)
+        default_themefile = resources.files("alienfx").joinpath(
+            "data/themes/default.json")
+        with resources.as_file(default_themefile) as default_theme_path:
+            self._load_from_file(default_theme_path)
         self.theme_name = ""
         
     def _load_from_file(self, theme_file_path):

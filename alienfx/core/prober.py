@@ -29,8 +29,6 @@ This module provides the following classes:
 AlienFXProber:  probes the USB bus for supported Alien FX controllers.
 """
 from alienfx.core.acpi_controller import AlienFXACPIController
-from builtins import object
-from builtins import int
 import os
 import usb
 import usb.core
