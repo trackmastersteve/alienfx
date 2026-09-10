@@ -66,7 +66,7 @@ entry_points = {
 
 setup(
     name = "alienfx",
-    version = "2.4.4",
+    version = "2.5.0",
     fullname = "AlienFX Configuration Utility",
     description = "AlienFX Configuration Utility",
     author = "Track Master Steve",
@@ -78,7 +78,7 @@ setup(
     license = "GPLv3",
     python_requires = ">=3.14",
     
-    install_requires = ["pyusb>=1.2.1"],
+    install_requires = ["pyusb>=1.3.1"],
     data_files = data_files,
     entry_points = entry_points,
     packages = find_packages(),

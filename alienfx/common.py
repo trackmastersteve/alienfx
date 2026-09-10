@@ -33,4 +33,4 @@ def get_version():
     try:
         return version("alienfx")
     except PackageNotFoundError:
-        return "2.4.4"
+        return "2.5.0"
