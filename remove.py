@@ -3,7 +3,7 @@
 # remove.py
 #
 # Copyright (C) 2013-2014 Ashwin Menon <ashwin.menon@gmail.com>
-# Copyright (C) 2015-2024 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2026 Track Master Steve <trackmastersteve@gmail.com>
 #
 # You may redistribute it and/or modify it under the terms of the
 # GNU General Public License, as published by the Free Software
