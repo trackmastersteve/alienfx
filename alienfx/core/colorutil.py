@@ -1,7 +1,7 @@
 #
 # colorutil.py
 #
-# Copyright (C) 2015-2024 Track Master Steve <trackmastersteve@gmail.com>
+# Copyright (C) 2015-2026 Track Master Steve <trackmastersteve@gmail.com>
 #
 # Alienfx is free software.
 #
