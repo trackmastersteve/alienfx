@@ -2,7 +2,7 @@
 AlienFX is a Linux utility to control the lighting effects of your Alienware computer.
 ============
 
-At present there is a CLI version (``alienfx``) and a gtk GUI version (``alienfx-gtk``). And 
+AlienFX provides both a CLI (``alienfx``) and a GTK4 GUI (``alienfx-gtk``). It
 has been tested on Debian/Ubuntu/Kali/Mint, Fedora and Arch Linux.
 
 [![Version](https://img.shields.io/badge/version-2.5.0-red.svg)]() [![GitHub license](https://img.shields.io/github/license/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/tree/2.1.x/LICENSE) [![Python3](https://img.shields.io/badge/python-3.14-green.svg)]() [![GitHub issues](https://img.shields.io/github/issues/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/issues) [![GitHub stars](https://img.shields.io/github/stars/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/stargazers)  [![GitHub forks](https://img.shields.io/github/forks/trackmastersteve/alienfx.svg)](https://github.com/trackmastersteve/alienfx/network)
@@ -20,47 +20,65 @@ has been tested on Debian/Ubuntu/Kali/Mint, Fedora and Arch Linux.
 
 ## Dependencies
 
-AlienFX is written in Python and requires Python 3.14 or newer. It requires
-the following python packages to run:
+AlienFX is written in Python and requires Python 3.14 or newer. The GTK4 GUI
+also requires GTK 4 and GObject introspection libraries. Python dependencies
+are listed in ``requirements.txt`` and currently include:
+
+```text
+pyusb>=1.3.1
+setuptools>=84.0.0
+PyGObject>=3.58.0
+pycairo>=1.29.1
+```
 
 On Arch Linux:
 
 ```sh
-      $ sudo pacman -S python-pyusb python-setuptools python-gobject python-cairo
+      $ sudo pacman -S gtk4 python-pyusb python-setuptools python-gobject python-cairo
 ```
     
 On Debian/Ubuntu/Mint/Kali: 
 
 ```sh
-      $ sudo apt install libcairo2-dev python3-gi python3-gi-cairo python3-setuptools python3-usb
+      $ sudo apt install gir1.2-gtk-4.0 libcairo2-dev python3-gi python3-gi-cairo python3-setuptools python3-usb
 ```
 
 On Fedora: 
 
 ```sh
-      $ sudo dnf install cairo-devel python3-gobject cairo-gobject python3-setuptools python3-pyusb
+      $ sudo dnf install gtk4 cairo-devel python3-gobject cairo-gobject python3-setuptools python3-pyusb
 ```
 
 ## Installation
 
 On Arch Linux you can install package from AUR: [alienfx](https://aur.archlinux.org/packages/alienfx/)
 
-For manual installation of AlienFX, use the following commands:
-  
-  ```sh
-      $ sudo python setup.py install
-  ```
-  ```sh
-      $ sudo python setup.py install_data
-  ```
+For a manual installation, create a virtual environment, install the current
+Python dependencies, and install AlienFX from the project directory:
 
-Note that the second invocation is required to ensure that icon files etc. are
-properly installed.
+```sh
+python3.14 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip install .
+```
 
-The installation includes a udev rules file that allows AlienFX to access the 
-AlienFX USB controller on your computer without needing root permissions. If 
-you run the install commands without sudo, then the udev rules file will not 
-be installed. 
+The installed commands are ``alienfx`` and ``alienfx-gtk``. To install the
+package in editable mode while developing, replace the last command with:
+
+```sh
+.venv/bin/python -m pip install -e .
+```
+
+The package includes a udev rules file that allows AlienFX to access the AlienFX
+USB controller without needing root permissions. Install it separately with
+root privileges, then reload udev:
+
+```sh
+sudo install -m 644 alienfx/data/etc/udev/rules.d/10-alienfx.rules /etc/udev/rules.d/10-alienfx.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
 
 ## Usage
 
@@ -69,7 +87,7 @@ files stored in ``$XDG_CONFIG_HOME/alienfx``. If ``XDG_CONFIG_HOME`` is not set,
 ``~/.config/alienfx`` is used. Both the CLI and GUI programs use these theme
 files, and the GUI program allows you to create new themes as well.
 
-When the GTK interface is started without root privileges, the toolbar now
+When the GTK4 interface is started without root privileges, the toolbar
 includes an Authenticate action. It uses ``pkexec`` to prompt for credentials,
 then relaunches the GUI in root mode so hardware access can be performed from
 the elevated session.

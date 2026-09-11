@@ -78,7 +78,12 @@ setup(
     license = "GPLv3",
     python_requires = ">=3.14",
     
-    install_requires = ["pyusb>=1.3.1"],
+    install_requires = [
+        "pyusb>=1.3.1",
+        "setuptools>=84.0.0",
+        "PyGObject>=3.58.0",
+        "pycairo>=1.29.1",
+    ],
     data_files = data_files,
     entry_points = entry_points,
     packages = find_packages(),
